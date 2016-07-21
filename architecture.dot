@@ -1,0 +1,73 @@
+digraph {
+  label="Cordux Flow"
+	compound=true
+	outputorder=edgesfirst
+
+  graph [fontsize=10 fontname="Helvetica-Bold"]
+  node [shape=rect style="rounded" fontsize=12 fontname="Helvetica-Light"]
+  edge [fontsize=10 fontname="Helvetica"]
+
+
+  subgraph cluster_app {
+    label="App"
+
+    store
+  }
+
+  subgraph cluster_scene {
+    label="Scene"
+
+    subgraph cluster_coordinator {
+      label="Coordinator"
+      coordinator [label="Coordinator"]
+      view_handler [label="View Handler"]
+    }
+
+    subgraph cluster_view {
+      label="View"
+
+      view_store_query [label="Query"]
+      view_controller [label="View Controller"]
+      view [label="View"]
+    }
+  }
+
+
+  subgraph cluster_services {
+    label="Services"
+
+    api
+    db
+  }
+
+  subgraph data_flow {
+    edge [color="blue"]
+    store -> view_store_query
+    view_store_query -> view_controller
+    view_controller -> view_handler
+    coordinator -> store [ltail=cluster_coordinator]
+  }
+
+  subgraph relationships {
+    edge [style="dotted"]
+
+    coordinator -> view_handler [label="conforms to"]
+    coordinator -> view_store_query [label="instantiates"]
+    coordinator -> view_controller [label="instantiates"]
+
+
+    view_controller -> view [label="controls"]
+    view -> view_controller
+  }
+
+  coordinator -> db [weight=10;lhead=cluster_services]
+  db -> coordinator [ltail=cluster_services]
+
+  subgraph layout {
+    edge [style="invis"]
+
+    store -> view_store_query
+    coordinator -> view_controller [weight=10]
+    coordinator -> view_handler [weight=100]
+  }
+}
