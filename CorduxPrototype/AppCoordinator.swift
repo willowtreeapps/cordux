@@ -21,7 +21,7 @@ final class AppCoordinator: SubscriberType {
     }
 
     func start() {
-        store.subscribe(self)
+        store.subscribe(self, RouteSubscription.init)
     }
 
     func newState(state: RouteSubscription) {

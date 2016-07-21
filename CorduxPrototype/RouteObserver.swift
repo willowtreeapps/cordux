@@ -17,7 +17,7 @@ final class RouteObserver: SubscriberType {
     }
 
     func start() {
-        store.subscribe(self)
+        store.subscribe(self, RouteSubscription.init)
     }
 
     func newState(state: RouteSubscription) {

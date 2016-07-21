@@ -32,15 +32,26 @@
                                     <action selector="forgotPassword:" destination="Xcl-un-f6S" eventType="touchUpInside" id="K0s-HB-5ZP"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lg6-UF-yKZ">
+                                <rect key="frame" x="279" y="411" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="9lF-tR-v7w" firstAttribute="centerX" secondItem="evn-FZ-jij" secondAttribute="centerX" id="26T-KH-XYo"/>
                             <constraint firstItem="evn-FZ-jij" firstAttribute="centerX" secondItem="yy8-cU-nHY" secondAttribute="centerX" id="44x-Y9-vEN"/>
+                            <constraint firstItem="lg6-UF-yKZ" firstAttribute="top" secondItem="9lF-tR-v7w" secondAttribute="bottom" constant="8" id="Cb4-Kv-7iA"/>
+                            <constraint firstItem="lg6-UF-yKZ" firstAttribute="centerX" secondItem="9lF-tR-v7w" secondAttribute="centerX" id="CuC-Il-2Ph"/>
                             <constraint firstItem="evn-FZ-jij" firstAttribute="centerY" secondItem="yy8-cU-nHY" secondAttribute="centerY" id="JmD-Kh-Rfc"/>
                             <constraint firstItem="9lF-tR-v7w" firstAttribute="top" secondItem="evn-FZ-jij" secondAttribute="bottom" constant="50" id="oeb-uN-fPF"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="nameLabel" destination="lg6-UF-yKZ" id="o5e-7p-oNw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oH7-dL-nZ5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

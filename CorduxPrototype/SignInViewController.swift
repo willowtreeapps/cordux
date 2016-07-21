@@ -8,8 +8,12 @@
 
 import UIKit
 
-protocol SignInViewModel {
-    
+struct SignInViewModel {
+    var name: String
+}
+
+protocol SignInDelegate: ViewControllerLifecycleDelegate {
+
 }
 
 protocol SignInHandler {
@@ -19,14 +23,22 @@ protocol SignInHandler {
 
 final class SignInViewController: UIViewController {
 
-    var handler: SignInHandler!
+    @IBOutlet var nameLabel: UILabel!
 
-    func inject(handler: SignInHandler) {
+    var handler: SignInHandler!
+    weak var delegate: SignInDelegate?
+
+    override func viewDidLoad() {
+        delegate?.viewDidLoad?(self)
+    }
+
+    func inject(handler handler: SignInHandler, delegate: SignInDelegate? = nil) {
         self.handler = handler
+        self.delegate = delegate
     }
 
     func render(viewModel: SignInViewModel) {
-
+        nameLabel?.text = viewModel.name
     }
 
     @IBAction func signIn(sender: AnyObject) {

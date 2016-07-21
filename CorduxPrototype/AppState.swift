@@ -8,17 +8,18 @@
 
 import Foundation
 
-typealias Store = CorduxStore<AppState, AppReducer>
+typealias Store = CorduxStore<AppState>
 
-struct AppState: CorduxState {
+struct AppState: StateType {
     var route: Route = ["auth"]
+    var name: String = "Hello"
     var authenticationState: AuthenticationState = .unauthenticated
 }
 
-struct RouteSubscription: SubscriptionType {
+struct RouteSubscription {
     let route: Route
 
-    init(state: AppState) {
+    init(_ state: AppState) {
         route = state.route
     }
 }
@@ -33,11 +34,12 @@ enum AuthenticationAction: Action {
     case signOut
 }
 
-final class AppReducer: ReducerType {
+final class AppReducer: Reducer {
     func handleAction(action: Action, state: AppState) -> AppState {
         let state = state ?? AppState()
         return AppState(
             route: state.route,
+            name: state.name,
             authenticationState: reduce(action, state: state.authenticationState)
         )
     }

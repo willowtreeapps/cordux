@@ -18,7 +18,6 @@ final class AuthenticationCoordinator: NSObject, Coordinator {
     var rootViewController: UIViewController { return navigationController }
 
     let signInViewController: SignInViewController
-    var signInRenderSubscription: SignInRenderSubscription?
 
     init(store: Store) {
         self.store = store
@@ -31,9 +30,7 @@ final class AuthenticationCoordinator: NSObject, Coordinator {
         self.currentRoute = route
         navigationController.delegate = self
 
-        signInViewController.inject(self)
-        signInRenderSubscription = SignInRenderSubscription(controller: signInViewController, store: store)
-
+        signInViewController.inject(handler: self, delegate: self)
         store.setRoute(.push(segment: ["signIn"]))
     }
 
@@ -54,6 +51,18 @@ final class AuthenticationCoordinator: NSObject, Coordinator {
 //    }
 //}
 
+extension AuthenticationCoordinator: ViewControllerLifecycleDelegate {
+    func viewDidLoad(viewController: UIViewController) {
+        if viewController === signInViewController {
+            store.subscribe(signInViewController, SignInViewModel.init)
+        }
+    }
+}
+
+extension AuthenticationCoordinator: SignInDelegate {
+    
+}
+
 extension AuthenticationCoordinator: SignInHandler {
     func signIn() {
         store.dispatch(AuthenticationAction.signIn)
@@ -64,22 +73,11 @@ extension AuthenticationCoordinator: SignInHandler {
     }
 }
 
-struct AppStateSignInViewModel: SignInViewModel, SubscriptionType {
-    init(state: AppState) {
+extension SignInViewController: Renderer {}
 
-    }
-}
-
-final class SignInRenderSubscription: SubscriberType {
-    let controller: SignInViewController
-
-    init(controller: SignInViewController, store: Store) {
-        self.controller = controller
-        store.subscribe(self)
-    }
-
-    func newState(viewModel: AppStateSignInViewModel) {
-        controller.render(viewModel)
+extension SignInViewModel {
+    init(_ state: AppState) {
+        name = state.name
     }
 }
 
