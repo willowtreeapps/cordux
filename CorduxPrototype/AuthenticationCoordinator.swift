@@ -15,8 +15,10 @@ final class AuthenticationCoordinator: NSObject, Coordinator {
 
     let storyboard = UIStoryboard(name: "Authentication", bundle: nil)
     let navigationController: UINavigationController
-    let signInViewController: SignInViewController
     var rootViewController: UIViewController { return navigationController }
+
+    let signInViewController: SignInViewController
+    var signInRenderSubscription: SignInRenderSubscription?
 
     init(store: Store) {
         self.store = store
@@ -28,7 +30,10 @@ final class AuthenticationCoordinator: NSObject, Coordinator {
     func start(route: Route) {
         self.currentRoute = route
         navigationController.delegate = self
+
         signInViewController.inject(self)
+        signInRenderSubscription = SignInRenderSubscription(controller: signInViewController, store: store)
+
         store.setRoute(.push(segment: ["signIn"]))
     }
 
@@ -56,6 +61,25 @@ extension AuthenticationCoordinator: SignInHandler {
 
     func forgotPassword() {
         store.route(.push(segment: ["fp"]))
+    }
+}
+
+struct AppStateSignInViewModel: SignInViewModel, SubscriptionType {
+    init(state: AppState) {
+
+    }
+}
+
+final class SignInRenderSubscription: SubscriberType {
+    let controller: SignInViewController
+
+    init(controller: SignInViewController, store: Store) {
+        self.controller = controller
+        store.subscribe(self)
+    }
+
+    func newState(viewModel: AppStateSignInViewModel) {
+        controller.render(viewModel)
     }
 }
 

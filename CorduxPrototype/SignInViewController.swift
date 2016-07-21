@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol SignInViewModel {
+    
+}
+
 protocol SignInHandler {
     func signIn()
     func forgotPassword()
@@ -19,6 +23,10 @@ final class SignInViewController: UIViewController {
 
     func inject(handler: SignInHandler) {
         self.handler = handler
+    }
+
+    func render(viewModel: SignInViewModel) {
+
     }
 
     @IBAction func signIn(sender: AnyObject) {
