@@ -13,26 +13,12 @@ protocol SignInHandler {
     func forgotPassword()
 }
 
-struct SignInViewModel: SubscriptionType {
-    init(state: AppState) {
-
-    }
-}
-
 final class SignInViewController: UIViewController {
 
-    var stateStream: Observable<SignInViewModel>!
     var handler: SignInHandler!
 
-    func inject(stateStream: Observable<SignInViewModel>, handler: SignInHandler) {
-        self.stateStream = stateStream
+    func inject(handler: SignInHandler) {
         self.handler = handler
-
-        stateStream.onChange(newState)
-    }
-
-    func newState(state: SignInViewModel) {
-
     }
 
     @IBAction func signIn(sender: AnyObject) {
