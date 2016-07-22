@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Sign In View Controller-->
+        <!--Sign In-->
         <scene sceneID="hKN-jJ-9fy">
             <objects>
-                <viewController id="Xcl-un-f6S" customClass="SignInViewController" customModule="CorduxPrototype" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Sign In" id="Xcl-un-f6S" customClass="SignInViewController" customModule="CorduxPrototype" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SiO-8b-FQE"/>
                         <viewControllerLayoutGuide type="bottom" id="3O0-uk-stE"/>
@@ -57,10 +57,10 @@
             </objects>
             <point key="canvasLocation" x="336" y="432"/>
         </scene>
-        <!--Forgot Password View Controller-->
+        <!--Forgot Password?-->
         <scene sceneID="ROR-i2-H94">
             <objects>
-                <viewController storyboardIdentifier="ForgotPassword" id="Zgx-d5-MyC" customClass="ForgotPasswordViewController" customModule="CorduxPrototype" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ForgotPassword" title="Forgot Password?" id="Zgx-d5-MyC" customClass="ForgotPasswordViewController" customModule="CorduxPrototype" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RAf-Wq-5qm"/>
                         <viewControllerLayoutGuide type="bottom" id="mPY-JB-X7l"/>
@@ -83,6 +83,7 @@
                             <constraint firstItem="ewb-np-pU4" firstAttribute="centerX" secondItem="Uw4-8P-tPz" secondAttribute="centerX" id="XBT-El-jyf"/>
                         </constraints>
                     </view>
+                    <nil key="simulatedTopBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D6P-S5-5gT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

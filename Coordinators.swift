@@ -15,8 +15,11 @@ protocol Coordinator: class {
 }
 
 protocol SceneCoordinator: Coordinator {
+    associatedtype RoutePrefix: RawRepresentable
+    static var routePrefix: RoutePrefix? { get }
     var currentScene: Coordinator? { get }
     func changeScene(route: Route)
+    func sceneRoute(route: Route) -> Route
 }
 
 protocol NavigationControllerCoordinator: Coordinator {
@@ -26,22 +29,22 @@ protocol NavigationControllerCoordinator: Coordinator {
     func updateRoute(route: Route)
 }
 
-extension SceneCoordinator {
+extension SceneCoordinator where RoutePrefix.RawValue == String {
     var route: Route {
         get {
-            return currentScene?.route ?? []
+            var route: Route = []
+            if let prefix = Self.routePrefix?.rawValue {
+                route.append(prefix)
+            }
+            return route + (currentScene?.route ?? [])
         }
         set {
-            if route.first != newValue.first {
+            let r = currentScene?.route ?? []
+            if r.first != newValue.first {
                 changeScene(newValue)
-            } else {
-                routeScene(newValue)
             }
+            routeScene(newValue)
         }
-    }
-
-    var rootViewController: UIViewController {
-        return currentScene?.rootViewController ?? UIViewController()
     }
 
     func routeScene(route: Route) {

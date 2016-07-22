@@ -34,26 +34,31 @@ enum AuthenticationAction: Action {
     case signOut
 }
 
+struct Noop: Action {}
+
 final class AppReducer: Reducer {
     func handleAction(action: Action, state: AppState) -> AppState {
-        let state = state ?? AppState()
-        return AppState(
-            route: state.route,
-            name: state.name,
-            authenticationState: reduce(action, state: state.authenticationState)
-        )
+        var state = state
+        state = reduceAuthentication(action, state: state)
+        return state
     }
 
-    func reduce(action: Action, state: AuthenticationState) -> AuthenticationState {
+    func reduceAuthentication(action: Action, state: AppState) -> AppState {
         guard let action = action as? AuthenticationAction else {
             return state
         }
 
+        var state = state
+
         switch action {
         case .signIn:
-            return .authenticated
+            state.route = ["catalog"]
+            state.authenticationState = .authenticated
         case .signOut:
-            return .unauthenticated
+            state.route = ["auth"]
+            state.authenticationState = .unauthenticated
         }
+
+        return state
     }
 }

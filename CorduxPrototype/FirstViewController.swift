@@ -8,18 +8,19 @@
 
 import UIKit
 
+protocol FirstHandler {
+    func performAction()
+}
+
 class FirstViewController: UIViewController {
+    var handler: FirstHandler!
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    func inject(handler handler: FirstHandler) {
+        self.handler = handler
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func performAction(sender: AnyObject) {
+        handler.performAction()
     }
-
-
 }
 

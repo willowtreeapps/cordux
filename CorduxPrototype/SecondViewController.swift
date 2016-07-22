@@ -8,18 +8,24 @@
 
 import UIKit
 
+protocol SecondHandler {
+    func performAction()
+    func signOut()
+}
+
 class SecondViewController: UIViewController {
+    var handler: SecondHandler!
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    func inject(handler handler: SecondHandler) {
+        self.handler = handler
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func performAction(sender: AnyObject) {
+        handler.performAction()
     }
 
-
+    @IBAction func signOut(sender: AnyObject) {
+        handler.signOut()
+    }
 }
 

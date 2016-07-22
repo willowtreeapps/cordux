@@ -67,6 +67,7 @@ final class CorduxStore<State : StateType> {
 
     private func dispatchRoute<T>(action: RouteAction<T>, notify: Bool) {
         state.route = reduce(action, route: state.route)
+        print("Route: \(state.route.joinWithSeparator("/"))")
         dispatch(action, notify: notify)
     }
 
@@ -74,27 +75,6 @@ final class CorduxStore<State : StateType> {
         state = reducer._handleAction(action, state: state) as! State
         if notify {
             subscriptions.forEach { $0.subscriber?._newState($0.transform?(state) ?? state) }
-        }
-    }
-
-    func reduce<T>(action: RouteAction<T>, route: Route) -> Route {
-        switch action {
-        case .goto(let route):
-            return route.route()
-        case .push(let segment):
-            return route + segment.route()
-        case .pop(let segment):
-            let segmentRoute = segment.route()
-            let n = route.count
-            let m = segmentRoute.count
-            guard n >= m else {
-                return route
-            }
-            let tail = Array(route[n-m..<n])
-            guard tail == segmentRoute else {
-                return route
-            }
-            return Array(route.dropLast(m))
         }
     }
 

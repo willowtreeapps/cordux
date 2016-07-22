@@ -9,10 +9,19 @@
 import UIKit
 
 final class AppCoordinator: SceneCoordinator, SubscriberType {
+    enum RouteSegment: String, RouteConvertible {
+        case hack
+    }
+    static var routePrefix: RouteSegment? = nil
+
     let store: Store
     let window: UIWindow
 
     var currentScene: Coordinator?
+
+    var rootViewController: UIViewController {
+        return currentScene?.rootViewController ?? UIViewController()
+    }
 
     init(store: Store, window: UIWindow) {
         self.store = store
@@ -32,23 +41,21 @@ final class AppCoordinator: SceneCoordinator, SubscriberType {
             return
         }
 
+        let coordinator: Coordinator
         switch first {
         case AuthenticationCoordinator.routePrefix.rawValue:
-            let coordinator = AuthenticationCoordinator(store: store)
-            window.rootViewController = coordinator.rootViewController
-            coordinator.start()
-            coordinator.route = coordinatorRoute(route)
+            coordinator = AuthenticationCoordinator(store: store)
+            currentScene = coordinator
+        case CatalogCoordinator.routePrefix!.rawValue:
+            coordinator = CatalogCoordinator(store: store)
             currentScene = coordinator
         default:
-            break
+            fatalError()
         }
-    }
 
-    func routeScene(route: Route) {
-        currentScene?.route = coordinatorRoute(route)
-    }
-
-    func coordinatorRoute(route: Route) -> Route {
-        return Array(route.dropFirst())
+        coordinator.start()
+        UIView.transitionWithView(window, duration: 0.3, options: .TransitionCrossDissolve, animations: {
+            self.window.rootViewController = coordinator.rootViewController
+        }, completion: nil)
     }
 }

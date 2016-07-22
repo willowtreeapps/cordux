@@ -13,7 +13,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var coordinator: AppCoordinator!
-    var routeObserver: RouteObserver!
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         guard let window = window else {
@@ -23,9 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIViewController.swizzleLifecycleDelegatingViewControllerMethods()
 
         let store = Store(initialState: AppState(), reducer: AppReducer())
-
-        routeObserver = RouteObserver(store: store)
-        routeObserver.start()
 
         coordinator = AppCoordinator(store: store, window: window)
         coordinator.start()
