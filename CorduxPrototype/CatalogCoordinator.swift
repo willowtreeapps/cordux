@@ -8,23 +8,23 @@
 
 import UIKit
 
-final class CatalogCoordinator: Coordinator {
-    let store: Store
-
-    let catalogViewController: UITabBarController
-    var rootViewController: UIViewController { return catalogViewController }
-
-    init(store: Store) {
-        self.store = store
-
-        catalogViewController = UIStoryboard(name: "Catalog", bundle: nil)
-            .instantiateInitialViewController() as! UITabBarController
-    }
-
-    func start(route: Route) {
-//        catalogViewController
-    }
-    func route(route: Route) {
-        
-    }
-}
+//final class CatalogCoordinator: Coordinator {
+//    let store: Store
+//
+//    let catalogViewController: UITabBarController
+//    var rootViewController: UIViewController { return catalogViewController }
+//
+//    init(store: Store) {
+//        self.store = store
+//
+//        catalogViewController = UIStoryboard(name: "Catalog", bundle: nil)
+//            .instantiateInitialViewController() as! UITabBarController
+//    }
+//
+//    func start(route: Route) {
+////        catalogViewController
+//    }
+//    func route(route: Route) {
+//        
+//    }
+//}

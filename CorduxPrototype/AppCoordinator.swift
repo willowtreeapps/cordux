@@ -8,12 +8,11 @@
 
 import UIKit
 
-final class AppCoordinator: SubscriberType {
+final class AppCoordinator: SceneCoordinator, SubscriberType {
     let store: Store
     let window: UIWindow
 
-    var currentRoute: Route = []
-    var currentCoordinator: Coordinator?
+    var currentScene: Coordinator?
 
     init(store: Store, window: UIWindow) {
         self.store = store
@@ -25,20 +24,10 @@ final class AppCoordinator: SubscriberType {
     }
 
     func newState(state: RouteSubscription) {
-        let route = state.route
-        guard currentRoute != route else {
-            return
-        }
-        if currentRoute.first != route.first {
-            changeScenes(route)
-        } else {
-            routeScene(route)
-        }
-
-        currentRoute = route
+        self.route = state.route
     }
 
-    func changeScenes(route: Route) {
+    func changeScene(route: Route) {
         guard let first = route.first else {
             return
         }
@@ -47,15 +36,16 @@ final class AppCoordinator: SubscriberType {
         case "auth":
             let coordinator = AuthenticationCoordinator(store: store)
             window.rootViewController = coordinator.rootViewController
-            coordinator.start(coordinatorRoute(route))
-            currentCoordinator = coordinator
+            coordinator.start()
+            coordinator.route = coordinatorRoute(route)
+            currentScene = coordinator
         default:
             break
         }
     }
 
     func routeScene(route: Route) {
-        currentCoordinator?.route(coordinatorRoute(route))
+        currentScene?.route = coordinatorRoute(route)
     }
 
     func coordinatorRoute(route: Route) -> Route {

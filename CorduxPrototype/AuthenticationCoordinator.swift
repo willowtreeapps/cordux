@@ -8,10 +8,8 @@
 
 import UIKit
 
-final class AuthenticationCoordinator: NSObject, Coordinator {
+final class AuthenticationCoordinator: NavigationControllerCoordinator {
     let store: Store
-
-    var currentRoute: Route = []
 
     let storyboard = UIStoryboard(name: "Authentication", bundle: nil)
     let navigationController: UINavigationController
@@ -26,21 +24,19 @@ final class AuthenticationCoordinator: NSObject, Coordinator {
         navigationController = UINavigationController(rootViewController: signInViewController)
     }
 
-    func start(route: Route) {
-        self.currentRoute = route
-        navigationController.delegate = self
-
-        signInViewController.inject(handler: self, delegate: self)
+    func start() {
+        signInViewController.inject(handler: self)
+        signInViewController.lifecycleDelegate = self
         store.setRoute(.push(segment: ["signIn"]))
     }
 
-    func route(route: Route) {
+    func updateRoute(route: Route) {
         if route.last == "fp" {
             let forgotPasswordViewController = storyboard.instantiateViewControllerWithIdentifier("ForgotPassword") as! ForgotPasswordViewController
             forgotPasswordViewController.inject(self)
+            forgotPasswordViewController.lifecycleDelegate = self
             navigationController.pushViewController(forgotPasswordViewController, animated: true)
         }
-        currentRoute = route
     }
 }
 
@@ -52,15 +48,17 @@ final class AuthenticationCoordinator: NSObject, Coordinator {
 //}
 
 extension AuthenticationCoordinator: ViewControllerLifecycleDelegate {
-    func viewDidLoad(viewController: UIViewController) {
+    @objc func viewDidLoad(viewController viewController: UIViewController) {
         if viewController === signInViewController {
             store.subscribe(signInViewController, SignInViewModel.init)
         }
     }
-}
 
-extension AuthenticationCoordinator: SignInDelegate {
-    
+    @objc func didMoveToParentViewController(parentViewController: UIViewController?, viewController: UIViewController) {
+        if parentViewController == nil && viewController is ForgotPasswordViewController {
+            store.setRoute(.pop(segment: ["fp"]))
+        }
+    }
 }
 
 extension AuthenticationCoordinator: SignInHandler {
@@ -73,7 +71,12 @@ extension AuthenticationCoordinator: SignInHandler {
     }
 }
 
-extension SignInViewController: Renderer {}
+extension SignInViewController: Renderer, LifecycleDelegatingViewController {}
+extension ForgotPasswordViewController: LifecycleDelegatingViewController {}
+
+extension SignInViewController: Routable {
+    var route: Route { return ["signIn"] }
+}
 
 extension SignInViewModel {
     init(_ state: AppState) {
@@ -87,10 +90,7 @@ extension AuthenticationCoordinator: ForgotPasswordHandler {
     }
 }
 
-extension AuthenticationCoordinator: UINavigationControllerDelegate {
-    func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
-        if navigationController.viewControllers.count != currentRoute.count {
-            store.setRoute(.pop(segment: ["fp"]))
-        }
-    }
+extension ForgotPasswordViewController: Routable {
+    var route: Route { return ["fp"] }
 }
+

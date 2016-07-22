@@ -8,32 +8,16 @@
 
 import UIKit
 
-protocol Coordinator {
-    func start(route: Route)
-    func route(route: Route)
-    var rootViewController: UIViewController { get }
-}
-
 protocol StateType {
     var route: Route { get set }
 }
 
-typealias Route = [String]
-typealias RouteSegment = [String]
-
 protocol Action {}
-
-enum RouteAction: Action {
-    case goto(route: Route)
-    case push(segment: RouteSegment)
-    case pop(segment: RouteSegment)
-}
 
 protocol ReducerType {
     associatedtype State
     func handleAction(action: Action, state: State) -> State
 }
-
 
 protocol SubscriberType: AnyStoreSubscriber {
     associatedtype StoreSubscriberStateType
@@ -175,6 +159,10 @@ protocol Renderer: SubscriberType {
     func render(viewModel: ViewModel)
 }
 
+protocol Routable {
+    var route: Route { get }
+}
+
 extension Renderer {
     func newState(state: Any) {
         if let viewModel = state as? ViewModel {
@@ -187,9 +175,5 @@ extension Renderer {
 
 public protocol AnyRendererStoreSubscriber: class {
     func _newState(state: Any)
-}
-
-@objc protocol ViewControllerLifecycleDelegate {
-    optional func viewDidLoad(viewController: UIViewController)
 }
 

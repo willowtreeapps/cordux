@@ -20,6 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             fatalError()
         }
 
+        UIViewController.swizzleLifecycleDelegatingViewControllerMethods()
+
         let store = Store(initialState: AppState(), reducer: AppReducer())
 
         routeObserver = RouteObserver(store: store)
