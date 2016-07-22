@@ -9,7 +9,7 @@
 import UIKit
 
 final class AuthenticationCoordinator: NavigationControllerCoordinator {
-    let routePrefix = "auth"
+    static let routePrefix = "auth"
 
     let store: Store
 

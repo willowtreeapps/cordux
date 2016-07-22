@@ -20,7 +20,7 @@ protocol SceneCoordinator: Coordinator {
 }
 
 protocol NavigationControllerCoordinator: Coordinator {
-    var routePrefix: String { get }
+    static var routePrefix: String { get }
     var navigationController: UINavigationController { get }
     func updateRoute(route: Route)
 }
@@ -55,7 +55,7 @@ extension SceneCoordinator {
 extension NavigationControllerCoordinator {
     var route: Route {
         get {
-            var route: Route = [routePrefix]
+            var route: Route = [Self.routePrefix]
             navigationController.viewControllers.forEach { vc in
                 if let cordux = vc as? CorduxViewController {
                     route.appendContentsOf(cordux.corduxContext?.routeSegment ?? [])
