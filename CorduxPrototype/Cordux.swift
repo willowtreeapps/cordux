@@ -130,7 +130,6 @@ extension SubscriberType {
     }
 }
 
-
 protocol AnyReducer {
     func _handleAction(action: Action, state: StateType) -> StateType
 }
@@ -157,10 +156,6 @@ func withSpecificTypes<SpecificStateType, Action>(action: Action, state genericS
 protocol Renderer: SubscriberType {
     associatedtype ViewModel
     func render(viewModel: ViewModel)
-}
-
-protocol Routable {
-    var route: Route { get }
 }
 
 extension Renderer {

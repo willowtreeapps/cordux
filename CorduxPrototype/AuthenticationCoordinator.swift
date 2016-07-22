@@ -9,6 +9,8 @@
 import UIKit
 
 final class AuthenticationCoordinator: NavigationControllerCoordinator {
+    let routePrefix = "auth"
+
     let store: Store
 
     let storyboard = UIStoryboard(name: "Authentication", bundle: nil)
@@ -26,7 +28,7 @@ final class AuthenticationCoordinator: NavigationControllerCoordinator {
 
     func start() {
         signInViewController.inject(handler: self)
-        signInViewController.lifecycleDelegate = self
+        signInViewController.corduxContext = Context(routeSegment: ["signIn"], lifecycleDelegate: self)
         store.setRoute(.push(segment: ["signIn"]))
     }
 
@@ -34,7 +36,7 @@ final class AuthenticationCoordinator: NavigationControllerCoordinator {
         if route.last == "fp" {
             let forgotPasswordViewController = storyboard.instantiateViewControllerWithIdentifier("ForgotPassword") as! ForgotPasswordViewController
             forgotPasswordViewController.inject(self)
-            forgotPasswordViewController.lifecycleDelegate = self
+            forgotPasswordViewController.corduxContext = Context(routeSegment: ["signIn"], lifecycleDelegate: self)
             navigationController.pushViewController(forgotPasswordViewController, animated: true)
         }
     }
@@ -71,12 +73,8 @@ extension AuthenticationCoordinator: SignInHandler {
     }
 }
 
-extension SignInViewController: Renderer, LifecycleDelegatingViewController {}
-extension ForgotPasswordViewController: LifecycleDelegatingViewController {}
-
-extension SignInViewController: Routable {
-    var route: Route { return ["signIn"] }
-}
+extension SignInViewController: Renderer, CorduxViewController {}
+extension ForgotPasswordViewController: CorduxViewController {}
 
 extension SignInViewModel {
     init(_ state: AppState) {
@@ -88,9 +86,5 @@ extension AuthenticationCoordinator: ForgotPasswordHandler {
     func emailPassword() {
 
     }
-}
-
-extension ForgotPasswordViewController: Routable {
-    var route: Route { return ["fp"] }
 }
 
