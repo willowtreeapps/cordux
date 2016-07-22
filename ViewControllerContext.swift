@@ -20,6 +20,10 @@ class Context: NSObject {
         self.routeSegment = routeSegment
         self.lifecycleDelegate = lifecycleDelegate
     }
+
+    convenience init<T: RawRepresentable where T.RawValue == String>(_ routeSegment: T, lifecycleDelegate: ViewControllerLifecycleDelegate?) {
+        self.init(routeSegment: routeSegment.route(), lifecycleDelegate: lifecycleDelegate)
+    }
 }
 
 extension UIViewController {

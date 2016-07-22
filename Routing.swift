@@ -8,12 +8,21 @@
 
 import Foundation
 
+protocol RouteConvertible {
+    func route() -> Route
+}
+
+extension RawRepresentable where RawValue == String {
+    func route() -> Route {
+        return [self.rawValue]
+    }
+}
+
 typealias Route = [String]
 typealias RouteSegment = [String]
 
-enum RouteAction: Action {
-    case goto(route: Route)
-    case push(segment: RouteSegment)
-    case pop(segment: RouteSegment)
+enum RouteAction<T: RouteConvertible>: Action {
+    case goto(T)
+    case push(T)
+    case pop(T)
 }
-

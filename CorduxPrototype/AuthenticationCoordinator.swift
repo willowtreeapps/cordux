@@ -9,7 +9,13 @@
 import UIKit
 
 final class AuthenticationCoordinator: NavigationControllerCoordinator {
-    static let routePrefix = "auth"
+    enum RouteSegment: String, RouteConvertible {
+        case auth
+        case signIn
+        case fp
+    }
+
+    static let routePrefix = RouteSegment.auth
 
     let store: Store
 
@@ -28,26 +34,19 @@ final class AuthenticationCoordinator: NavigationControllerCoordinator {
 
     func start() {
         signInViewController.inject(handler: self)
-        signInViewController.corduxContext = Context(routeSegment: ["signIn"], lifecycleDelegate: self)
-        store.setRoute(.push(segment: ["signIn"]))
+        signInViewController.corduxContext = Context(RouteSegment.signIn, lifecycleDelegate: self)
+        store.setRoute(.push(RouteSegment.signIn))
     }
 
     func updateRoute(route: Route) {
-        if route.last == "fp" {
+        if route.last == RouteSegment.fp.rawValue {
             let forgotPasswordViewController = storyboard.instantiateViewControllerWithIdentifier("ForgotPassword") as! ForgotPasswordViewController
             forgotPasswordViewController.inject(self)
-            forgotPasswordViewController.corduxContext = Context(routeSegment: ["signIn"], lifecycleDelegate: self)
+            forgotPasswordViewController.corduxContext = Context(RouteSegment.fp, lifecycleDelegate: self)
             navigationController.pushViewController(forgotPasswordViewController, animated: true)
         }
     }
 }
-
-//extension AuthenticationCoordinator {x
-//    enum RouteSegment: String {
-//        case signIn
-//        case fp
-//    }
-//}
 
 extension AuthenticationCoordinator: ViewControllerLifecycleDelegate {
     @objc func viewDidLoad(viewController viewController: UIViewController) {
@@ -58,7 +57,7 @@ extension AuthenticationCoordinator: ViewControllerLifecycleDelegate {
 
     @objc func didMoveToParentViewController(parentViewController: UIViewController?, viewController: UIViewController) {
         if parentViewController == nil && viewController is ForgotPasswordViewController {
-            store.setRoute(.pop(segment: ["fp"]))
+            store.setRoute(.pop(RouteSegment.fp))
         }
     }
 }
@@ -69,7 +68,7 @@ extension AuthenticationCoordinator: SignInHandler {
     }
 
     func forgotPassword() {
-        store.route(.push(segment: ["fp"]))
+        store.route(.push(RouteSegment.fp))
     }
 }
 

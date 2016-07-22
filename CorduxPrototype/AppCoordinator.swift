@@ -33,7 +33,7 @@ final class AppCoordinator: SceneCoordinator, SubscriberType {
         }
 
         switch first {
-        case "auth":
+        case AuthenticationCoordinator.routePrefix.rawValue:
             let coordinator = AuthenticationCoordinator(store: store)
             window.rootViewController = coordinator.rootViewController
             coordinator.start()

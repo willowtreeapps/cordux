@@ -11,7 +11,7 @@ import Foundation
 typealias Store = CorduxStore<AppState>
 
 struct AppState: StateType {
-    var route: Route = ["auth"]
+    var route: Route = AuthenticationCoordinator.routePrefix.route()
     var name: String = "Hello"
     var authenticationState: AuthenticationState = .unauthenticated
 }

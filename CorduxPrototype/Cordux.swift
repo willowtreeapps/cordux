@@ -57,45 +57,41 @@ final class CorduxStore<State : StateType> {
         dispatch(action, notify: true)
     }
 
-    func route(action: RouteAction) {
-        dispatch(action, notify: true)
+    func route<T>(action: RouteAction<T>) {
+        dispatchRoute(action, notify: true)
     }
 
-    func setRoute(action: RouteAction) {
-        dispatch(action, notify: false)
+    func setRoute<T>(action: RouteAction<T>) {
+        dispatchRoute(action, notify: false)
+    }
+
+    private func dispatchRoute<T>(action: RouteAction<T>, notify: Bool) {
+        state.route = reduce(action, route: state.route)
+        dispatch(action, notify: notify)
     }
 
     private func dispatch(action: Action, notify: Bool) {
-        state = reduce(action, state: state)
+        state = reducer._handleAction(action, state: state) as! State
         if notify {
             subscriptions.forEach { $0.subscriber?._newState($0.transform?(state) ?? state) }
         }
     }
 
-    func reduce(action: Action, state: State) -> State {
-        var state = state
-        state.route = reduce(action, route: state.route)
-        return reducer._handleAction(action, state: state) as! State
-    }
-
-    func reduce(action: Action, route: Route) -> Route {
-        guard let action = action as? RouteAction else {
-            return route
-        }
-
+    func reduce<T>(action: RouteAction<T>, route: Route) -> Route {
         switch action {
         case .goto(let route):
-            return route
+            return route.route()
         case .push(let segment):
-            return route + segment
+            return route + segment.route()
         case .pop(let segment):
+            let segmentRoute = segment.route()
             let n = route.count
-            let m = segment.count
+            let m = segmentRoute.count
             guard n >= m else {
                 return route
             }
             let tail = Array(route[n-m..<n])
-            guard tail == segment else {
+            guard tail == segmentRoute else {
                 return route
             }
             return Array(route.dropLast(m))
