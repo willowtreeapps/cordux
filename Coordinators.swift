@@ -15,31 +15,26 @@ protocol Coordinator: class {
 }
 
 protocol SceneCoordinator: Coordinator {
-    associatedtype RoutePrefix: RawRepresentable
-    static var routePrefix: RoutePrefix? { get }
+    associatedtype ScenePrefix: RawRepresentable
+    var scenePrefix: ScenePrefix { get }
     var currentScene: Coordinator? { get }
     func changeScene(route: Route)
     func sceneRoute(route: Route) -> Route
 }
 
 protocol NavigationControllerCoordinator: Coordinator {
-    associatedtype RoutePrefix: RawRepresentable
-    static var routePrefix: RoutePrefix { get }
     var navigationController: UINavigationController { get }
     func updateRoute(route: Route)
 }
 
-extension SceneCoordinator where RoutePrefix.RawValue == String {
+extension SceneCoordinator where ScenePrefix.RawValue == String {
     var route: Route {
         get {
-            var route: Route = []
-            if let prefix = Self.routePrefix?.rawValue {
-                route.append(prefix)
-            }
+            let route: Route = scenePrefix.route()
             return route + (currentScene?.route ?? [])
         }
         set {
-            let r = route ?? []
+            let r = route
             if r.first != newValue.first {
                 changeScene(newValue)
             }
@@ -52,17 +47,17 @@ extension SceneCoordinator where RoutePrefix.RawValue == String {
     }
 
     func sceneRoute(route: Route) -> Route {
-        return Array(route.dropFirst())
+        return Route(route.dropFirst())
     }
 }
 
-extension NavigationControllerCoordinator where RoutePrefix.RawValue == String {
+extension NavigationControllerCoordinator  {
     var route: Route {
         get {
-            var route: Route = [Self.routePrefix.rawValue]
+            var route: Route = []
             navigationController.viewControllers.forEach { vc in
                 if let cordux = vc as? CorduxViewController {
-                    route.appendContentsOf(cordux.corduxContext?.routeSegment ?? [])
+                    route.appendContentsOf(cordux.corduxContext?.routeSegment.route() ?? [])
                 }
             }
             return route

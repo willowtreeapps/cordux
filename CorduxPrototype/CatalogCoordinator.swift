@@ -12,11 +12,11 @@ final class CatalogCoordinator: NSObject, SceneCoordinator {
     let store: Store
 
     enum RouteSegment: String, RouteConvertible {
-        case catalog
+        case first
+        case second
     }
     
-    static let routePrefix: RouteSegment? = .catalog
-
+    var scenePrefix: RouteSegment
     let storyboard = UIStoryboard(name: "Catalog", bundle: nil)
     let tabBarController: UITabBarController
     var rootViewController: UIViewController { return tabBarController }
@@ -33,6 +33,7 @@ final class CatalogCoordinator: NSObject, SceneCoordinator {
 
         firstScene = FirstCoordinator(store: store)
         secondScene = SecondCoordinator(store: store)
+        scenePrefix = .first
     }
 
     func start() {
@@ -40,26 +41,22 @@ final class CatalogCoordinator: NSObject, SceneCoordinator {
         firstScene.start()
         secondScene.start()
         tabBarController.viewControllers = [firstScene.rootViewController, secondScene.rootViewController]
-        currentScene = firstScene
-        store.setRoute(.push(FirstCoordinator.RouteSegment.first))
+        store.setRoute(.push(RouteSegment.first))
     }
 
     func changeScene(route: Route) {
-        guard let tab = route.first else {
+        guard let tab = RouteSegment(rawValue: route.first ?? "") else {
             return
         }
 
-        switch tab {
-        case FirstCoordinator.routePrefix.rawValue:
+        scenePrefix = tab
+        switch scenePrefix {
+        case .first:
             tabBarController.selectedIndex = 0
             currentScene = firstScene
-            firstScene.route = sceneRoute(route)
-        case SecondCoordinator.routePrefix.rawValue:
+        case .second:
             tabBarController.selectedIndex = 1
             currentScene = secondScene
-            secondScene.route = sceneRoute(route)
-        default:
-            break
         }
     }
 }
@@ -68,11 +65,13 @@ extension CatalogCoordinator: UITabBarControllerDelegate {
     func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {
         switch viewController {
         case firstScene.rootViewController:
-            store.setRoute(.replace(RouteContainer(currentScene?.route ?? []), RouteContainer(firstScene.route)))
+            store.setRoute(.replace(route, RouteSegment.first + firstScene.route))
             currentScene = firstScene
+            scenePrefix = .first
         case secondScene.rootViewController:
-            store.setRoute(.replace(RouteContainer(currentScene?.route ?? []), RouteContainer(secondScene.route)))
+            store.setRoute(.replace(route, RouteSegment.second + secondScene.route))
             currentScene = secondScene
+            scenePrefix = .second
         default:
             break
         }
@@ -83,12 +82,6 @@ extension CatalogCoordinator: UITabBarControllerDelegate {
 
 final class FirstCoordinator: NavigationControllerCoordinator {
     let store: Store
-
-    enum RouteSegment: String, RouteConvertible {
-        case first
-    }
-
-    static let routePrefix = RouteSegment.first
 
     let storyboard = UIStoryboard(name: "Catalog", bundle: nil)
     let navigationController: UINavigationController
@@ -119,12 +112,6 @@ extension FirstCoordinator: FirstHandler {
 
 final class SecondCoordinator: NavigationControllerCoordinator {
     let store: Store
-
-    enum RouteSegment: String, RouteConvertible {
-        case second
-    }
-
-    static let routePrefix = RouteSegment.second
 
     let storyboard = UIStoryboard(name: "Catalog", bundle: nil)
     let navigationController: UINavigationController

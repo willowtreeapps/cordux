@@ -25,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         coordinator = AppCoordinator(store: store, container: mainController)
         coordinator.start()
+        store.route(.push(AppCoordinator.RouteSegment.auth))
 
         return true
     }

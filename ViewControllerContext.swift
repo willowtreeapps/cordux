@@ -13,16 +13,12 @@ protocol CorduxViewController: class {
 }
 
 class Context: NSObject {
-    let routeSegment: RouteSegment
+    let routeSegment: RouteConvertible
     weak var lifecycleDelegate: ViewControllerLifecycleDelegate?
 
-    init(routeSegment: RouteSegment, lifecycleDelegate: ViewControllerLifecycleDelegate?) {
+    init(_ routeSegment: RouteConvertible, lifecycleDelegate: ViewControllerLifecycleDelegate?) {
         self.routeSegment = routeSegment
         self.lifecycleDelegate = lifecycleDelegate
-    }
-
-    convenience init<T: RawRepresentable where T.RawValue == String>(_ routeSegment: T, lifecycleDelegate: ViewControllerLifecycleDelegate?) {
-        self.init(routeSegment: routeSegment.route(), lifecycleDelegate: lifecycleDelegate)
     }
 }
 

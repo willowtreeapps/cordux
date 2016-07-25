@@ -10,9 +10,10 @@ import UIKit
 
 final class AppCoordinator: SceneCoordinator, SubscriberType {
     enum RouteSegment: String, RouteConvertible {
-        case hack
+        case auth
+        case catalog
     }
-    static var routePrefix: RouteSegment? = nil
+    var scenePrefix: RouteSegment = .auth
 
     let store: Store
     let container: UIViewController
@@ -30,6 +31,7 @@ final class AppCoordinator: SceneCoordinator, SubscriberType {
 
     func start() {
         store.subscribe(self, RouteSubscription.init)
+        changeScene(RouteSegment.auth.route())
     }
 
     func newState(state: RouteSubscription) {
@@ -37,23 +39,22 @@ final class AppCoordinator: SceneCoordinator, SubscriberType {
     }
 
     func changeScene(route: Route) {
-        guard let first = route.first else {
+        guard let segment = RouteSegment(rawValue: route.first ?? "") else {
             return
         }
 
         let old = currentScene?.rootViewController
         let coordinator: Coordinator
-        switch first {
-        case AuthenticationCoordinator.routePrefix.rawValue:
+        switch segment {
+        case .auth:
             coordinator = AuthenticationCoordinator(store: store)
-        case CatalogCoordinator.routePrefix!.rawValue:
+        case .catalog:
             coordinator = CatalogCoordinator(store: store)
-        default:
-            fatalError()
         }
 
         coordinator.start()
         currentScene = coordinator
+        scenePrefix = segment
 
         let container = self.container
         let new = coordinator.rootViewController

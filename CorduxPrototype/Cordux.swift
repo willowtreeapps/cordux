@@ -53,29 +53,20 @@ final class CorduxStore<State : StateType> {
         }
     }
 
-    func dispatch(action: Action) {
-        dispatch(action, notify: true)
-    }
-
     func route<T>(action: RouteAction<T>) {
-        dispatchRoute(action, notify: true)
+        state.route = reduce(action, route: state.route)
+        dispatch(action)
     }
 
     func setRoute<T>(action: RouteAction<T>) {
-        dispatchRoute(action, notify: false)
-    }
-
-    private func dispatchRoute<T>(action: RouteAction<T>, notify: Bool) {
         state.route = reduce(action, route: state.route)
         print("Route: \(state.route.joinWithSeparator("/"))")
-        dispatch(action, notify: notify)
     }
 
-    private func dispatch(action: Action, notify: Bool) {
+    func dispatch(action: Action) {
         state = reducer._handleAction(action, state: state) as! State
-        if notify {
-            subscriptions.forEach { $0.subscriber?._newState($0.transform?(state) ?? state) }
-        }
+        print("Route: \(state.route.joinWithSeparator("/"))")
+        subscriptions.forEach { $0.subscriber?._newState($0.transform?(state) ?? state) }
     }
 
     func isNewSubscriber(subscriber: AnyStoreSubscriber) -> Bool {
