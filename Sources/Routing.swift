@@ -8,52 +8,52 @@
 
 import Foundation
 
-protocol RouteConvertible {
+public protocol RouteConvertible {
     func route() -> Route
 }
 
-struct Route  {
+public struct Route  {
     var components: [String]
 
-    init() {
+    public init() {
         self.components = []
     }
 
-    init(_ components: [String]) {
+    public init(_ components: [String]) {
         self.components = components
     }
 
-    init(_ component: String) {
+    public init(_ component: String) {
         self.init([component])
     }
     
-    init(_ slice: Slice<Route>) {
+    public init(_ slice: Slice<Route>) {
         self.init(Array(slice))
     }
 }
 
 extension Route: Equatable {}
 
-func ==(lhs: Route, rhs: Route) -> Bool {
+public func ==(lhs: Route, rhs: Route) -> Bool {
     return lhs.components == rhs.components
 }
 
 extension Route: RouteConvertible {
-    func route() -> Route {
+    public func route() -> Route {
         return self
     }
 }
 
 extension Route: ArrayLiteralConvertible {
-    init(arrayLiteral elements: String...) {
+    public init(arrayLiteral elements: String...) {
         components = elements
     }
 }
 
 extension Route: SequenceType {
-    typealias Generator = AnyGenerator<String>
+    public typealias Generator = AnyGenerator<String>
 
-    func generate() -> Generator {
+    public func generate() -> Generator {
         var index = 0
         return AnyGenerator {
             if index < self.components.count {
@@ -68,44 +68,44 @@ extension Route: SequenceType {
 }
 
 extension Route: CollectionType {
-    typealias Index = Int
+    public typealias Index = Int
 
-    var startIndex: Int {
+    public var startIndex: Int {
         return 0
     }
 
-    var endIndex: Int {
+    public var endIndex: Int {
         return components.count
     }
 
-    subscript(i: Int) -> String {
+    public subscript(i: Int) -> String {
         return components[i]
     }
 }
 
 extension Route: RangeReplaceableCollectionType {
-    mutating func reserveCapacity(minimumCapacity: Int) {
+    public mutating func reserveCapacity(minimumCapacity: Int) {
         components.reserveCapacity(minimumCapacity)
     }
 
-    mutating func replaceRange<C : CollectionType where C.Generator.Element == Generator.Element>(subRange: Range<Int>, with newElements: C) {
+    public mutating func replaceRange<C : CollectionType where C.Generator.Element == Generator.Element>(subRange: Range<Int>, with newElements: C) {
         components.replaceRange(subRange, with: newElements)
     }
 }
 
-func +(lhs: Route, rhs: Route) -> Route {
+public func +(lhs: Route, rhs: Route) -> Route {
     return Route(lhs.components + rhs.components)
 }
 
-func +(lhs: RouteConvertible, rhs: Route) -> Route {
+public func +(lhs: RouteConvertible, rhs: Route) -> Route {
     return Route(lhs.route().components + rhs.components)
 }
 
-func +(lhs: Route, rhs: RouteConvertible) -> Route {
+public func +(lhs: Route, rhs: RouteConvertible) -> Route {
     return Route(lhs.components + rhs.route().components)
 }
 
-enum RouteAction<T: RouteConvertible>: Action {
+public enum RouteAction<T: RouteConvertible>: Action {
     case goto(T)
     case push(T)
     case pop(T)
@@ -113,18 +113,18 @@ enum RouteAction<T: RouteConvertible>: Action {
 }
 
 extension String: RouteConvertible {
-    func route() -> Route {
+    public func route() -> Route {
         return Route(self)
     }
 }
 
-extension RawRepresentable where RawValue == String {
-    func route() -> Route {
+public extension RawRepresentable where RawValue == String {
+    public func route() -> Route {
         return self.rawValue.route()
     }
 }
 
-extension CorduxStore {
+extension Store {
     func reduce<T>(action: RouteAction<T>, route: Route) -> Route {
         switch action {
         case .goto(let route):
@@ -147,15 +147,5 @@ extension CorduxStore {
             let head = reduce(.pop(old), route: route)
             return reduce(.push(new), route: head)
         }
-    }
-}
-
-struct RouteContainer: RouteConvertible {
-    let _route: Route
-    init(_ route: Route) {
-        _route = route
-    }
-    func route() -> Route {
-        return _route
     }
 }

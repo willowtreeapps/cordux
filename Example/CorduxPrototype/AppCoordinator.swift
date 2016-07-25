@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Cordux
 
 final class AppCoordinator: SceneCoordinator, SubscriberType {
     enum RouteSegment: String, RouteConvertible {
@@ -16,7 +17,7 @@ final class AppCoordinator: SceneCoordinator, SubscriberType {
     var scenePrefix: String = RouteSegment.auth.rawValue
 
     let _store: Store
-    var store: CorduxStoreType { return _store }
+    var store: StoreType { return _store }
     let container: UIViewController
 
     var currentScene: Coordinator?

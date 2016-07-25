@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Cordux
 
 final class AuthenticationCoordinator: NavigationControllerCoordinator {
     enum RouteSegment: String, RouteConvertible {
@@ -18,7 +19,7 @@ final class AuthenticationCoordinator: NavigationControllerCoordinator {
     static let routePrefix = RouteSegment.auth
 
     let _store: Store
-    var store: CorduxStoreType { return _store }
+    var store: StoreType { return _store }
 
     let storyboard = UIStoryboard(name: "Authentication", bundle: nil)
     let navigationController: UINavigationController
@@ -34,7 +35,7 @@ final class AuthenticationCoordinator: NavigationControllerCoordinator {
 
     func start() {
         signInViewController.inject(handler: self)
-        signInViewController.corduxContext = Context(RouteSegment.signIn, lifecycleDelegate: self)
+        signInViewController.context = Context(RouteSegment.signIn, lifecycleDelegate: self)
         store.setRoute(.push(RouteSegment.signIn))
     }
 
@@ -42,7 +43,7 @@ final class AuthenticationCoordinator: NavigationControllerCoordinator {
         if route.last == RouteSegment.fp.rawValue {
             let forgotPasswordViewController = storyboard.instantiateViewControllerWithIdentifier("ForgotPassword") as! ForgotPasswordViewController
             forgotPasswordViewController.inject(self)
-            forgotPasswordViewController.corduxContext = Context(RouteSegment.fp, lifecycleDelegate: self)
+            forgotPasswordViewController.context = Context(RouteSegment.fp, lifecycleDelegate: self)
             navigationController.pushViewController(forgotPasswordViewController, animated: true)
         }
     }
@@ -74,8 +75,8 @@ extension AuthenticationCoordinator: SignInHandler {
     }
 }
 
-extension SignInViewController: Renderer, CorduxViewController {}
-extension ForgotPasswordViewController: CorduxViewController {}
+extension SignInViewController: Renderer, Cordux.ViewController {}
+extension ForgotPasswordViewController: Cordux.ViewController {}
 
 extension SignInViewModel {
     init(_ state: AppState) {

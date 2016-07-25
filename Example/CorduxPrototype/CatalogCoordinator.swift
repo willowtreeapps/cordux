@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import Cordux
 
 final class CatalogCoordinator: NSObject, TabBarControllerCoordinator {
     let _store: Store
-    var store: CorduxStoreType { return _store }
+    var store: StoreType { return _store }
 
     let scenes: [Scene]
     let tabBarController: UITabBarController
@@ -37,7 +38,7 @@ final class CatalogCoordinator: NSObject, TabBarControllerCoordinator {
 
 final class FirstCoordinator: NavigationControllerCoordinator {
     let _store: Store
-    var store: CorduxStoreType { return _store }
+    var store: StoreType { return _store }
 
     let storyboard = UIStoryboard(name: "Catalog", bundle: nil)
     let navigationController: UINavigationController
@@ -68,7 +69,7 @@ extension FirstCoordinator: FirstHandler {
 
 final class SecondCoordinator: NavigationControllerCoordinator {
     let _store: Store
-    var store: CorduxStoreType { return _store }
+    var store: StoreType { return _store }
 
     let storyboard = UIStoryboard(name: "Catalog", bundle: nil)
     let navigationController: UINavigationController

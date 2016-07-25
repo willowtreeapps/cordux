@@ -8,8 +8,8 @@
 
 import UIKit
 
-protocol Coordinator: class {
-    var store: CorduxStoreType { get }
+public protocol Coordinator: class {
+    var store: StoreType { get }
     var route: Route { get set }
     func start()
     var rootViewController: UIViewController { get }
@@ -17,15 +17,15 @@ protocol Coordinator: class {
 
 // MARK: - Scene Coordinator
 
-protocol SceneCoordinator: Coordinator {
+public protocol SceneCoordinator: Coordinator {
     var scenePrefix: String { get }
     var currentScene: Coordinator? { get }
     func changeScene(route: Route)
     func sceneRoute(route: Route) -> Route
 }
 
-extension SceneCoordinator {
-    var route: Route {
+public extension SceneCoordinator {
+    public var route: Route {
         get {
             let route: Route = scenePrefix.route()
             return route + (currentScene?.route ?? [])
@@ -39,45 +39,50 @@ extension SceneCoordinator {
         }
     }
 
-    func routeScene(route: Route) {
+    public func routeScene(route: Route) {
         currentScene?.route = sceneRoute(route)
     }
 
-    func sceneRoute(route: Route) -> Route {
+    public func sceneRoute(route: Route) -> Route {
         return Route(route.dropFirst())
     }
 }
 
 // MARK - UITabBarController Scene Coordinator
 
-protocol TabScene: RouteConvertible {
+public protocol TabScene: RouteConvertible {
     var prefix: String { get }
     var coordinator: Coordinator { get }
 }
 
-protocol TabBarControllerCoordinator: SceneCoordinator, UITabBarControllerDelegate {
+public protocol TabBarControllerCoordinator: SceneCoordinator, UITabBarControllerDelegate {
     associatedtype Scene: TabScene
     var tabBarController: UITabBarController { get }
     var scenes: [Scene] { get }
 }
 
-extension TabScene {
-    func route() -> Route {
+public extension TabScene {
+    public func route() -> Route {
         return Route(prefix)
     }
 }
 
-struct Scene: TabScene {
-    let prefix: String
-    let coordinator: Coordinator
+public struct Scene: TabScene {
+    public let prefix: String
+    public let coordinator: Coordinator
+
+    public init(prefix: String, coordinator: Coordinator) {
+        self.prefix = prefix
+        self.coordinator = coordinator
+    }
 }
 
-extension TabBarControllerCoordinator {
-    var rootViewController: UIViewController { return tabBarController }
-    var scenePrefix: String { return scenes[tabBarController.selectedIndex].prefix }
-    var currentScene: Coordinator? { return scenes[tabBarController.selectedIndex].coordinator }
+public extension TabBarControllerCoordinator {
+    public var rootViewController: UIViewController { return tabBarController }
+    public var scenePrefix: String { return scenes[tabBarController.selectedIndex].prefix }
+    public var currentScene: Coordinator? { return scenes[tabBarController.selectedIndex].coordinator }
 
-    func changeScene(route: Route) {
+    public func changeScene(route: Route) {
         for (index, scene) in scenes.enumerate() {
             if route.first == scene.prefix {
                 tabBarController.selectedIndex = index
@@ -86,7 +91,7 @@ extension TabBarControllerCoordinator {
         }
     }
 
-    func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {
+    public func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {
         for scene in scenes {
             if scene.coordinator.rootViewController == viewController {
                 store.setRoute(.replace(route, scene + scene.coordinator.route))
@@ -98,20 +103,20 @@ extension TabBarControllerCoordinator {
 
 // MARK: - NavigationController Coordinator
 
-protocol NavigationControllerCoordinator: Coordinator {
+public protocol NavigationControllerCoordinator: Coordinator {
     var navigationController: UINavigationController { get }
     func updateRoute(route: Route)
 }
 
-extension NavigationControllerCoordinator  {
-    var rootViewController: UIViewController { return navigationController }
+public extension NavigationControllerCoordinator  {
+    public var rootViewController: UIViewController { return navigationController }
     
-    var route: Route {
+    public var route: Route {
         get {
             var route: Route = []
             navigationController.viewControllers.forEach { vc in
-                if let cordux = vc as? CorduxViewController {
-                    route.appendContentsOf(cordux.corduxContext?.routeSegment.route() ?? [])
+                if let vc = vc as? ViewController {
+                    route.appendContentsOf(vc.context?.routeSegment.route() ?? [])
                 }
             }
             return route
@@ -123,9 +128,9 @@ extension NavigationControllerCoordinator  {
         }
     }
 
-    func popRoute(viewController: UIViewController) {
-        guard let viewController = viewController as? CorduxViewController,
-              let context = viewController.corduxContext
+    public func popRoute(viewController: UIViewController) {
+        guard let viewController = viewController as? ViewController,
+              let context = viewController.context
         else {
             return
         }

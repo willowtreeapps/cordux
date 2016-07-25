@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import Cordux
 
-typealias Store = CorduxStore<AppState>
+typealias Store = Cordux.Store<AppState>
 
 struct AppState: StateType {
     var route: Route = []

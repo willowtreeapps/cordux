@@ -8,29 +8,29 @@
 
 import UIKit
 
-protocol StateType {
+public protocol StateType {
     var route: Route { get set }
 }
 
-protocol Action {}
+public protocol Action {}
 
-protocol ReducerType {
+public protocol ReducerType {
     associatedtype State
     func handleAction(action: Action, state: State) -> State
 }
 
-protocol SubscriberType: AnyStoreSubscriber {
+public protocol SubscriberType: AnyStoreSubscriber {
     associatedtype StoreSubscriberStateType
     func newState(subscription: StoreSubscriberStateType)
 }
 
-protocol CorduxStoreType {
+public protocol StoreType {
     func route<T>(action: RouteAction<T>)
     func setRoute<T>(action: RouteAction<T>)
     func dispatch(action: Action)
 }
 
-final class CorduxStore<State : StateType>: CorduxStoreType {
+public final class Store<State : StateType>: StoreType {
     var state: State
     var reducer: AnyReducer
 
@@ -38,13 +38,12 @@ final class CorduxStore<State : StateType>: CorduxStoreType {
     var subscriptions: [SubscriptionType] = []
     var rendererSubscriptions = NSMapTable(keyOptions: .WeakMemory, valueOptions: .WeakMemory)
 
-
-    init(initialState: State, reducer: AnyReducer) {
+    public init(initialState: State, reducer: AnyReducer) {
         self.state = initialState
         self.reducer = reducer
     }
 
-    func subscribe<Subscriber : SubscriberType, SelectedState where Subscriber.StoreSubscriberStateType == SelectedState>(subscriber: Subscriber, _ transform: ((State) -> SelectedState)? = nil) {
+    public func subscribe<Subscriber : SubscriberType, SelectedState where Subscriber.StoreSubscriberStateType == SelectedState>(subscriber: Subscriber, _ transform: ((State) -> SelectedState)? = nil) {
         guard isNewSubscriber(subscriber) else {
             return
         }
@@ -53,23 +52,23 @@ final class CorduxStore<State : StateType>: CorduxStoreType {
         subscriber._newState(transform?(state) ?? state)
     }
 
-    func unsubscribe<Subscriber : AnyStoreSubscriber>(subscriber: Subscriber) {
+    public func unsubscribe<Subscriber : AnyStoreSubscriber>(subscriber: Subscriber) {
         if let index = subscriptions.indexOf({ return $0.subscriber === subscriber }) {
             subscriptions.removeAtIndex(index)
         }
     }
 
-    func route<T>(action: RouteAction<T>) {
+    public func route<T>(action: RouteAction<T>) {
         state.route = reduce(action, route: state.route)
         dispatch(action)
     }
 
-    func setRoute<T>(action: RouteAction<T>) {
+    public func setRoute<T>(action: RouteAction<T>) {
         state.route = reduce(action, route: state.route)
         print("Route: \(state.route.joinWithSeparator("/"))")
     }
 
-    func dispatch(action: Action) {
+    public func dispatch(action: Action) {
         state = reducer._handleAction(action, state: state) as! State
         print("Route: \(state.route.joinWithSeparator("/"))")
         subscriptions.forEach { $0.subscriber?._newState($0.transform?(state) ?? state) }
@@ -94,7 +93,7 @@ public protocol AnyStoreSubscriber: class {
 }
 
 extension SubscriberType {
-    func _newState(state: Any) {
+    public func _newState(state: Any) {
         if let typedState = state as? StoreSubscriberStateType {
             newState(typedState)
         } else {
@@ -103,17 +102,17 @@ extension SubscriberType {
     }
 }
 
-protocol AnyReducer {
+public protocol AnyReducer {
     func _handleAction(action: Action, state: StateType) -> StateType
 }
 
-protocol Reducer: AnyReducer {
+public protocol Reducer: AnyReducer {
     associatedtype ReducerStateType
     func handleAction(action: Action, state: ReducerStateType) -> ReducerStateType
 }
 
 extension Reducer {
-    func _handleAction(action: Action, state: StateType) -> StateType {
+    public func _handleAction(action: Action, state: StateType) -> StateType {
         return withSpecificTypes(action, state: state, function: handleAction)
     }
 }
@@ -126,13 +125,13 @@ func withSpecificTypes<SpecificStateType, Action>(action: Action, state genericS
     return function(action: action, state: specificStateType) as! StateType
 }
 
-protocol Renderer: SubscriberType {
+public protocol Renderer: SubscriberType {
     associatedtype ViewModel
     func render(viewModel: ViewModel)
 }
 
 extension Renderer {
-    func newState(state: Any) {
+    public func newState(state: Any) {
         if let viewModel = state as? ViewModel {
             render(viewModel)
         } else {

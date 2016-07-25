@@ -8,13 +8,13 @@
 
 import UIKit
 
-@objc protocol ViewControllerLifecycleDelegate {
+@objc public protocol ViewControllerLifecycleDelegate {
     optional func viewDidLoad(viewController viewController: UIViewController)
     optional func didMoveToParentViewController(parentViewController: UIViewController?, viewController: UIViewController)
 }
 
 extension UIViewController {
-    class func swizzleLifecycleDelegatingViewControllerMethods() {
+    public class func swizzleLifecycleDelegatingViewControllerMethods() {
         struct Static {
             static var token: dispatch_once_t = 0
         }
@@ -28,21 +28,21 @@ extension UIViewController {
     func cordux_viewDidLoad() {
         self.cordux_viewDidLoad()
 
-        guard let vc = self as? CorduxViewController else {
+        guard let vc = self as? ViewController else {
             return
         }
 
-        vc.corduxContext?.lifecycleDelegate?.viewDidLoad?(viewController: self)
+        vc.context?.lifecycleDelegate?.viewDidLoad?(viewController: self)
     }
 
     func cordux_didMoveToParentViewController(parentViewController: UIViewController?) {
         self.cordux_didMoveToParentViewController(parentViewController)
 
-        guard let vc = self as? CorduxViewController else {
+        guard let vc = self as? ViewController else {
             return
         }
 
-        vc.corduxContext?.lifecycleDelegate?.didMoveToParentViewController?(parentViewController, viewController: self)
+        vc.context?.lifecycleDelegate?.didMoveToParentViewController?(parentViewController, viewController: self)
     }
 
     class func cordux_swizzleMethod(original: Selector, swizzled: Selector) {

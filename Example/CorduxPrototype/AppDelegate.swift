@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Cordux
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
