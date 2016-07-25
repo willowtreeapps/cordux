@@ -24,7 +24,13 @@ protocol SubscriberType: AnyStoreSubscriber {
     func newState(subscription: StoreSubscriberStateType)
 }
 
-final class CorduxStore<State : StateType> {
+protocol CorduxStoreType {
+    func route<T>(action: RouteAction<T>)
+    func setRoute<T>(action: RouteAction<T>)
+    func dispatch(action: Action)
+}
+
+final class CorduxStore<State : StateType>: CorduxStoreType {
     var state: State
     var reducer: AnyReducer
 

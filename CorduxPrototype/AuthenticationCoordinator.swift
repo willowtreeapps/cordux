@@ -17,16 +17,16 @@ final class AuthenticationCoordinator: NavigationControllerCoordinator {
 
     static let routePrefix = RouteSegment.auth
 
-    let store: Store
+    let _store: Store
+    var store: CorduxStoreType { return _store }
 
     let storyboard = UIStoryboard(name: "Authentication", bundle: nil)
     let navigationController: UINavigationController
-    var rootViewController: UIViewController { return navigationController }
 
     let signInViewController: SignInViewController
 
     init(store: Store) {
-        self.store = store
+        _store = store
 
         signInViewController = storyboard.instantiateInitialViewController() as! SignInViewController
         navigationController = UINavigationController(rootViewController: signInViewController)
@@ -51,20 +51,22 @@ final class AuthenticationCoordinator: NavigationControllerCoordinator {
 extension AuthenticationCoordinator: ViewControllerLifecycleDelegate {
     @objc func viewDidLoad(viewController viewController: UIViewController) {
         if viewController === signInViewController {
-            store.subscribe(signInViewController, SignInViewModel.init)
+            _store.subscribe(signInViewController, SignInViewModel.init)
         }
     }
 
     @objc func didMoveToParentViewController(parentViewController: UIViewController?, viewController: UIViewController) {
-        if parentViewController == nil && viewController is ForgotPasswordViewController {
-            store.setRoute(.pop(RouteSegment.fp))
+        guard parentViewController == nil else {
+            return
         }
+
+        popRoute(viewController)
     }
 }
 
 extension AuthenticationCoordinator: SignInHandler {
     func signIn() {
-        store.dispatch(AuthenticationAction.signIn)
+        _store.dispatch(AuthenticationAction.signIn)
     }
 
     func forgotPassword() {

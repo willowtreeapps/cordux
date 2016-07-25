@@ -8,80 +8,36 @@
 
 import UIKit
 
-final class CatalogCoordinator: NSObject, SceneCoordinator {
-    let store: Store
+final class CatalogCoordinator: NSObject, TabBarControllerCoordinator {
+    let _store: Store
+    var store: CorduxStoreType { return _store }
 
-    enum RouteSegment: String, RouteConvertible {
-        case first
-        case second
-    }
-    
-    var scenePrefix: RouteSegment
-    let storyboard = UIStoryboard(name: "Catalog", bundle: nil)
+    let scenes: [Scene]
     let tabBarController: UITabBarController
-    var rootViewController: UIViewController { return tabBarController }
-
-    var currentScene: Coordinator?
-    let firstScene: Coordinator
-    let secondScene: Coordinator
 
     init(store: Store) {
-        self.store = store
+        _store = store
+        scenes = [
+            Scene(prefix: "first", coordinator: FirstCoordinator(store: store)),
+            Scene(prefix: "second", coordinator: SecondCoordinator(store: store)),
+        ]
 
         tabBarController = UIStoryboard(name: "Catalog", bundle: nil)
             .instantiateInitialViewController() as! UITabBarController
 
-        firstScene = FirstCoordinator(store: store)
-        secondScene = SecondCoordinator(store: store)
-        scenePrefix = .first
+        tabBarController.viewControllers = scenes.map { $0.coordinator.rootViewController }
     }
 
     func start() {
         tabBarController.delegate = self
-        firstScene.start()
-        secondScene.start()
-        tabBarController.viewControllers = [firstScene.rootViewController, secondScene.rootViewController]
-        store.setRoute(.push(RouteSegment.first))
-    }
-
-    func changeScene(route: Route) {
-        guard let tab = RouteSegment(rawValue: route.first ?? "") else {
-            return
-        }
-
-        scenePrefix = tab
-        switch scenePrefix {
-        case .first:
-            tabBarController.selectedIndex = 0
-            currentScene = firstScene
-        case .second:
-            tabBarController.selectedIndex = 1
-            currentScene = secondScene
-        }
-    }
-}
-
-extension CatalogCoordinator: UITabBarControllerDelegate {
-    func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {
-        switch viewController {
-        case firstScene.rootViewController:
-            store.setRoute(.replace(route, RouteSegment.first + firstScene.route))
-            currentScene = firstScene
-            scenePrefix = .first
-        case secondScene.rootViewController:
-            store.setRoute(.replace(route, RouteSegment.second + secondScene.route))
-            currentScene = secondScene
-            scenePrefix = .second
-        default:
-            break
-        }
-
-        return true
+        scenes.forEach { $0.coordinator.start() }
+        store.setRoute(.push(scenes[tabBarController.selectedIndex]))
     }
 }
 
 final class FirstCoordinator: NavigationControllerCoordinator {
-    let store: Store
+    let _store: Store
+    var store: CorduxStoreType { return _store }
 
     let storyboard = UIStoryboard(name: "Catalog", bundle: nil)
     let navigationController: UINavigationController
@@ -89,7 +45,7 @@ final class FirstCoordinator: NavigationControllerCoordinator {
     let first: FirstViewController
 
     init(store: Store) {
-        self.store = store
+        _store = store
 
         first = storyboard.instantiateViewControllerWithIdentifier("First") as! FirstViewController
         navigationController = UINavigationController(rootViewController: first)
@@ -106,12 +62,13 @@ final class FirstCoordinator: NavigationControllerCoordinator {
 
 extension FirstCoordinator: FirstHandler {
     func performAction() {
-        store.dispatch(Noop())
+        _store.dispatch(Noop())
     }
 }
 
 final class SecondCoordinator: NavigationControllerCoordinator {
-    let store: Store
+    let _store: Store
+    var store: CorduxStoreType { return _store }
 
     let storyboard = UIStoryboard(name: "Catalog", bundle: nil)
     let navigationController: UINavigationController
@@ -119,7 +76,7 @@ final class SecondCoordinator: NavigationControllerCoordinator {
     let second: SecondViewController
 
     init(store: Store) {
-        self.store = store
+        _store = store
 
         second = storyboard.instantiateViewControllerWithIdentifier("Second") as! SecondViewController
         navigationController = UINavigationController(rootViewController: second)
@@ -136,11 +93,11 @@ final class SecondCoordinator: NavigationControllerCoordinator {
 
 extension SecondCoordinator: SecondHandler {
     func performAction() {
-        store.dispatch(Noop())
+        _store.dispatch(Noop())
     }
 
     func signOut() {
-        store.dispatch(AuthenticationAction.signOut)
+        _store.dispatch(AuthenticationAction.signOut)
     }
 }
 

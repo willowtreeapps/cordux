@@ -13,9 +13,10 @@ final class AppCoordinator: SceneCoordinator, SubscriberType {
         case auth
         case catalog
     }
-    var scenePrefix: RouteSegment = .auth
+    var scenePrefix: String = RouteSegment.auth.rawValue
 
-    let store: Store
+    let _store: Store
+    var store: CorduxStoreType { return _store }
     let container: UIViewController
 
     var currentScene: Coordinator?
@@ -25,12 +26,12 @@ final class AppCoordinator: SceneCoordinator, SubscriberType {
     }
 
     init(store: Store, container: UIViewController) {
-        self.store = store
+        _store = store
         self.container = container
     }
 
     func start() {
-        store.subscribe(self, RouteSubscription.init)
+        _store.subscribe(self, RouteSubscription.init)
         changeScene(RouteSegment.auth.route())
     }
 
@@ -47,14 +48,14 @@ final class AppCoordinator: SceneCoordinator, SubscriberType {
         let coordinator: Coordinator
         switch segment {
         case .auth:
-            coordinator = AuthenticationCoordinator(store: store)
+            coordinator = AuthenticationCoordinator(store: _store)
         case .catalog:
-            coordinator = CatalogCoordinator(store: store)
+            coordinator = CatalogCoordinator(store: _store)
         }
 
         coordinator.start()
         currentScene = coordinator
-        scenePrefix = segment
+        scenePrefix = segment.rawValue
 
         let container = self.container
         let new = coordinator.rootViewController
