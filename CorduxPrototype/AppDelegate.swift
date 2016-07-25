@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var coordinator: AppCoordinator!
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        guard let window = window else {
+        guard let mainController = window?.rootViewController as? MainViewController else {
             fatalError()
         }
 
@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let store = Store(initialState: AppState(), reducer: AppReducer())
 
-        coordinator = AppCoordinator(store: store, window: window)
+        coordinator = AppCoordinator(store: store, container: mainController)
         coordinator.start()
 
         return true

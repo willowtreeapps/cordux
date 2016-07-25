@@ -39,7 +39,7 @@ extension SceneCoordinator where RoutePrefix.RawValue == String {
             return route + (currentScene?.route ?? [])
         }
         set {
-            let r = currentScene?.route ?? []
+            let r = route ?? []
             if r.first != newValue.first {
                 changeScene(newValue)
             }

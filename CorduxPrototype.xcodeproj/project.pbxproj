@@ -11,6 +11,7 @@
 		D922A4EE1D429835002FF3E7 /* Coordinators.swift in Sources */ = {isa = PBXBuildFile; fileRef = D922A4ED1D429835002FF3E7 /* Coordinators.swift */; };
 		D922A4F01D429A02002FF3E7 /* Routing.swift in Sources */ = {isa = PBXBuildFile; fileRef = D922A4EF1D429A02002FF3E7 /* Routing.swift */; };
 		D922A4F21D429BF6002FF3E7 /* ViewControllerContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D922A4F11D429BF6002FF3E7 /* ViewControllerContext.swift */; };
+		D922A4F51D465A6B002FF3E7 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D922A4F41D465A6B002FF3E7 /* MainViewController.swift */; };
 		D946E9421D41027200DB4FCF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D946E9411D41027200DB4FCF /* AppDelegate.swift */; };
 		D946E9441D41027200DB4FCF /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D946E9431D41027200DB4FCF /* FirstViewController.swift */; };
 		D946E9461D41027200DB4FCF /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D946E9451D41027200DB4FCF /* SecondViewController.swift */; };
@@ -52,6 +53,7 @@
 		D922A4ED1D429835002FF3E7 /* Coordinators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinators.swift; sourceTree = "<group>"; };
 		D922A4EF1D429A02002FF3E7 /* Routing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routing.swift; sourceTree = "<group>"; };
 		D922A4F11D429BF6002FF3E7 /* ViewControllerContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerContext.swift; sourceTree = "<group>"; };
+		D922A4F41D465A6B002FF3E7 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		D946E93E1D41027200DB4FCF /* CorduxPrototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CorduxPrototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D946E9411D41027200DB4FCF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D946E9431D41027200DB4FCF /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -143,7 +145,6 @@
 				D946E9791D41065C00DB4FCF /* Scenes */,
 				D946E94A1D41027200DB4FCF /* Assets.xcassets */,
 				D946E94C1D41027200DB4FCF /* LaunchScreen.storyboard */,
-				D946E9771D41064D00DB4FCF /* Main.storyboard */,
 				D946E94F1D41027200DB4FCF /* Info.plist */,
 			);
 			path = CorduxPrototype;
@@ -180,7 +181,9 @@
 		D946E97A1D41066900DB4FCF /* App */ = {
 			isa = PBXGroup;
 			children = (
+				D946E9771D41064D00DB4FCF /* Main.storyboard */,
 				D946E9711D41039E00DB4FCF /* AppCoordinator.swift */,
+				D922A4F41D465A6B002FF3E7 /* MainViewController.swift */,
 			);
 			name = App;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				D946E98A1D4125BB00DB4FCF /* Cordux.swift in Sources */,
 				D946E9461D41027200DB4FCF /* SecondViewController.swift in Sources */,
 				D946E9841D410B0500DB4FCF /* SignInViewController.swift in Sources */,
+				D922A4F51D465A6B002FF3E7 /* MainViewController.swift in Sources */,
 				D946E9861D410B1500DB4FCF /* ForgotPasswordViewController.swift in Sources */,
 				D946E9421D41027200DB4FCF /* AppDelegate.swift in Sources */,
 				D946E97D1D41078A00DB4FCF /* CatalogCoordinator.swift in Sources */,

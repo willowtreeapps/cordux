@@ -15,17 +15,17 @@ final class AppCoordinator: SceneCoordinator, SubscriberType {
     static var routePrefix: RouteSegment? = nil
 
     let store: Store
-    let window: UIWindow
+    let container: UIViewController
 
     var currentScene: Coordinator?
 
     var rootViewController: UIViewController {
-        return currentScene?.rootViewController ?? UIViewController()
+        return container
     }
 
-    init(store: Store, window: UIWindow) {
+    init(store: Store, container: UIViewController) {
         self.store = store
-        self.window = window
+        self.container = container
     }
 
     func start() {
@@ -41,21 +41,42 @@ final class AppCoordinator: SceneCoordinator, SubscriberType {
             return
         }
 
+        let old = currentScene?.rootViewController
         let coordinator: Coordinator
         switch first {
         case AuthenticationCoordinator.routePrefix.rawValue:
             coordinator = AuthenticationCoordinator(store: store)
-            currentScene = coordinator
         case CatalogCoordinator.routePrefix!.rawValue:
             coordinator = CatalogCoordinator(store: store)
-            currentScene = coordinator
         default:
             fatalError()
         }
 
         coordinator.start()
-        UIView.transitionWithView(window, duration: 0.3, options: .TransitionCrossDissolve, animations: {
-            self.window.rootViewController = coordinator.rootViewController
-        }, completion: nil)
+        currentScene = coordinator
+
+        let container = self.container
+        let new = coordinator.rootViewController
+
+        old?.willMoveToParentViewController(nil)
+        container.addChildViewController(new)
+        container.view.addSubview(new.view)
+
+        var constraints: [NSLayoutConstraint] = []
+        constraints.append(new.view.leftAnchor.constraintEqualToAnchor(container.view.leftAnchor))
+        constraints.append(new.view.rightAnchor.constraintEqualToAnchor(container.view.rightAnchor))
+        constraints.append(new.view.topAnchor.constraintEqualToAnchor(container.view.topAnchor))
+        constraints.append(new.view.bottomAnchor.constraintEqualToAnchor(container.view.bottomAnchor))
+        NSLayoutConstraint.activateConstraints(constraints)
+
+        new.view.alpha = 0
+        UIView.animateWithDuration(0.3, animations: { 
+            old?.view.alpha = 0
+            new.view.alpha = 1
+        }, completion: { _ in
+            old?.view.removeFromSuperview()
+            old?.removeFromParentViewController()
+            new.didMoveToParentViewController(container)
+        })
     }
 }
