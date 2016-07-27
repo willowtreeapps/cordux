@@ -22,11 +22,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         UIViewController.swizzleLifecycleDelegatingViewControllerMethods()
 
-        let store = Store(initialState: AppState(), reducer: AppReducer())
+        var state = AppState()
+        state.route = AppCoordinator.RouteSegment.auth.route()
+        let store = Store(initialState: state, reducer: AppReducer())
 
         coordinator = AppCoordinator(store: store, container: mainController)
         coordinator.start()
-        store.route(.push(AppCoordinator.RouteSegment.auth))
 
         return true
     }

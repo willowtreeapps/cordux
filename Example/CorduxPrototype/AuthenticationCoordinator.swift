@@ -11,12 +11,9 @@ import Cordux
 
 final class AuthenticationCoordinator: NavigationControllerCoordinator {
     enum RouteSegment: String, RouteConvertible {
-        case auth
         case signIn
         case fp
     }
-
-    static let routePrefix = RouteSegment.auth
 
     let _store: Store
     var store: StoreType { return _store }
