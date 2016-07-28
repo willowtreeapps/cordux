@@ -13,7 +13,7 @@ public protocol TabScene: RouteConvertible {
     var coordinator: AnyCoordinator { get }
 }
 
-public protocol TabBarControllerCoordinator: SceneCoordinator, UITabBarControllerDelegate {
+public protocol TabBarControllerCoordinator: SceneCoordinator {
     associatedtype Scene: TabScene
     var tabBarController: UITabBarController { get }
     var scenes: [Scene] { get }
@@ -49,12 +49,13 @@ public extension TabBarControllerCoordinator {
         }
     }
 
-    public func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {
+    public func setRouteForViewController(viewController: UIViewController) -> Bool {
         for scene in scenes {
             if scene.coordinator.rootViewController == viewController {
                 store.setRoute(.replace(route, scene + scene.coordinator.route))
+                return true
             }
         }
-        return true
+        return false
     }
 }

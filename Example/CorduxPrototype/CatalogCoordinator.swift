@@ -35,6 +35,12 @@ final class CatalogCoordinator: NSObject, TabBarControllerCoordinator {
     }
 }
 
+extension CatalogCoordinator: UITabBarControllerDelegate {
+    func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {
+        return setRouteForViewController(viewController)
+    }
+}
+
 final class FirstCoordinator: NavigationControllerCoordinator {
     var store: Store
 
