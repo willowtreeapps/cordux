@@ -14,13 +14,7 @@ public protocol StateType {
     var route: Route { get set }
 }
 
-public protocol StoreType {
-    func route<T>(action: RouteAction<T>)
-    func setRoute<T>(action: RouteAction<T>)
-    func dispatch(action: Action)
-}
-
-public final class Store<State : StateType>: StoreType {
+public final class Store<State : StateType> {
     var state: State
     var reducer: AnyReducer
 
