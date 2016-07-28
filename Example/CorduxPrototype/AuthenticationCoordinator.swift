@@ -31,7 +31,7 @@ final class AuthenticationCoordinator: NavigationControllerCoordinator {
 
     func start() {
         signInViewController.inject(handler: self)
-        signInViewController.context = Context(RouteSegment.signIn, lifecycleDelegate: self)
+        signInViewController.corduxContext = Context(RouteSegment.signIn, lifecycleDelegate: self)
         store.setRoute(.push(RouteSegment.signIn))
     }
 
@@ -39,7 +39,7 @@ final class AuthenticationCoordinator: NavigationControllerCoordinator {
         if route.last == RouteSegment.fp.rawValue {
             let forgotPasswordViewController = storyboard.instantiateViewControllerWithIdentifier("ForgotPassword") as! ForgotPasswordViewController
             forgotPasswordViewController.inject(self)
-            forgotPasswordViewController.context = Context(RouteSegment.fp, lifecycleDelegate: self)
+            forgotPasswordViewController.corduxContext = Context(RouteSegment.fp, lifecycleDelegate: self)
             navigationController.pushViewController(forgotPasswordViewController, animated: true)
         }
     }
@@ -71,8 +71,7 @@ extension AuthenticationCoordinator: SignInHandler {
     }
 }
 
-extension SignInViewController: Renderer, Cordux.ViewController {}
-extension ForgotPasswordViewController: Cordux.ViewController {}
+extension SignInViewController: Renderer {}
 
 extension SignInViewModel {
     init(_ state: AppState) {

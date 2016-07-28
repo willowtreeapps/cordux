@@ -8,8 +8,8 @@
 
 import UIKit
 
-public protocol ViewController: class {
-    var context: Context? { get }
+public protocol Contextual: class {
+    var corduxContext: Context? { get }
 }
 
 public final class Context: NSObject {
@@ -22,12 +22,12 @@ public final class Context: NSObject {
     }
 }
 
-public extension UIViewController {
+extension UIViewController: Contextual {
     private struct ViewControllerKeys {
         static var Context = "cordux_context"
     }
     
-    public var context: Context? {
+    public var corduxContext: Context? {
         get {
             return objc_getAssociatedObject(self, &ViewControllerKeys.Context) as? Context
         }

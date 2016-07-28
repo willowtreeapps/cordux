@@ -8,13 +8,48 @@
 
 import Foundation
 
+public struct Route  {
+    var components: [String]
+}
+
 public protocol RouteConvertible {
     func route() -> Route
 }
 
-public struct Route  {
-    var components: [String]
+public enum RouteAction<T: RouteConvertible>: Action {
+    case goto(T)
+    case push(T)
+    case pop(T)
+    case replace(T, T)
+}
 
+extension Store {
+    func reduce<T>(action: RouteAction<T>, route: Route) -> Route {
+        switch action {
+        case .goto(let route):
+            return route.route()
+        case .push(let segment):
+            return route + segment.route()
+        case .pop(let segment):
+            let segmentRoute = segment.route()
+            let n = route.count
+            let m = segmentRoute.count
+            guard n >= m else {
+                return route
+            }
+            let tail = Route(Array(route[n-m..<n]))
+            guard tail == segmentRoute else {
+                return route
+            }
+            return Route(route.dropLast(m))
+        case .replace(let old, let new):
+            let head = reduce(.pop(old), route: route)
+            return reduce(.push(new), route: head)
+        }
+    }
+}
+
+extension Route {
     public init() {
         self.components = []
     }
@@ -26,7 +61,7 @@ public struct Route  {
     public init(_ component: String) {
         self.init([component])
     }
-    
+
     public init(_ slice: Slice<Route>) {
         self.init(Array(slice))
     }
@@ -105,13 +140,6 @@ public func +(lhs: Route, rhs: RouteConvertible) -> Route {
     return Route(lhs.components + rhs.route().components)
 }
 
-public enum RouteAction<T: RouteConvertible>: Action {
-    case goto(T)
-    case push(T)
-    case pop(T)
-    case replace(T, T)
-}
-
 extension String: RouteConvertible {
     public func route() -> Route {
         return Route(self)
@@ -121,31 +149,5 @@ extension String: RouteConvertible {
 public extension RawRepresentable where RawValue == String {
     public func route() -> Route {
         return self.rawValue.route()
-    }
-}
-
-extension Store {
-    func reduce<T>(action: RouteAction<T>, route: Route) -> Route {
-        switch action {
-        case .goto(let route):
-            return route.route()
-        case .push(let segment):
-            return route + segment.route()
-        case .pop(let segment):
-            let segmentRoute = segment.route()
-            let n = route.count
-            let m = segmentRoute.count
-            guard n >= m else {
-                return route
-            }
-            let tail = Route(Array(route[n-m..<n]))
-            guard tail == segmentRoute else {
-                return route
-            }
-            return Route(route.dropLast(m))
-        case .replace(let old, let new):
-            let head = reduce(.pop(old), route: route)
-            return reduce(.push(new), route: head)
-        }
     }
 }

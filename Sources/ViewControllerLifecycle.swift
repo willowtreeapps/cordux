@@ -27,22 +27,12 @@ extension UIViewController {
 
     func cordux_viewDidLoad() {
         self.cordux_viewDidLoad()
-
-        guard let vc = self as? ViewController else {
-            return
-        }
-
-        vc.context?.lifecycleDelegate?.viewDidLoad?(viewController: self)
+        self.corduxContext?.lifecycleDelegate?.viewDidLoad?(viewController: self)
     }
 
     func cordux_didMoveToParentViewController(parentViewController: UIViewController?) {
         self.cordux_didMoveToParentViewController(parentViewController)
-
-        guard let vc = self as? ViewController else {
-            return
-        }
-
-        vc.context?.lifecycleDelegate?.didMoveToParentViewController?(parentViewController, viewController: self)
+        self.corduxContext?.lifecycleDelegate?.didMoveToParentViewController?(parentViewController, viewController: self)
     }
 
     class func cordux_swizzleMethod(original: Selector, swizzled: Selector) {

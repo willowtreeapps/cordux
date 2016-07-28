@@ -9,15 +9,20 @@
 /* Begin PBXBuildFile section */
 		10BCA3F72D99B37EE72DF9208DC38029 /* Pods-CorduxPrototype-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 497AD5DC7EBA60D375880C6F5BAEBD2B /* Pods-CorduxPrototype-dummy.m */; };
 		1787F1708DC45E8942E349059901369C /* Pods-CorduxPrototype-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C3CE461282BD539F22FE36377F9EDBA /* Pods-CorduxPrototype-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		65EC6AB9BF3ED200B27F35934B54BCCC /* ViewControllerContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6AF9782981594808D992F0F7563346 /* ViewControllerContext.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		1C427ACD139915662030F7550DC50255 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BB9A1700EF99329CA82E30243A21B4 /* Reducer.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		4F399053E491E4C124F5C4E83952C1A0 /* ViewControllerLifecycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE47BCCFF1BA3ED7DA1748E53A582221 /* ViewControllerLifecycle.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		57F37402FEF4C85864EDEFA1C1AD4A00 /* NavigationControllerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E26C4C8DD20FD10748D475798D3886 /* NavigationControllerCoordinator.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		5917F5C7E180B13333FEFC5EC1D5F69C /* Subscriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2E27C1B7ECAD4625AB0340B913EA73 /* Subscriptions.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		640640F4C7EA5F76AF5DD65316373507 /* TabBarControllerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1214775E81E407ECCFB78647A719830 /* TabBarControllerCoordinator.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		6C3B2991A467F20C6BCAF2AA4FFB1865 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		7AFD1C9095C87DFD31271978902F8841 /* Routing.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0883D9C16E1BC5931CB04214DB07E1E /* Routing.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		8D977F376635797194FBE910098D1F87 /* Cordux-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D61C97CAC079E5A6DCD8A4674D183FC6 /* Cordux-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		92348C49E58B9B78CAEDC4BC0C43DBC1 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DFAE7B33A334779C4FD2A04DB38A50 /* Store.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		98A1D5A218050F1CC02F9AF4E2F54D56 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EABEBC0406E61C47EE1C348D043C94C /* Context.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		A5B77535CCC9740DB2241E4C5622534A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
-		ACF1FB358541947F5822F094B6482D10 /* Routing.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC38777F245F3C3F66ECEFF3FD96F00E /* Routing.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		C1426634B086705C9D302B1E3085492B /* Cordux-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9565C18A5BACAAAC936EEB720C8A8617 /* Cordux-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D274B158CEFC2BE9990A483C5722E3F0 /* Cordux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2670D89EF9BE551014A42C414EF5EAA3 /* Cordux.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		E2DD13E9A88A40A6F141EFAA0E8F48EA /* ViewControllerLifecycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1A30169AE2A41221CD1543E459FF82 /* ViewControllerLifecycle.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		E4E04D490EA89B81E4AB53281B9F3F0C /* Coordinators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C433718F602E97F0B5561B46FBC202 /* Coordinators.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		F94FEDA3CECCC7E7E1EABA7739D952A1 /* Cordux-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C31738059BB1625D336E73DA50461E32 /* Cordux-dummy.m */; };
-		FBFD599509C853F3DE6619AD51467791 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		B73AA7D56EE9A81F46BE3D2FC123D1A4 /* SceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332386E9F471DCB4F5179991223FE720 /* SceneCoordinator.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		D45954BC260B699298AB3D61535BC122 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE179CDC1792A75D4CF94C041AD5C43F /* Coordinator.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		FB4A33F945CD75FF2199C1F66A915A87 /* Cordux-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FCBAD966D4EE0752D504540B1C7261F /* Cordux-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,53 +30,58 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 4EE21AA7AB8C57C884EF906E0DCB38BF;
+			remoteGlobalIDString = 5EC7295E6439BCECE66155E473AB2658;
 			remoteInfo = Cordux;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		009538049BEA44FDCFF1BFF4F69E0BBE /* Pods-CorduxPrototype.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-CorduxPrototype.modulemap"; sourceTree = "<group>"; };
-		140295B394B23213F5A6C3A34899C2FB /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		17DD7977F818030D2DE928139F85CF8F /* Cordux-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Cordux-prefix.pch"; sourceTree = "<group>"; };
+		01DFAE7B33A334779C4FD2A04DB38A50 /* Store.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		0FCBAD966D4EE0752D504540B1C7261F /* Cordux-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Cordux-dummy.m"; sourceTree = "<group>"; };
 		1C3CE461282BD539F22FE36377F9EDBA /* Pods-CorduxPrototype-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CorduxPrototype-umbrella.h"; sourceTree = "<group>"; };
-		2670D89EF9BE551014A42C414EF5EAA3 /* Cordux.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Cordux.swift; sourceTree = "<group>"; };
+		2C2E27C1B7ECAD4625AB0340B913EA73 /* Subscriptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Subscriptions.swift; sourceTree = "<group>"; };
+		332386E9F471DCB4F5179991223FE720 /* SceneCoordinator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SceneCoordinator.swift; sourceTree = "<group>"; };
+		3987AAA235B8F23132F15693D3F5224C /* Cordux-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Cordux-prefix.pch"; sourceTree = "<group>"; };
+		3A0A1CF2AD5A2F499C1162A13025F72A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3AD7FD6C9E8839C6948877EDC9365C14 /* Cordux.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Cordux.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		48C433718F602E97F0B5561B46FBC202 /* Coordinators.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Coordinators.swift; sourceTree = "<group>"; };
 		497AD5DC7EBA60D375880C6F5BAEBD2B /* Pods-CorduxPrototype-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CorduxPrototype-dummy.m"; sourceTree = "<group>"; };
+		61E26C4C8DD20FD10748D475798D3886 /* NavigationControllerCoordinator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NavigationControllerCoordinator.swift; sourceTree = "<group>"; };
 		68719D746AD7DFE584D69A9B79FF6456 /* Pods-CorduxPrototype-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CorduxPrototype-acknowledgements.plist"; sourceTree = "<group>"; };
+		6EABEBC0406E61C47EE1C348D043C94C /* Context.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
 		6FE0E7762BE7070B5D5D15BA29D26AB1 /* Pods-CorduxPrototype-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CorduxPrototype-resources.sh"; sourceTree = "<group>"; };
+		8CC03A2ADD11CBEDE24255EAB0A017DD /* Cordux.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Cordux.modulemap; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9565C18A5BACAAAC936EEB720C8A8617 /* Cordux-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Cordux-umbrella.h"; sourceTree = "<group>"; };
-		96CE77384F4135E98B88141DB119CE7F /* Cordux.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Cordux.xcconfig; sourceTree = "<group>"; };
-		9F6AF9782981594808D992F0F7563346 /* ViewControllerContext.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ViewControllerContext.swift; sourceTree = "<group>"; };
 		B63B3DDC34207ADE2967A0328CDDCEAC /* Pods-CorduxPrototype.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CorduxPrototype.debug.xcconfig"; sourceTree = "<group>"; };
-		BA1A30169AE2A41221CD1543E459FF82 /* ViewControllerLifecycle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ViewControllerLifecycle.swift; sourceTree = "<group>"; };
-		C2F7FC9BA204306C49692D842E6476D2 /* Cordux.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Cordux.modulemap; sourceTree = "<group>"; };
-		C31738059BB1625D336E73DA50461E32 /* Cordux-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Cordux-dummy.m"; sourceTree = "<group>"; };
+		C1214775E81E407ECCFB78647A719830 /* TabBarControllerCoordinator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TabBarControllerCoordinator.swift; sourceTree = "<group>"; };
 		CD23381133665228CB8EFFDC6607709B /* Pods-CorduxPrototype-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CorduxPrototype-acknowledgements.markdown"; sourceTree = "<group>"; };
 		CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		D61C97CAC079E5A6DCD8A4674D183FC6 /* Cordux-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Cordux-umbrella.h"; sourceTree = "<group>"; };
+		DE179CDC1792A75D4CF94C041AD5C43F /* Coordinator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		DE47BCCFF1BA3ED7DA1748E53A582221 /* ViewControllerLifecycle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ViewControllerLifecycle.swift; sourceTree = "<group>"; };
 		DFF14AEA38D337A951C39B111CEAB46F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E0883D9C16E1BC5931CB04214DB07E1E /* Routing.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Routing.swift; sourceTree = "<group>"; };
+		E0A0BB45AA409EFCE3246B7DB2AEB61B /* Cordux.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Cordux.xcconfig; sourceTree = "<group>"; };
 		E866C61F5F944E33FC150EBA13851BE2 /* Pods-CorduxPrototype.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CorduxPrototype.release.xcconfig"; sourceTree = "<group>"; };
 		E87E1CD529854222641B1FBA3254A678 /* Pods_CorduxPrototype.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CorduxPrototype.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F279311E57AFBD39EB9669AB877A00BF /* Pods-CorduxPrototype-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CorduxPrototype-frameworks.sh"; sourceTree = "<group>"; };
-		FC38777F245F3C3F66ECEFF3FD96F00E /* Routing.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Routing.swift; sourceTree = "<group>"; };
+		F6BB9A1700EF99329CA82E30243A21B4 /* Reducer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		48DF745C8D35110A561FD46D3FA984C6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6C3B2991A467F20C6BCAF2AA4FFB1865 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8DD474CCCDB5B938ED6D5569C2FAA07A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				A5B77535CCC9740DB2241E4C5622534A /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C3BE5521E1201D0AB56251941EB662FC /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FBFD599509C853F3DE6619AD51467791 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,10 +106,24 @@
 			path = "Target Support Files/Pods-CorduxPrototype";
 			sourceTree = "<group>";
 		};
+		22E00DA2B8E4110EB05EA22BFDA0EAE7 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				8CC03A2ADD11CBEDE24255EAB0A017DD /* Cordux.modulemap */,
+				E0A0BB45AA409EFCE3246B7DB2AEB61B /* Cordux.xcconfig */,
+				0FCBAD966D4EE0752D504540B1C7261F /* Cordux-dummy.m */,
+				3987AAA235B8F23132F15693D3F5224C /* Cordux-prefix.pch */,
+				D61C97CAC079E5A6DCD8A4674D183FC6 /* Cordux-umbrella.h */,
+				3A0A1CF2AD5A2F499C1162A13025F72A /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/Cordux";
+			sourceTree = "<group>";
+		};
 		3A0CC67FF2407BDB8EE9F8936111CA5A /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				D89FAA8F8985D7E48FD24B8A6216D07D /* Cordux */,
+				D3A8ACDDFA1AF7A2A309D7CEF734B581 /* Cordux */,
 			);
 			name = "Development Pods";
 			sourceTree = "<group>";
@@ -112,6 +136,23 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
+		4A9D70FD15BB6067D4E810D4E5B39D48 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				6EABEBC0406E61C47EE1C348D043C94C /* Context.swift */,
+				DE179CDC1792A75D4CF94C041AD5C43F /* Coordinator.swift */,
+				61E26C4C8DD20FD10748D475798D3886 /* NavigationControllerCoordinator.swift */,
+				F6BB9A1700EF99329CA82E30243A21B4 /* Reducer.swift */,
+				E0883D9C16E1BC5931CB04214DB07E1E /* Routing.swift */,
+				332386E9F471DCB4F5179991223FE720 /* SceneCoordinator.swift */,
+				01DFAE7B33A334779C4FD2A04DB38A50 /* Store.swift */,
+				2C2E27C1B7ECAD4625AB0340B913EA73 /* Subscriptions.swift */,
+				C1214775E81E407ECCFB78647A719830 /* TabBarControllerCoordinator.swift */,
+				DE47BCCFF1BA3ED7DA1748E53A582221 /* ViewControllerLifecycle.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
@@ -121,18 +162,6 @@
 				B646C81DDD56ACD6D33523DF97D2D592 /* Products */,
 				A2ECD65A783215B7B0199186DDDA328A /* Targets Support Files */,
 			);
-			sourceTree = "<group>";
-		};
-		A06A64E7F73986CEA37C539DEAB40F53 /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				48C433718F602E97F0B5561B46FBC202 /* Coordinators.swift */,
-				2670D89EF9BE551014A42C414EF5EAA3 /* Cordux.swift */,
-				FC38777F245F3C3F66ECEFF3FD96F00E /* Routing.swift */,
-				9F6AF9782981594808D992F0F7563346 /* ViewControllerContext.swift */,
-				BA1A30169AE2A41221CD1543E459FF82 /* ViewControllerLifecycle.swift */,
-			);
-			path = Sources;
 			sourceTree = "<group>";
 		};
 		A2ECD65A783215B7B0199186DDDA328A /* Targets Support Files */ = {
@@ -160,38 +189,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D89FAA8F8985D7E48FD24B8A6216D07D /* Cordux */ = {
+		D3A8ACDDFA1AF7A2A309D7CEF734B581 /* Cordux */ = {
 			isa = PBXGroup;
 			children = (
-				A06A64E7F73986CEA37C539DEAB40F53 /* Sources */,
-				F6F4C2C322FD98149876F3A82A09C904 /* Support Files */,
+				4A9D70FD15BB6067D4E810D4E5B39D48 /* Sources */,
+				22E00DA2B8E4110EB05EA22BFDA0EAE7 /* Support Files */,
 			);
 			name = Cordux;
 			path = ../..;
 			sourceTree = "<group>";
 		};
-		F6F4C2C322FD98149876F3A82A09C904 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				C2F7FC9BA204306C49692D842E6476D2 /* Cordux.modulemap */,
-				96CE77384F4135E98B88141DB119CE7F /* Cordux.xcconfig */,
-				C31738059BB1625D336E73DA50461E32 /* Cordux-dummy.m */,
-				17DD7977F818030D2DE928139F85CF8F /* Cordux-prefix.pch */,
-				9565C18A5BACAAAC936EEB720C8A8617 /* Cordux-umbrella.h */,
-				140295B394B23213F5A6C3A34899C2FB /* Info.plist */,
-			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/Cordux";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		C653EF49156534FA9FF5B09CEB4B00A7 /* Headers */ = {
+		779E3DB728294D45CF5D051DF2720148 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1426634B086705C9D302B1E3085492B /* Cordux-umbrella.h in Headers */,
+				8D977F376635797194FBE910098D1F87 /* Cordux-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,13 +221,13 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		4EE21AA7AB8C57C884EF906E0DCB38BF /* Cordux */ = {
+		5EC7295E6439BCECE66155E473AB2658 /* Cordux */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E3D19F7000651B9D228FFE629C62F578 /* Build configuration list for PBXNativeTarget "Cordux" */;
+			buildConfigurationList = 95122F0B69A070C1620BED17800E48DE /* Build configuration list for PBXNativeTarget "Cordux" */;
 			buildPhases = (
-				ED062DD85392C936BB46ECB7CBE9A524 /* Sources */,
-				C3BE5521E1201D0AB56251941EB662FC /* Frameworks */,
-				C653EF49156534FA9FF5B09CEB4B00A7 /* Headers */,
+				169EA712DACF225E043FBE0762D259D0 /* Sources */,
+				48DF745C8D35110A561FD46D3FA984C6 /* Frameworks */,
+				779E3DB728294D45CF5D051DF2720148 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -262,31 +277,36 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4EE21AA7AB8C57C884EF906E0DCB38BF /* Cordux */,
+				5EC7295E6439BCECE66155E473AB2658 /* Cordux */,
 				F31B7E4E4332F0C87E8E715F5FFFBB16 /* Pods-CorduxPrototype */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		169EA712DACF225E043FBE0762D259D0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				98A1D5A218050F1CC02F9AF4E2F54D56 /* Context.swift in Sources */,
+				D45954BC260B699298AB3D61535BC122 /* Coordinator.swift in Sources */,
+				FB4A33F945CD75FF2199C1F66A915A87 /* Cordux-dummy.m in Sources */,
+				57F37402FEF4C85864EDEFA1C1AD4A00 /* NavigationControllerCoordinator.swift in Sources */,
+				1C427ACD139915662030F7550DC50255 /* Reducer.swift in Sources */,
+				7AFD1C9095C87DFD31271978902F8841 /* Routing.swift in Sources */,
+				B73AA7D56EE9A81F46BE3D2FC123D1A4 /* SceneCoordinator.swift in Sources */,
+				92348C49E58B9B78CAEDC4BC0C43DBC1 /* Store.swift in Sources */,
+				5917F5C7E180B13333FEFC5EC1D5F69C /* Subscriptions.swift in Sources */,
+				640640F4C7EA5F76AF5DD65316373507 /* TabBarControllerCoordinator.swift in Sources */,
+				4F399053E491E4C124F5C4E83952C1A0 /* ViewControllerLifecycle.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9D4BA5DEFC8976554FC9D24AA4F1ED60 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				10BCA3F72D99B37EE72DF9208DC38029 /* Pods-CorduxPrototype-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		ED062DD85392C936BB46ECB7CBE9A524 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E4E04D490EA89B81E4AB53281B9F3F0C /* Coordinators.swift in Sources */,
-				F94FEDA3CECCC7E7E1EABA7739D952A1 /* Cordux-dummy.m in Sources */,
-				D274B158CEFC2BE9990A483C5722E3F0 /* Cordux.swift in Sources */,
-				ACF1FB358541947F5822F094B6482D10 /* Routing.swift in Sources */,
-				65EC6AB9BF3ED200B27F35934B54BCCC /* ViewControllerContext.swift in Sources */,
-				E2DD13E9A88A40A6F141EFAA0E8F48EA /* ViewControllerLifecycle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,7 +316,7 @@
 		16D141F7AACDFD2B4B420B74AE6C0134 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Cordux;
-			target = 4EE21AA7AB8C57C884EF906E0DCB38BF /* Cordux */;
+			target = 5EC7295E6439BCECE66155E473AB2658 /* Cordux */;
 			targetProxy = 8739379CE17C941151B41C320CBB2E5E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -344,13 +364,13 @@
 			};
 			name = Debug;
 		};
-		492215433AA586ACE2BD64AEFEFDE191 /* Debug */ = {
+		4190C1AE7FAEECAA11E8285EA8BD14AD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 96CE77384F4135E98B88141DB119CE7F /* Cordux.xcconfig */;
+			baseConfigurationReference = E0A0BB45AA409EFCE3246B7DB2AEB61B /* Cordux.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -363,16 +383,15 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/Cordux/Cordux.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = Cordux;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
 		749241B7169925B34C2634E66B7C76F6 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -407,13 +426,13 @@
 			};
 			name = Release;
 		};
-		BD51E93F62192AAA91E1EAF9D3C6DC66 /* Release */ = {
+		A06A063B368413F4557B5DE9467C2AC3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 96CE77384F4135E98B88141DB119CE7F /* Cordux.xcconfig */;
+			baseConfigurationReference = E0A0BB45AA409EFCE3246B7DB2AEB61B /* Cordux.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -426,15 +445,16 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/Cordux/Cordux.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = Cordux;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
 		};
 		C7E474A03CAE21F1CB6046E7344C59BD /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -529,11 +549,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E3D19F7000651B9D228FFE629C62F578 /* Build configuration list for PBXNativeTarget "Cordux" */ = {
+		95122F0B69A070C1620BED17800E48DE /* Build configuration list for PBXNativeTarget "Cordux" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				492215433AA586ACE2BD64AEFEFDE191 /* Debug */,
-				BD51E93F62192AAA91E1EAF9D3C6DC66 /* Release */,
+				A06A063B368413F4557B5DE9467C2AC3 /* Debug */,
+				4190C1AE7FAEECAA11E8285EA8BD14AD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

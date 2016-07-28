@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11F987EDEA335C26DE6118EC /* Pods_CorduxPrototype.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D68095426899A4DDA2A6DE17 /* Pods_CorduxPrototype.framework */; };
 		D922A4F51D465A6B002FF3E7 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D922A4F41D465A6B002FF3E7 /* MainViewController.swift */; };
 		D922A4F91D46980F002FF3E7 /* Cordux.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D922A4F81D46980F002FF3E7 /* Cordux.framework */; };
 		D946E9421D41027200DB4FCF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D946E9411D41027200DB4FCF /* AppDelegate.swift */; };
@@ -47,6 +48,7 @@
 /* Begin PBXFileReference section */
 		54AB738FE12A7D14DACD3E78 /* Pods-CorduxPrototype.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CorduxPrototype.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CorduxPrototype/Pods-CorduxPrototype.debug.xcconfig"; sourceTree = "<group>"; };
 		B2AF9DBFC9F31A01AD177704 /* Pods-CorduxPrototype.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CorduxPrototype.release.xcconfig"; path = "Pods/Target Support Files/Pods-CorduxPrototype/Pods-CorduxPrototype.release.xcconfig"; sourceTree = "<group>"; };
+		D68095426899A4DDA2A6DE17 /* Pods_CorduxPrototype.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CorduxPrototype.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D922A4F41D465A6B002FF3E7 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		D922A4F61D4697C1002FF3E7 /* Pods_CorduxPrototype.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_CorduxPrototype.framework; path = "../../../Library/Developer/Xcode/DerivedData/CorduxPrototype-fwijtkdjhhjcmubaqbjyuijepfer/Build/Products/Debug-iphonesimulator/Pods_CorduxPrototype.framework"; sourceTree = "<group>"; };
 		D922A4F81D46980F002FF3E7 /* Cordux.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cordux.framework; path = "Pods/../build/Debug-iphoneos/Cordux/Cordux.framework"; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D922A4F91D46980F002FF3E7 /* Cordux.framework in Frameworks */,
+				11F987EDEA335C26DE6118EC /* Pods_CorduxPrototype.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,6 +108,7 @@
 			children = (
 				D922A4F81D46980F002FF3E7 /* Cordux.framework */,
 				D922A4F61D4697C1002FF3E7 /* Pods_CorduxPrototype.framework */,
+				D68095426899A4DDA2A6DE17 /* Pods_CorduxPrototype.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
