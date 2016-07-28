@@ -1,0 +1,606 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<style type="text/css">
+			.old { color: #666666 }
+	    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 18.0px Menlo; color: #8a8373; text-align: left}
+	    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 18.0px Menlo; color: #eee8e4; text-align: left; min-height: 21.0px}
+	    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 18.0px Menlo; color: #eee8e4; text-align: left}
+	    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 18.0px Menlo; color: #888471; text-align: left}
+	    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 18.0px Menlo; color: #fd4485; text-align: left}
+	    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 18.0px Menlo; color: #b3e43b; text-align: left}
+	    p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #b3e43b; text-align: left}
+	    p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #888471; text-align: left}
+	    p.p9 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #eee8e4; text-align: left}
+	    p.p10 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #eee8e4; text-align: left; min-height: 13.0px}
+	    p.p11 {margin: 0.0px 0.0px 0.0px 0.0px; font: 18.0px Menlo; color: #ff5b53; text-align: left}
+	    p.p12 {margin: 0.0px 0.0px 0.0px 0.0px; font: 18.0px Menlo; color: #ff7627; text-align: left}
+	    p.p13 {margin: 0.0px 0.0px 0.0px 0.0px; font: 18.0px Menlo; color: #ffa827; text-align: left}
+	    p.p14 {margin: 0.0px 0.0px 0.0px 0.0px; font: 18.0px Menlo; color: #bd99ff; text-align: left}
+	    p.p15 {margin: 0.0px 0.0px 0.0px 0.0px; font: 18.0px Menlo; color: #75e0f2; text-align: left}
+	    span.s1 {font-variant-ligatures: no-common-ligatures}
+	    span.s2 {font-variant-ligatures: no-common-ligatures; color: #fd4485}
+	    span.s3 {font-variant-ligatures: no-common-ligatures; color: #ffa827}
+	    span.s4 {font-variant-ligatures: no-common-ligatures; color: #eee8e4}
+	    span.s5 {font-variant-ligatures: no-common-ligatures; color: #b3e43b}
+	    span.s6 {font-variant-ligatures: no-common-ligatures; color: #75e0f2}
+	    span.s7 {font-variant-ligatures: no-common-ligatures; color: #ff7627}
+	    span.s8 {font-variant-ligatures: no-common-ligatures; color: #888471}
+	  </style>
+	  </style>
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<p>iOS: Solved</p>
+			 	</section>
+				<section>
+					<small>Please, hold your applause.</small>
+			 	</section>
+				<section data-transition="slide-in fade-out">
+					<ol>
+						<li>Unidirectional Data Flow</li>
+					</ol>
+				</section>
+				<section data-transition="fade-in slide-out">
+					<ol>
+						<li><strike class="old">Unidirectional Data Flow</strike> Redux</li>
+					</ol>
+				</section>
+				<section data-transition="slide-in fade-out">
+					<p>Redux on iOS gots some problems</p>
+				</section>
+				<section data-transition="fade">
+					<p>Redux Problems</p>
+					<section>
+						<ul>
+							<li>Async&nbsp;work</li>
+						</ul>
+					</section>
+				</section>
+				<section data-transition="fade">
+					<p>Redux Problems</p>
+					<section>
+						<ul>
+							<li class="old">Async work</li>
+							<li>User actions vs data actions</li>
+						</ul>
+					</section>
+				</section>
+				<section data-transition="fade-in slide-out">
+					<p>Redux Problems</p>
+					<section>
+						<ul>
+							<li class="old">Async work</li>
+							<li class="old">User actions vs data actions</li>
+							<li>Routing with UIKit</li>
+						</ul>
+					</section>
+				</section>
+				<section data-transition="slide-in fade-out">
+					<ol>
+						<li><strike class="old">Unidirectional Data Flow</strike> Redux</li>
+					</ol>
+				</section>
+				<section data-transition="fade-in slide-out">
+					<ol>
+						<li><strike class="old">Unidirectional Data Flow</strike> Redux</li>
+						<li>???</li>
+					</ol>
+				</section>
+				<section>
+					<p>What's a view controller?</p>
+				</section>
+				<section data-transition="slide-in fade-out">
+					<ol>
+						<li>Renders view</li>
+						<li>Handles user input</li>
+					</ol>
+				</section>
+				<section data-transition="fade-in slide-out">
+					<ol>
+						<li>Renders <i>its</i> view</li>
+						<li>Handles <i>its</i> user input</li>
+					</ol>
+				</section>
+				<section>
+					<p class="p3"><span class="s2">struct</span><span class="s1"> MyViewModel {</span></p>
+					<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s2">let</span><span class="s1"> viewState: </span><span class="s3">String</span></p>
+					<p class="p4"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s1">// ...</span></p>
+					<p class="p3"><span class="s1">}</span></p>
+					<p class="p2"><span class="s1"></span><br></p>
+					<p class="p3"><span class="s2">protocol</span><span class="s1"> MyHandler: </span><span class="s2">class</span><span class="s1"> {</span></p>
+					<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s2">func</span><span class="s1"> doSomething()</span></p>
+					<p class="p4"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s1">// ...</span></p>
+					<p class="p3"><span class="s1">}</span></p>
+					<p class="p2"><span class="s1"></span><br></p>
+					<p class="p3"><span class="s2">final</span><span class="s1"> </span><span class="s2">class</span><span class="s1"> MyViewController: </span><span class="s5">UIViewController</span><span class="s1"> {</span></p>
+					<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s2">weak</span><span class="s1"> </span><span class="s2">var</span><span class="s1"> handler: </span><span class="s5">MyHandler</span><span class="s1">!</span></p>
+					<p class="p2"><span class="s1"></span><br></p>
+					<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s2">func</span><span class="s1"> inject(handler handler: </span><span class="s5">MyHandler</span><span class="s1">) {</span></p>
+					<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s2">self</span><span class="s1">.</span><span class="s6">handler</span><span class="s1"> = handler</span></p>
+					<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+					<p class="p2"><span class="s1"></span><br></p>
+					<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s2">func</span><span class="s1"> render(viewModel: </span><span class="s7">MyViewModel</span><span class="s1">) {</span></p>
+					<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s8">// ...</span></p>
+					<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+					<p class="p2"><span class="s1"></span><br></p>
+					<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s2">@IBAction</span><span class="s1"> </span><span class="s2">func</span><span class="s1"> doSomething(sender: </span><span class="s5">AnyObject</span><span class="s1">) {</span></p>
+					<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s6">handler</span><span class="s1">.</span><span class="s7">doSomething</span><span class="s1">()</span></p>
+					<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+					<p class="p3"><span class="s1">}</span></p>
+				</section>
+				<section>
+					<p>Nothing else?!?</p>
+				</section>
+				<section data-transition="slide-in fade-out">
+					<h3>No</h3>
+					<ul>
+						<li>Logic</li>
+					</ul>
+				</section>
+				<section data-transition="fade">
+					<h3>No</h3>
+					<ul>
+						<li class="old">Logic</li>
+						<li>Dependencies</li>
+					</ul>
+				</section>
+				<section data-transition="fade">
+					<h3>No</h3>
+					<ul>
+						<li class="old">Logic</li>
+						<li class="old">Dependencies</li>
+						<li>Navigation</li>
+					</ul>
+				</section>
+				<section data-transition="fade-in slide-out">
+					<h3>No</h3>
+					<ul>
+						<li class="old">Logic</li>
+						<li class="old">Dependencies</li>
+						<li class="old">Navigation</li>
+						<li>Redux</li>
+					</ul>
+				</section>
+				<section data-transition="slide-in fade-out">
+					<ol>
+						<li><strike class="old">Unidirectional Data Flow</strike> Redux</li>
+						<li>???</li>
+					</ol>
+				</section>
+				<section data-transition="fade-in slide-out">
+					<ol>
+						<li><strike class="old">Unidirectional Data Flow</strike> Redux</li>
+						<li>App Coordinators</li>
+					</ol>
+				</section>
+				<section data-transition="slide-in fade-out">
+					<h3>App Coordinators</h3>
+					<small><a href="http://khanlou.com/2015/10/coordinators-redux/">I didn't invent this</a></small>
+				</section>
+				<section data-transition="fade">
+					<p>App Coordinators</p>
+					<section>
+						<ul>
+							<li>Instantiate view controllers</li>
+						</ul>
+					</section>
+				</section>
+				<section data-transition="fade">
+					<p>App Coordinators</p>
+					<section>
+						<ul>
+							<li class="old">Instantiate view controllers</li>
+							<li>Handle user actions</li>
+						</ul>
+					</section>
+				</section>
+				<section data-transition="fade-in slide-out">
+					<p>App Coordinators</p>
+					<section>
+						<ul>
+							<li class="old">Instantiate view controllers</li>
+							<li class="old">Handle user actions</li>
+							<li>Perform navigation</li>
+						</ul>
+					</section>
+				</section>
+				<section data-transition="slide-in fade-out">
+					<ol>
+						<li><strike class="old">Unidirectional Data Flow</strike> Redux</li>
+						<li>???</li>
+					</ol>
+				</section>
+				<section data-transition="fade-in slide-out">
+					<ol>
+						<li><strike class="old">Unidirectional Data Flow</strike> Redux</li>
+						<li>App Coordinators</li>
+					</ol>
+				</section>
+				<section data-transition="slide-in fade-out">
+					<p>Redux &amp; App Coordinators</p>
+				</section>
+				<section data-transition="fade">
+					<p>App Coordinators &amp; Redux</p>
+				</section>
+				<section data-transition="fade">
+					<small>introducing</small>
+				</section>
+				<section>
+					<h3>Cordux</h3>
+				</section>
+				<section data-transition="slide-in fade-out">
+					<p>App coordinators instantiate view controllers</p>
+				</section>
+				<section data-transition="fade-in slide-out">
+					<p class="old">App coordinators instantiate view controllers</p>
+					<p>&amp; subscribe them to the store</p>
+				</section>
+				<section data-transition="slide-in fade-out">
+					<p>App coordinators handle user actions</p>
+				</section>
+				<section data-transition="fade-in slide-out">
+					<p class="old">App coordinators handle user actions</p>
+					<p>&amp; dispatch data actions to the store</p>
+				</section>
+				<section data-transition="slide-in fade-out">
+					<p>App coordinators perform navigation</p>
+				</section>
+				<section data-transition="fade-in slide-out">
+					<p class="old">App coordinators perform navigation</p>
+					<p>via the app state's route</p>
+				</section>
+				<section>
+					<p class="p5"><span class="s1">public</span><span class="s4"> </span><span class="s1">protocol</span><span class="s4"> Coordinator: </span><span class="s1">class</span><span class="s4"> {</span></p>
+					<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s2">var</span><span class="s1"> route: </span><span class="s5">Route</span><span class="s1"> { </span><span class="s2">get</span><span class="s1"> </span><span class="s2">set</span><span class="s1"> }</span></p>
+					<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s2">var</span><span class="s1"> rootViewController: </span><span class="s5">UIViewController</span><span class="s1"> { </span><span class="s2">get</span><span class="s1"> }</span></p>
+					<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s2">func</span><span class="s1"> start()</span></p>
+					<p class="p3"><span class="s1">}</span></p>
+				</section>
+				<section>
+					<p class="p3"><span class="s2">init</span><span class="s1">(allYourDependencies: ...)</span></p>
+				</section>
+				<section data-transition="slide-in fade-out">
+					<p>HBO v3 (subset)</p>
+					<img class="plain" data-src="diagrams/coordinators.png" />
+				</section>
+				<section data-transition="fade">
+					<p>Route</p>
+					<img class="plain" data-src="diagrams/coordinators-route.png" />
+				</section>
+				<section data-transition="fade">
+					<p>Scene Coordinators</p>
+					<img class="plain" data-src="diagrams/coordinators-scene.png" />
+				</section>
+				<section data-transition="fade">
+					<p>Tab Bar Scenes</p>
+					<img class="plain" data-src="diagrams/coordinators-tabbar.png" />
+				</section>
+				<section data-transition="fade-in slide-out">
+					<p>Navigation Controller Scenes</p>
+					<img class="plain" data-src="diagrams/coordinators-nav.png" />
+				</section>
+				<section data-transition="slide-in fade-out">
+					<p>Framework Help</p>
+					<section>
+					  <div style="float: left; width: 60%">
+							<p class="p3"><span class="s2">public</span><span class="s1"> </span><span class="s2">protocol</span><span class="s1"> SceneCoordinator: </span><span class="s5">Coordinator</span><span class="s1"> {</span></p>
+							<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s2">var</span><span class="s1"> scenePrefix: </span><span class="s3">String</span><span class="s1"> { </span><span class="s2">get</span><span class="s1"> }</span></p>
+							<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s2">var</span><span class="s1"> currentScene: </span><span class="s5">Coordinator</span><span class="s1">? { </span><span class="s2">get</span><span class="s1"> }</span></p>
+							<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s2">func</span><span class="s1"> changeScene(route: </span><span class="s5">Route</span><span class="s1">)</span></p>
+							<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s2">func</span><span class="s1"> sceneRoute(route: </span><span class="s5">Route</span><span class="s1">) -&gt; </span><span class="s5">Route</span></p>
+							<p class="p3"><span class="s1">}</span></p>
+							<p class="p2"><span class="s1"></span><br></p>
+							<p class="p6"><span class="s2">public</span><span class="s4"> </span><span class="s2">extension</span><span class="s4"> </span><span class="s1">SceneCoordinator</span><span class="s4"> {</span></p>
+							<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s2">public</span><span class="s1"> </span><span class="s2">var</span><span class="s1"> route: </span><span class="s5">Route</span><span class="s1"> {</span></p>
+							<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s2">get</span><span class="s1"> {</span></p>
+							<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s8">// ...</span></p>
+							<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+							<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s2">set</span><span class="s1"> {</span></p>
+							<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s8">// ...</span></p>
+							<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+							<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+							<p class="p2"><span class="s1"></span><br></p>
+							<p class="p4"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s1">// ...</span></p>
+							<p class="p3"><span class="s1">}</span></p>
+					  </div>
+					  <div style="float: right; width: 39%">
+					  </div>
+					</section>
+				</section>
+				<section data-transition="fade-in slide-out">
+					<p>Framework Help</p>
+					<section>
+					  <div style="float: left; width: 60%">
+							<p class="p3"><span class="s2">public</span><span class="s1"> </span><span class="s2">protocol</span><span class="s1"> SceneCoordinator: </span><span class="s5">Coordinator</span><span class="s1"> {</span></p>
+							<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s2">var</span><span class="s1"> scenePrefix: </span><span class="s3">String</span><span class="s1"> { </span><span class="s2">get</span><span class="s1"> }</span></p>
+							<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s2">var</span><span class="s1"> currentScene: </span><span class="s5">Coordinator</span><span class="s1">? { </span><span class="s2">get</span><span class="s1"> }</span></p>
+							<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s2">func</span><span class="s1"> changeScene(route: </span><span class="s5">Route</span><span class="s1">)</span></p>
+							<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s2">func</span><span class="s1"> sceneRoute(route: </span><span class="s5">Route</span><span class="s1">) -&gt; </span><span class="s5">Route</span></p>
+							<p class="p3"><span class="s1">}</span></p>
+							<p class="p2"><span class="s1"></span><br></p>
+							<p class="p6"><span class="s2">public</span><span class="s4"> </span><span class="s2">extension</span><span class="s4"> </span><span class="s1">SceneCoordinator</span><span class="s4"> {</span></p>
+							<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s2">public</span><span class="s1"> </span><span class="s2">var</span><span class="s1"> route: </span><span class="s5">Route</span><span class="s1"> {</span></p>
+							<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s2">get</span><span class="s1"> {</span></p>
+							<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s8">// ...</span></p>
+							<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+							<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s2">set</span><span class="s1"> {</span></p>
+							<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s8">// ...</span></p>
+							<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+							<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+							<p class="p2"><span class="s1"></span><br></p>
+							<p class="p4"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s1">// ...</span></p>
+							<p class="p3"><span class="s1">}</span></p>
+					  </div>
+					  <div style="float: right; width: 39%">
+							<p class="p7"><span class="s2">public</span><span class="s4"> </span><span class="s2">protocol</span><span class="s4"> TabBarControllerCoordinator: </span><span class="s1">SceneCoordinator</span><span class="s4">, </span><span class="s1">UITabBarControllerDelegate</span><span class="s4"> {</span></p>
+							<p class="p8"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s1">// ...</span></p>
+							<p class="p9"><span class="s1">}</span></p>
+							<p class="p10"><span class="s1"></span><br></p>
+							<p class="p7"><span class="s2">public</span><span class="s4"> </span><span class="s2">extension</span><span class="s4"> </span><span class="s1">TabBarControllerCoordinator</span><span class="s4"> {</span></p>
+							<p class="p8"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s1">// ...</span></p>
+							<p class="p9"><span class="s1">}</span></p>
+							<p class="p10"><span class="s1"></span><br></p>
+							<p class="p9"><span class="s2">public</span><span class="s1"> </span><span class="s2">protocol</span><span class="s1"> NavigationControllerCoordinator: </span><span class="s5">Coordinator</span><span class="s1"> {</span></p>
+							<p class="p8"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s1">// ...</span></p>
+							<p class="p9"><span class="s1">}</span></p>
+							<p class="p10"><span class="s1"></span><br></p>
+							<p class="p7"><span class="s2">public</span><span class="s4"> </span><span class="s2">extension</span><span class="s4"> </span><span class="s1">NavigationControllerCoordinator</span><span class="s4"><span class="Apple-converted-space">  </span>{</span></p>
+							<p class="p8"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s1">// ...</span></p>
+							<p class="p9"><span class="s1">}</span></p>
+					  </div>
+					</section>
+				</section>
+				<section>
+					<h3>Challenges</h3>
+				</section>
+				<section data-transition="slide-in fade-out">
+					<p>Challenges</p>
+					<section>
+						<p>Subscribing view controllers</p>
+					</section>
+				</section>
+				<section data-transition="fade-in slide-out">
+					<p>Challenges</p>
+					<section>
+						<p class="p3"><span class="s2">public</span><span class="s1"> </span><span class="s2">protocol</span><span class="s1"> Renderer: </span><span class="s5">SubscriberType</span><span class="s1"> {</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s2">associatedtype</span><span class="s1"> ViewModel</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s2">func</span><span class="s1"> render(viewModel: ViewModel)</span></p>
+						<p class="p3"><span class="s1">}</span></p>
+						<p class="p2"><span class="s1"></span><br></p>
+						<p class="p5"><span class="s1">extension</span><span class="s4"> </span><span class="s5">Renderer</span><span class="s4"> {</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s2">public</span><span class="s1"> </span><span class="s2">func</span><span class="s1"> newState(state: </span><span class="s3">Any</span><span class="s1">) {</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s2">if</span><span class="s1"> </span><span class="s2">let</span><span class="s1"> viewModel = state </span><span class="s2">as</span><span class="s1">? ViewModel {</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">render</span><span class="s1">(viewModel)</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span>} </span><span class="s2">else</span><span class="s1"> {</span></p>
+						<p class="p11"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s3">preconditionFailure</span><span class="s4">(</span><span class="s1">"render(_:) does not accept right type"</span><span class="s4">)</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+						<p class="p3"><span class="s1">}</span></p>
+						<p class="p2"><span class="s1"></span><br></p>
+						<p class="p6"><span class="s2">extension</span><span class="s4"> </span><span class="s1">SignInViewController</span><span class="s4">: </span><span class="s1">Renderer</span><span class="s4"> {}</span></p>
+						<p class="p6"><span class="s2">extension</span><span class="s4"> </span><span class="s1">CatalogViewController</span><span class="s4">: </span><span class="s1">Renderer</span><span class="s4"> {}</span></p>
+					</section>
+				</section>
+				<section data-transition="slide-in fade-out">
+					<p>Challenges</p>
+					<section>
+						<p>App State &rarr; View Model</p>
+					</section>
+				</section>
+				<section data-transition="fade-in slide-out">
+					<p>Challenges</p>
+					<section>
+						<p class="p12"><span class="s2">extension</span><span class="s4"> </span><span class="s1">SignInViewModel</span><span class="s4"> {</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s2">init</span><span class="s1">(</span><span class="s2">_</span><span class="s1"> state: </span><span class="s7">AppState</span><span class="s1">) {</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span>name = state.name</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+						<p class="p3"><span class="s1">}</span></p>
+						<p class="p2"><span class="s1"></span><br></p>
+						<p class="p3"><span class="s6">store</span><span class="s1">.subscribe(signInViewController, </span><span class="s7">SignInViewModel</span><span class="s1">.</span><span class="s2">init</span><span class="s1">)</span></p>
+					</section>
+				</section>
+				<section data-transition="slide-in fade-out">
+					<p>Challenges</p>
+					<section>
+						<p>MovieViewController &rarr; Show <i>V for Vendetta</i></p>
+					</section>
+				</section>
+				<section data-transition="fade-in slide-out">
+					<p>Challenges</p>
+					<section>
+						<p class="p12"><span class="s2">extension</span><span class="s4"> </span><span class="s1">MovieViewModel</span><span class="s4"> {</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s2">static</span><span class="s1"> </span><span class="s2">func</span><span class="s1"> createForMovie(id: </span><span class="s5">Identifier</span><span class="s1">) -&gt; (</span><span class="s7">AppState</span><span class="s1">) -&gt; (</span><span class="s7">MovieViewModel</span><span class="s1">) {</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s2">return</span><span class="s1"> { appState </span><span class="s2">in</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s8">// ...</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+						<p class="p3"><span class="s1">}</span></p>
+						<p class="p2"><span class="s1"></span><br></p>
+						<p class="p3"><span class="s6">store</span><span class="s1">.subscribe(movieViewController, </span><span class="s7">MovieViewModel</span><span class="s1">.createForMovie(</span><span class="s6">id</span><span class="s1">))</span></p>
+					</section>
+				</section>
+				<section data-transition="slide-in fade-out">
+					<p>Challenges</p>
+					<section>
+						<p>Lifecycle Hooks</p>
+						<small>Subscribe to store on <code>viewDidLoad</code> at earliest</small>
+					</section>
+				</section>
+				<section data-transition="fade">
+					<p>Challenges</p>
+					<section>
+						<p class="p6"><span class="s2">extension</span><span class="s4"> </span><span class="s1">UIViewController</span><span class="s4"> {</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s2">public</span><span class="s1"> </span><span class="s2">class</span><span class="s1"> </span><span class="s2">func</span><span class="s1"> swizzleLifecycleDelegatingViewControllerMethods() {</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s3">dispatch_once</span><span class="s1">(&amp;</span><span class="s7">Static</span><span class="s1">.token) {</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">cordux_swizzleMethod</span><span class="s1">(</span><span class="s2">#selector</span><span class="s1">(viewDidLoad),</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">                                 </span>swizzled: </span><span class="s2">#selector</span><span class="s1">(cordux_viewDidLoad))</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+						<p class="p2"><span class="s1"></span><br></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s2">func</span><span class="s1"> cordux_viewDidLoad() {</span></p>
+						<p class="p12"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s2">self</span><span class="s4">.</span><span class="s1">cordux_viewDidLoad</span><span class="s4">()</span></p>
+						<p class="p2"><span class="s1"></span><br></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s2">guard</span><span class="s1"> </span><span class="s2">let</span><span class="s1"> vc = </span><span class="s2">self</span><span class="s1"> </span><span class="s2">as</span><span class="s1">? </span><span class="s5">ViewController</span><span class="s1"> </span><span class="s2">else</span><span class="s1"> {</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">return</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+						<p class="p2"><span class="s1"></span><br></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span>vc.<span class="s6">context</span>?.<span class="s6">lifecycleDelegate</span>?.viewDidLoad?(viewController: </span><span class="s2">self</span><span class="s1">)</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+						<p class="p3"><span class="s1">}</span></p>
+					</section>
+				</section>
+				<section data-transition="fade">
+					<p>Challenges</p>
+					<section>
+						<p class="p3"><span class="s2">public</span><span class="s1"> </span><span class="s2">protocol</span><span class="s1"> ViewController: </span><span class="s2">class</span><span class="s1"> {</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s2">var</span><span class="s1"> context: </span><span class="s5">Context</span><span class="s1">? { </span><span class="s2">get</span><span class="s1"> }</span></p>
+						<p class="p3"><span class="s1">}</span></p>
+						<p class="p2"><span class="s1"></span><br></p>
+						<p class="p5"><span class="s1">public</span><span class="s4"> </span><span class="s1">final</span><span class="s4"> </span><span class="s1">class</span><span class="s4"> Context: </span><span class="s5">NSObject</span><span class="s4"> {</span></p>
+						<p class="p6"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s2">public</span><span class="s4"> </span><span class="s2">weak</span><span class="s4"> </span><span class="s2">var</span><span class="s4"> lifecycleDelegate: </span><span class="s1">ViewControllerLifecycleDelegate</span><span class="s4">?</span></p>
+						<p class="p2"><span class="s1"></span><br></p>
+						<p class="p6"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s2">public</span><span class="s4"> </span><span class="s2">init</span><span class="s4">(</span><span class="s2">_</span><span class="s4"> lifecycleDelegate: </span><span class="s1">ViewControllerLifecycleDelegate</span><span class="s4">?) {</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s2">self</span><span class="s1">.</span><span class="s6">lifecycleDelegate</span><span class="s1"> = lifecycleDelegate</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+						<p class="p3"><span class="s1">}</span></p>
+					</section>
+				</section>
+				<section data-transition="fade">
+					<p>Challenges</p>
+					<section>
+						<p class="p6"><span class="s2">public</span><span class="s4"> </span><span class="s2">extension</span><span class="s4"> </span><span class="s1">UIViewController</span><span class="s4"> {</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s2">public</span><span class="s1"> </span><span class="s2">var</span><span class="s1"> context: </span><span class="s5">Context</span><span class="s1">? {</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s2">get</span><span class="s1"> {</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">return</span><span class="s1"> </span><span class="s3">objc_getAssociatedObject</span><span class="s1">(</span><span class="s2">self</span><span class="s1">, &amp;</span><span class="s7">Keys</span><span class="s1">.Context) </span><span class="s2">as</span><span class="s1">? </span><span class="s5">Context</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+						<p class="p2"><span class="s1"></span><br></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s2">set</span><span class="s1"> {</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">if</span><span class="s1"> </span><span class="s2">let</span><span class="s1"> newValue = newValue {</span></p>
+						<p class="p13"><span class="s4"><span class="Apple-converted-space">                </span></span><span class="s1">objc_setAssociatedObject</span><span class="s4">(</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s2">self</span><span class="s1">,</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">                    </span>&amp;</span><span class="s7">Keys</span><span class="s1">.Context,</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">                    </span>newValue </span><span class="s2">as</span><span class="s1"> </span><span class="s5">Context</span><span class="s1">?,</span></p>
+						<p class="p14"><span class="s4"><span class="Apple-converted-space">                    </span>.</span><span class="s1">OBJC_ASSOCIATION_RETAIN_NONATOMIC</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">                </span>)</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+					</section>
+				</section>
+				<section data-transition="fade-in slide-out">
+					<p>Challenges</p>
+					<section>
+						<p class="p3"><span class="s6">signInViewController</span><span class="s1">.context = </span><span class="s5">Context</span><span class="s1">(lifecycleDelegate: </span><span class="s2">self</span><span class="s1">)</span></p>
+						<p class="p2"><span class="s1"></span><br></p>
+						<p class="p6"><span class="s2">extension</span><span class="s4"> </span><span class="s1">AuthenticationCoordinator</span><span class="s4">: </span><span class="s1">ViewControllerLifecycleDelegate</span><span class="s4"> {</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s2">@objc</span><span class="s1"> </span><span class="s2">func</span><span class="s1"> viewDidLoad(viewController viewController: </span><span class="s5">UIViewController</span><span class="s1">) {</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s2">if</span><span class="s1"> viewController === </span><span class="s6">signInViewController</span><span class="s1"> {</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s6">store</span><span class="s1">.subscribe(</span><span class="s6">signInViewController</span><span class="s1">, SignInViewModel.</span><span class="s2">init</span><span class="s1">)</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+						<p class="p3"><span class="s1">}</span></p>
+					</section>
+				</section>
+				<section data-transition="slide-in fade-out">
+					<p>Challenges</p>
+					<section>
+						<p>Route with View Controller</p>
+						<small>movies/v-for-vendetta</small>
+					</section>
+				</section>
+				<section data-transition="fade-in slide-out">
+					<p>Challenges</p>
+					<section>
+						<p class="p5"><span class="s1">public</span><span class="s4"> </span><span class="s1">final</span><span class="s4"> </span><span class="s1">class</span><span class="s4"> Context: </span><span class="s5">NSObject</span><span class="s4"> {</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s2">public</span><span class="s1"> </span><span class="s2">let</span><span class="s1"> routeSegment: </span><span class="s5">RouteConvertible</span></p>
+						<p class="p6"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s2">public</span><span class="s4"> </span><span class="s2">weak</span><span class="s4"> </span><span class="s2">var</span><span class="s4"> lifecycleDelegate: </span><span class="s1">ViewControllerLifecycleDelegate</span><span class="s4">?</span></p>
+						<p class="p2"><span class="s1"></span><br></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s2">public</span><span class="s1"> </span><span class="s2">init</span><span class="s1">(</span><span class="s2">_</span><span class="s1"> routeSegment: </span><span class="s5">RouteConvertible</span><span class="s1">,</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">                  </span>lifecycleDelegate: </span><span class="s5">ViewControllerLifecycleDelegate</span><span class="s1">?) {</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s2">self</span><span class="s1">.</span><span class="s6">routeSegment</span><span class="s1"> = routeSegment</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s2">self</span><span class="s1">.</span><span class="s6">lifecycleDelegate</span><span class="s1"> = lifecycleDelegate</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+						<p class="p3"><span class="s1">}</span></p>
+					</section>
+				</section>
+				<section data-transition="slide-in fade-out">
+					<p>Challenges</p>
+					<section>
+						<p>Updating Route</p>
+						<small>pop vc from nav, tap on tab</small>
+					</section>
+				</section>
+				<section data-transition="fade-in slide-out">
+					<p>Challenges</p>
+					<section>
+						<p class="p3"><span class="s2">public</span><span class="s1"> </span><span class="s2">final</span><span class="s1"> </span><span class="s2">class</span><span class="s1"> Store&lt;State : StateType&gt;: </span><span class="s5">StoreType</span><span class="s1"> {</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s2">public</span><span class="s1"> </span><span class="s2">func</span><span class="s1"> setRoute&lt;T&gt;(action: </span><span class="s7">RouteAction</span><span class="s1">&lt;</span><span class="s7">T</span><span class="s1">&gt;) {</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s6">state</span><span class="s1">.</span><span class="s6">route</span><span class="s1"> = </span><span class="s7">reduce</span><span class="s1">(action, route: </span><span class="s6">state</span><span class="s1">.</span><span class="s6">route</span><span class="s1">)</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+						<p class="p2"><span class="s1"></span><br></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s2">public</span><span class="s1"> </span><span class="s2">func</span><span class="s1"> route&lt;T&gt;(action: </span><span class="s7">RouteAction</span><span class="s1">&lt;</span><span class="s7">T</span><span class="s1">&gt;) {</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s6">state</span><span class="s1">.</span><span class="s6">route</span><span class="s1"> = </span><span class="s7">reduce</span><span class="s1">(action, route: </span><span class="s6">state</span><span class="s1">.</span><span class="s6">route</span><span class="s1">)</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">dispatch</span><span class="s1">(action)</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+						<p class="p2"><span class="s1"></span><br></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s2">public</span><span class="s1"> </span><span class="s2">func</span><span class="s1"> dispatch(action: </span><span class="s5">Action</span><span class="s1">) {</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s6">state</span><span class="s1"> = </span><span class="s6">reducer</span><span class="s1">.</span><span class="s7">_handleAction</span><span class="s1">(action, state: </span><span class="s6">state</span><span class="s1">) </span><span class="s2">as</span><span class="s1">! </span><span class="s7">State</span></p>
+						<p class="p15"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">subscriptions</span><span class="s4">.</span><span class="s3">forEach</span><span class="s4"> {</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span>$0.</span><span class="s6">subscriber</span><span class="s1">?.</span><span class="s7">_newState</span><span class="s1">($0.</span><span class="s6">transform</span><span class="s1">?(</span><span class="s6">state</span><span class="s1">) ?? </span><span class="s6">state</span><span class="s1">)</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+						<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+						<p class="p2"><span class="s1"></span><br></p>
+						<p class="p4"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s1">// ...</span></p>
+						<p class="p3"><span class="s1">}</span></p>
+					</section>
+				</section>
+				<section>
+					<h3>Prototype</h3>
+					<a href="https://github.com/willowtreeapps/cordux">willowtreeapps/cordux</a>
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+		<script src="js/processing.min.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>

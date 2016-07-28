@@ -1,0 +1,25 @@
+digraph {
+  label=""
+	compound=true
+	outputorder=edgesfirst
+
+  graph [fontsize=10 fontname="Helvetica-Bold" bgcolor=transparent color=white border=none]
+  edge [fontsize=10 fontname="Helvetica" color=white]
+  node [shape=record style="rounded" fontsize=12 fontname="Courier" color=white fontcolor=white]
+
+  app_coordinator [label="{AppCoordinator|let scenes: [Coordinator]\l}"]
+  on_boarding_coordinator [label="{OnBoardingCoordinator|}"]
+  authentication_coordinator [label="{AuthenticationCoordinator|}"]
+  catalog_menu_coordinator [label="{CatalogCoordinator|let scenes: [Coordinator]\l}" color="#b3e43b"]
+  home_coordinator [label="{HomeCoordinator|}"]
+  series_coordinator [label="{SeriesCoordinator|}"]
+  movies_coordinator [label="{MoviesCoordinator|}"]
+
+  app_coordinator -> on_boarding_coordinator
+  app_coordinator -> authentication_coordinator
+  app_coordinator -> catalog_menu_coordinator
+
+  catalog_menu_coordinator -> home_coordinator
+  catalog_menu_coordinator -> series_coordinator
+  catalog_menu_coordinator -> movies_coordinator
+}
