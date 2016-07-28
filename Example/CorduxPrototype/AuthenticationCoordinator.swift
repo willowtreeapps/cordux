@@ -15,8 +15,7 @@ final class AuthenticationCoordinator: NavigationControllerCoordinator {
         case fp
     }
 
-    let _store: Store
-    var store: StoreType { return _store }
+    var store: Store
 
     let storyboard = UIStoryboard(name: "Authentication", bundle: nil)
     let navigationController: UINavigationController
@@ -24,7 +23,7 @@ final class AuthenticationCoordinator: NavigationControllerCoordinator {
     let signInViewController: SignInViewController
 
     init(store: Store) {
-        _store = store
+        self.store = store
 
         signInViewController = storyboard.instantiateInitialViewController() as! SignInViewController
         navigationController = UINavigationController(rootViewController: signInViewController)
@@ -49,7 +48,7 @@ final class AuthenticationCoordinator: NavigationControllerCoordinator {
 extension AuthenticationCoordinator: ViewControllerLifecycleDelegate {
     @objc func viewDidLoad(viewController viewController: UIViewController) {
         if viewController === signInViewController {
-            _store.subscribe(signInViewController, SignInViewModel.init)
+            store.subscribe(signInViewController, SignInViewModel.init)
         }
     }
 
@@ -64,7 +63,7 @@ extension AuthenticationCoordinator: ViewControllerLifecycleDelegate {
 
 extension AuthenticationCoordinator: SignInHandler {
     func signIn() {
-        _store.dispatch(AuthenticationAction.signIn)
+        store.dispatch(AuthenticationAction.signIn)
     }
 
     func forgotPassword() {

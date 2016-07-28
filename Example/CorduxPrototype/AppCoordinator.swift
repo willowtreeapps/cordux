@@ -16,23 +16,22 @@ final class AppCoordinator: SceneCoordinator, SubscriberType {
     }
     var scenePrefix: String = RouteSegment.auth.rawValue
 
-    let _store: Store
-    var store: StoreType { return _store }
+    let store: Store
     let container: UIViewController
 
-    var currentScene: Coordinator?
+    var currentScene: AnyCoordinator?
 
     var rootViewController: UIViewController {
         return container
     }
 
     init(store: Store, container: UIViewController) {
-        _store = store
+        self.store = store
         self.container = container
     }
 
     func start() {
-        _store.subscribe(self, RouteSubscription.init)
+        store.subscribe(self, RouteSubscription.init)
         changeScene(RouteSegment.auth.route())
     }
 
@@ -46,12 +45,12 @@ final class AppCoordinator: SceneCoordinator, SubscriberType {
         }
 
         let old = currentScene?.rootViewController
-        let coordinator: Coordinator
+        let coordinator: AnyCoordinator
         switch segment {
         case .auth:
-            coordinator = AuthenticationCoordinator(store: _store)
+            coordinator = AuthenticationCoordinator(store: store)
         case .catalog:
-            coordinator = CatalogCoordinator(store: _store)
+            coordinator = CatalogCoordinator(store: store)
         }
 
         coordinator.start()

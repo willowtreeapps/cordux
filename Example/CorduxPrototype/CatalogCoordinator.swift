@@ -10,14 +10,13 @@ import UIKit
 import Cordux
 
 final class CatalogCoordinator: NSObject, TabBarControllerCoordinator {
-    let _store: Store
-    var store: StoreType { return _store }
+    var store: Store
 
     let scenes: [Scene]
     let tabBarController: UITabBarController
 
     init(store: Store) {
-        _store = store
+        self.store = store
         scenes = [
             Scene(prefix: "first", coordinator: FirstCoordinator(store: store)),
             Scene(prefix: "second", coordinator: SecondCoordinator(store: store)),
@@ -37,8 +36,7 @@ final class CatalogCoordinator: NSObject, TabBarControllerCoordinator {
 }
 
 final class FirstCoordinator: NavigationControllerCoordinator {
-    let _store: Store
-    var store: StoreType { return _store }
+    var store: Store
 
     let storyboard = UIStoryboard(name: "Catalog", bundle: nil)
     let navigationController: UINavigationController
@@ -46,7 +44,7 @@ final class FirstCoordinator: NavigationControllerCoordinator {
     let first: FirstViewController
 
     init(store: Store) {
-        _store = store
+        self.store = store
 
         first = storyboard.instantiateViewControllerWithIdentifier("First") as! FirstViewController
         navigationController = UINavigationController(rootViewController: first)
@@ -63,13 +61,12 @@ final class FirstCoordinator: NavigationControllerCoordinator {
 
 extension FirstCoordinator: FirstHandler {
     func performAction() {
-        _store.dispatch(Noop())
+        store.dispatch(Noop())
     }
 }
 
 final class SecondCoordinator: NavigationControllerCoordinator {
-    let _store: Store
-    var store: StoreType { return _store }
+    var store: Store
 
     let storyboard = UIStoryboard(name: "Catalog", bundle: nil)
     let navigationController: UINavigationController
@@ -77,7 +74,7 @@ final class SecondCoordinator: NavigationControllerCoordinator {
     let second: SecondViewController
 
     init(store: Store) {
-        _store = store
+        self.store = store
 
         second = storyboard.instantiateViewControllerWithIdentifier("Second") as! SecondViewController
         navigationController = UINavigationController(rootViewController: second)
@@ -94,11 +91,11 @@ final class SecondCoordinator: NavigationControllerCoordinator {
 
 extension SecondCoordinator: SecondHandler {
     func performAction() {
-        _store.dispatch(Noop())
+        store.dispatch(Noop())
     }
 
     func signOut() {
-        _store.dispatch(AuthenticationAction.signOut)
+        store.dispatch(AuthenticationAction.signOut)
     }
 }
 

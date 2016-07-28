@@ -8,18 +8,29 @@
 
 import UIKit
 
-public protocol Coordinator: class {
-    var store: StoreType { get }
+public protocol AnyCoordinator: class {
+    var _store: StoreType { get }
     var route: Route { get set }
     func start()
     var rootViewController: UIViewController { get }
+}
+
+public protocol Coordinator: AnyCoordinator {
+    associatedtype State: StateType
+    var store: Store<State> { get }
+}
+
+public extension Coordinator {
+    var _store: StoreType {
+        return store as StoreType
+    }
 }
 
 // MARK: - Scene Coordinator
 
 public protocol SceneCoordinator: Coordinator {
     var scenePrefix: String { get }
-    var currentScene: Coordinator? { get }
+    var currentScene: AnyCoordinator? { get }
     func changeScene(route: Route)
     func sceneRoute(route: Route) -> Route
 }
@@ -52,7 +63,7 @@ public extension SceneCoordinator {
 
 public protocol TabScene: RouteConvertible {
     var prefix: String { get }
-    var coordinator: Coordinator { get }
+    var coordinator: AnyCoordinator { get }
 }
 
 public protocol TabBarControllerCoordinator: SceneCoordinator, UITabBarControllerDelegate {
@@ -69,9 +80,9 @@ public extension TabScene {
 
 public struct Scene: TabScene {
     public let prefix: String
-    public let coordinator: Coordinator
+    public let coordinator: AnyCoordinator
 
-    public init(prefix: String, coordinator: Coordinator) {
+    public init(prefix: String, coordinator: AnyCoordinator) {
         self.prefix = prefix
         self.coordinator = coordinator
     }
@@ -80,7 +91,7 @@ public struct Scene: TabScene {
 public extension TabBarControllerCoordinator {
     public var rootViewController: UIViewController { return tabBarController }
     public var scenePrefix: String { return scenes[tabBarController.selectedIndex].prefix }
-    public var currentScene: Coordinator? { return scenes[tabBarController.selectedIndex].coordinator }
+    public var currentScene: AnyCoordinator? { return scenes[tabBarController.selectedIndex].coordinator }
 
     public func changeScene(route: Route) {
         for (index, scene) in scenes.enumerate() {
