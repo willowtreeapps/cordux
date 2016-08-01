@@ -68,10 +68,15 @@ public final class Store<State : StateType> {
     }
 
     func isNewSubscriber(_ subscriber: AnyStoreSubscriber) -> Bool {
-        guard !subscriptions.contains({ $0.subscriber === subscriber }) else {
-            return false
-        }
-        
+        #if swift(>=3)
+            guard !subscriptions.contains(where: { $0.subscriber === subscriber }) else {
+                return false
+            }
+        #else
+            guard !subscriptions.contains({ $0.subscriber === subscriber }) else {
+                return false
+            }
+        #endif
         return true
     }
 }

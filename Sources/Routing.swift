@@ -26,9 +26,19 @@ public enum RouteAction<T: RouteConvertible>: Action {
 
 
 #if swift(>=3)
-    extension Route: RandomAccessCollection, Sequence, RangeReplaceableCollection {}
+    extension Route:
+        RandomAccessCollection,
+        Sequence,
+        RangeReplaceableCollection,
+        ExpressibleByArrayLiteral
+    {}
 #else
-    extension Route: CollectionType, SequenceType, RangeReplaceableCollectionType {}
+    extension Route:
+        CollectionType,
+        SequenceType,
+        RangeReplaceableCollectionType,
+        ArrayLiteralConvertible
+    {}
 #endif
 
 extension Store {
@@ -87,7 +97,7 @@ extension Route: RouteConvertible {
     }
 }
 
-extension Route: ArrayLiteralConvertible {
+extension Route {
     public init(arrayLiteral elements: String...) {
         components = elements
     }
