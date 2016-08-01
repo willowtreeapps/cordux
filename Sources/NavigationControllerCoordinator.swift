@@ -10,7 +10,7 @@ import UIKit
 
 public protocol NavigationControllerCoordinator: Coordinator {
     var navigationController: UINavigationController { get }
-    func updateRoute(route: Route)
+    func updateRoute(_ route: Route)
 }
 
 public extension NavigationControllerCoordinator  {
@@ -20,7 +20,11 @@ public extension NavigationControllerCoordinator  {
         get {
             var route: Route = []
             navigationController.viewControllers.forEach { vc in
-                route.appendContentsOf(vc.corduxContext?.routeSegment.route() ?? [])
+                #if swift(>=3)
+                    route.append(contentsOf: vc.corduxContext?.routeSegment.route() ?? [])
+                #else
+                    route.appendContentsOf(vc.corduxContext?.routeSegment.route() ?? [])
+                #endif
             }
             return route
         }
@@ -31,7 +35,7 @@ public extension NavigationControllerCoordinator  {
         }
     }
 
-    public func popRoute(viewController: UIViewController) {
+    public func popRoute(_ viewController: UIViewController) {
         guard let context = viewController.corduxContext else {
             return
         }

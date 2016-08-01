@@ -9,33 +9,48 @@
 import UIKit
 
 @objc public protocol ViewControllerLifecycleDelegate {
-    optional func viewDidLoad(viewController viewController: UIViewController)
-    optional func didMoveToParentViewController(parentViewController: UIViewController?, viewController: UIViewController)
+    @objc optional func viewDidLoad(viewController: UIViewController)
+    @objc optional func didMove(toParentViewController: UIViewController?, viewController: UIViewController)
 }
 
 extension UIViewController {
-    public class func swizzleLifecycleDelegatingViewControllerMethods() {
-        struct Static {
-            static var token: dispatch_once_t = 0
-        }
+    static let swizzle: Void = {
+        UIViewController.cordux_swizzleMethod(#selector(UIViewController.viewDidLoad),
+                                              swizzled: #selector(UIViewController.cordux_viewDidLoad))
 
-        dispatch_once(&Static.token) {
-            cordux_swizzleMethod(#selector(viewDidLoad), swizzled: #selector(cordux_viewDidLoad))
-            cordux_swizzleMethod(#selector(didMoveToParentViewController(_:)), swizzled: #selector(cordux_didMoveToParentViewController(_:)))
-        }
+        #if swift(>=3)
+            UIViewController.cordux_swizzleMethod(#selector(UIViewController.didMove(toParentViewController:)),
+                                                  swizzled: #selector(UIViewController.cordux_didMoveToParentViewController(_:)))
+        #else
+            UIViewController.cordux_swizzleMethod(#selector(UIViewController.didMoveToParentViewController(_:)),
+                                                  swizzled: #selector(UIViewController.cordux_didMoveToParentViewController(_:)))
+        #endif
+    }()
+
+    public class func swizzleLifecycleDelegatingViewControllerMethods() {
+        _ = swizzle
     }
 
     func cordux_viewDidLoad() {
         self.cordux_viewDidLoad()
-        self.corduxContext?.lifecycleDelegate?.viewDidLoad?(viewController: self)
+        #if swift(>=3)
+            self.corduxContext?.lifecycleDelegate?.viewDidLoad?(viewController: self)
+        #else
+            self.corduxContext?.lifecycleDelegate?.viewDidLoad?(self)
+        #endif
     }
 
-    func cordux_didMoveToParentViewController(parentViewController: UIViewController?) {
+    func cordux_didMoveToParentViewController(_ parentViewController: UIViewController?) {
         self.cordux_didMoveToParentViewController(parentViewController)
-        self.corduxContext?.lifecycleDelegate?.didMoveToParentViewController?(parentViewController, viewController: self)
+
+        #if swift(>=3)
+            self.corduxContext?.lifecycleDelegate?.didMove?(toParentViewController: parentViewController, viewController: self)
+        #else
+            self.corduxContext?.lifecycleDelegate?.didMove?(parentViewController, viewController: self)
+        #endif
     }
 
-    class func cordux_swizzleMethod(original: Selector, swizzled: Selector) {
+    static func cordux_swizzleMethod(_ original: Selector, swizzled: Selector) {
         let originalMethod = class_getInstanceMethod(self, original)
         let swizzledMethod = class_getInstanceMethod(self, swizzled)
 

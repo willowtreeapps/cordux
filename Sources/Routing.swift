@@ -23,8 +23,16 @@ public enum RouteAction<T: RouteConvertible>: Action {
     case replace(T, T)
 }
 
+
+
+#if swift(>=3)
+    extension Route: Collection, Sequence, RangeReplaceableCollection {}
+#else
+    extension Route: CollectionType, SequenceType, RangeReplaceableCollectionType {}
+#endif
+
 extension Store {
-    func reduce<T>(action: RouteAction<T>, route: Route) -> Route {
+    func reduce<T>(_ action: RouteAction<T>, route: Route) -> Route {
         switch action {
         case .goto(let route):
             return route.route()
@@ -85,12 +93,23 @@ extension Route: ArrayLiteralConvertible {
     }
 }
 
-extension Route: SequenceType {
-    public typealias Generator = AnyGenerator<String>
 
+extension Route {
+    #if swift(>=3)
+    public typealias Iterator = AnyIterator<String>
+    public func makeIterator() -> Iterator {
+        return AnyIterator(makeGenerator())
+    }
+    #else
+    public typealias Generator = AnyGenerator<String>
     public func generate() -> Generator {
+        return AnyGenerator(body: makeGenerator())
+    }
+    #endif
+
+    func makeGenerator() -> () -> (String?) {
         var index = 0
-        return AnyGenerator {
+        return {
             if index < self.components.count {
                 let c = self.components[index]
                 index += 1
@@ -102,7 +121,7 @@ extension Route: SequenceType {
     }
 }
 
-extension Route: CollectionType {
+extension Route {
     public typealias Index = Int
 
     public var startIndex: Int {
@@ -113,19 +132,29 @@ extension Route: CollectionType {
         return components.count
     }
 
+    public func index(after i: Int) -> Int {
+        return i + 1
+    }
+
     public subscript(i: Int) -> String {
         return components[i]
     }
 }
 
-extension Route: RangeReplaceableCollectionType {
-    public mutating func reserveCapacity(minimumCapacity: Int) {
+extension Route {
+    public mutating func reserveCapacity(_ minimumCapacity: Int) {
         components.reserveCapacity(minimumCapacity)
     }
 
-    public mutating func replaceRange<C : CollectionType where C.Generator.Element == Generator.Element>(subRange: Range<Int>, with newElements: C) {
-        components.replaceRange(subRange, with: newElements)
-    }
+    #if swift(>=3)
+        public mutating func replaceSubrange<C : Collection where C.Iterator.Element == Iterator.Element>(_ subRange: Range<Int>, with newElements: C) {
+            components.replaceSubrange(subRange, with: newElements)
+        }
+    #else
+        public mutating func replaceRange<C : CollectionType where C.Generator.Element == Generator.Element>(_ subRange: Range<Int>, with newElements: C) {
+            components.replaceRange(subRange, with: newElements)
+        }
+    #endif
 }
 
 public func +(lhs: Route, rhs: Route) -> Route {
