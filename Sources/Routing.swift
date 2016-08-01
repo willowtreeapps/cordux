@@ -26,7 +26,7 @@ public enum RouteAction<T: RouteConvertible>: Action {
 
 
 #if swift(>=3)
-    extension Route: Collection, Sequence, RangeReplaceableCollection {}
+    extension Route: RandomAccessCollection, Sequence, RangeReplaceableCollection {}
 #else
     extension Route: CollectionType, SequenceType, RangeReplaceableCollectionType {}
 #endif
@@ -124,6 +124,10 @@ extension Route {
 extension Route {
     public typealias Index = Int
 
+    #if swift(>=3)
+        public typealias Indices = CountableRange<Index>
+    #endif
+
     public var startIndex: Int {
         return 0
     }
@@ -134,6 +138,10 @@ extension Route {
 
     public func index(after i: Int) -> Int {
         return i + 1
+    }
+
+    public func index(before i: Int) -> Int {
+        return i - 1
     }
 
     public subscript(i: Int) -> String {
