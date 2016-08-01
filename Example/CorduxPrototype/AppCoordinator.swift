@@ -30,9 +30,9 @@ final class AppCoordinator: SceneCoordinator, SubscriberType {
         self.container = container
     }
 
-    func start() {
+    func start(route: Route) {
         store.subscribe(self, RouteSubscription.init)
-        changeScene(RouteSegment.auth.route())
+        changeScene(route)
     }
 
     func newState(_ state: RouteSubscription) {
@@ -53,7 +53,7 @@ final class AppCoordinator: SceneCoordinator, SubscriberType {
             coordinator = CatalogCoordinator(store: store)
         }
 
-        coordinator.start()
+        coordinator.start(route: sceneRoute(route))
         currentScene = coordinator
         scenePrefix = segment.rawValue
 

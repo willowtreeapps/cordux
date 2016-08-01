@@ -8,9 +8,15 @@
 
 import Foundation
 
+/// Action is a marker type that describes types that can modify state.
 public protocol Action {}
 
+/// StateType describes the minimum requirements for state.
 public protocol StateType {
+
+    /// The current representation of the route for the app.
+    ///
+    /// This describes what the user is currently seeing and how they navigated there.
     var route: Route { get set }
 }
 

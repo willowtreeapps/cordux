@@ -28,9 +28,9 @@ final class CatalogCoordinator: NSObject, TabBarControllerCoordinator {
         tabBarController.viewControllers = scenes.map { $0.coordinator.rootViewController }
     }
 
-    func start() {
+    func start(route: Route) {
         tabBarController.delegate = self
-        scenes.forEach { $0.coordinator.start() }
+        scenes.forEach { $0.coordinator.start(route: []) }
         store.setRoute(.push(scenes[tabBarController.selectedIndex]))
     }
 }
@@ -56,7 +56,7 @@ final class FirstCoordinator: NavigationControllerCoordinator {
         navigationController = UINavigationController(rootViewController: first)
     }
 
-    func start() {
+    func start(route: Route) {
         first.inject(handler: self)
     }
 
@@ -86,7 +86,7 @@ final class SecondCoordinator: NavigationControllerCoordinator {
         navigationController = UINavigationController(rootViewController: second)
     }
 
-    func start() {
+    func start(route: Route) {
         second.inject(handler: self)
     }
 

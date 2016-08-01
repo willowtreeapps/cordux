@@ -29,19 +29,36 @@ final class AuthenticationCoordinator: NavigationControllerCoordinator {
         navigationController = UINavigationController(rootViewController: signInViewController)
     }
 
-    func start() {
+    func start(route: Route) {
         signInViewController.inject(handler: self)
         signInViewController.corduxContext = Context(RouteSegment.signIn, lifecycleDelegate: self)
-        store.setRoute(.push(RouteSegment.signIn))
+
+        let segments = parse(route: route)
+        guard !segments.isEmpty else {
+            store.setRoute(.push(RouteSegment.signIn))
+            return
+        }
+
+        if segments.last == .fp {
+            navigationController.pushViewController(createForgotPasswordViewController(), animated: false)
+        }
     }
 
     func updateRoute(_ route: Route) {
-        if route.last == RouteSegment.fp.rawValue {
-            let forgotPasswordViewController = storyboard.instantiateViewController(withIdentifier: "ForgotPassword") as! ForgotPasswordViewController
-            forgotPasswordViewController.inject(self)
-            forgotPasswordViewController.corduxContext = Context(RouteSegment.fp, lifecycleDelegate: self)
-            navigationController.pushViewController(forgotPasswordViewController, animated: true)
+        if parse(route: route).last == .fp {
+            navigationController.pushViewController(createForgotPasswordViewController(), animated: true)
         }
+    }
+
+    func parse(route: Route) -> [RouteSegment] {
+        return route.flatMap { RouteSegment.init(rawValue: $0) }
+    }
+
+    func createForgotPasswordViewController() -> ForgotPasswordViewController {
+        let forgotPasswordViewController = storyboard.instantiateViewController(withIdentifier: "ForgotPassword") as! ForgotPasswordViewController
+        forgotPasswordViewController.inject(self)
+        forgotPasswordViewController.corduxContext = Context(RouteSegment.fp, lifecycleDelegate: self)
+        return forgotPasswordViewController
     }
 }
 
