@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D93D03D51D4A8E2300CED281"
+               BlueprintIdentifier = "D91D09931D4FA03500608359"
                BuildableName = "Cordux.framework"
-               BlueprintName = "Cordux"
+               BlueprintName = "Cordux-tvOS"
                ReferencedContainer = "container:Cordux.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D93D03DF1D4A8E2300CED281"
-               BuildableName = "CorduxTests.xctest"
-               BlueprintName = "CorduxTests"
+               BlueprintIdentifier = "D91D099B1D4FA03500608359"
+               BuildableName = "Cordux-tvOSTests.xctest"
+               BlueprintName = "Cordux-tvOSTests"
                ReferencedContainer = "container:Cordux.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -42,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D93D03D51D4A8E2300CED281"
+            BlueprintIdentifier = "D91D09931D4FA03500608359"
             BuildableName = "Cordux.framework"
-            BlueprintName = "Cordux"
+            BlueprintName = "Cordux-tvOS"
             ReferencedContainer = "container:Cordux.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -64,9 +64,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D93D03D51D4A8E2300CED281"
+            BlueprintIdentifier = "D91D09931D4FA03500608359"
             BuildableName = "Cordux.framework"
-            BlueprintName = "Cordux"
+            BlueprintName = "Cordux-tvOS"
             ReferencedContainer = "container:Cordux.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -82,9 +82,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D93D03D51D4A8E2300CED281"
+            BlueprintIdentifier = "D91D09931D4FA03500608359"
             BuildableName = "Cordux.framework"
-            BlueprintName = "Cordux"
+            BlueprintName = "Cordux-tvOS"
             ReferencedContainer = "container:Cordux.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D91D099D1D4FA03500608359 /* Cordux.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D91D09941D4FA03500608359 /* Cordux.framework */; };
+		D91D09A21D4FA03500608359 /* Cordux_tvOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91D09A11D4FA03500608359 /* Cordux_tvOSTests.swift */; };
+		D91D09A41D4FA03500608359 /* Cordux-tvOS.h in Headers */ = {isa = PBXBuildFile; fileRef = D91D09961D4FA03500608359 /* Cordux-tvOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D91D09AB1D4FA04D00608359 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D04031D4A8F4400CED281 /* Store.swift */; };
+		D91D09AC1D4FA04D00608359 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D04051D4A8FD900CED281 /* Reducer.swift */; };
+		D91D09AD1D4FA04D00608359 /* Subscriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D03F31D4A8E5500CED281 /* Subscriptions.swift */; };
+		D91D09AE1D4FA04D00608359 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D03F21D4A8E5500CED281 /* Coordinator.swift */; };
+		D91D09AF1D4FA04D00608359 /* SceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D03FD1D4A8EBE00CED281 /* SceneCoordinator.swift */; };
+		D91D09B01D4FA04D00608359 /* TabBarControllerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D03FF1D4A8EE900CED281 /* TabBarControllerCoordinator.swift */; };
+		D91D09B11D4FA04D00608359 /* NavigationControllerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D04011D4A8F0200CED281 /* NavigationControllerCoordinator.swift */; };
+		D91D09B21D4FA04D00608359 /* Routing.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D03F41D4A8E5500CED281 /* Routing.swift */; };
+		D91D09B31D4FA04D00608359 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D03F51D4A8E5500CED281 /* Context.swift */; };
+		D91D09B41D4FA04D00608359 /* ViewControllerLifecycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D03F61D4A8E5500CED281 /* ViewControllerLifecycle.swift */; };
 		D93D03DA1D4A8E2300CED281 /* Cordux.h in Headers */ = {isa = PBXBuildFile; fileRef = D93D03D91D4A8E2300CED281 /* Cordux.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D93D03E11D4A8E2300CED281 /* Cordux.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D93D03D61D4A8E2300CED281 /* Cordux.framework */; };
 		D93D03E61D4A8E2300CED281 /* CorduxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D03E51D4A8E2300CED281 /* CorduxTests.swift */; };
@@ -23,6 +36,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		D91D099E1D4FA03500608359 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D93D03CD1D4A8E2300CED281 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D91D09931D4FA03500608359;
+			remoteInfo = "Cordux-tvOS";
+		};
 		D93D03E21D4A8E2300CED281 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D93D03CD1D4A8E2300CED281 /* Project object */;
@@ -33,10 +53,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D91D09941D4FA03500608359 /* Cordux.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Cordux.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D91D09961D4FA03500608359 /* Cordux-tvOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cordux-tvOS.h"; sourceTree = "<group>"; };
+		D91D09971D4FA03500608359 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D91D099C1D4FA03500608359 /* Cordux-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Cordux-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D91D09A11D4FA03500608359 /* Cordux_tvOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cordux_tvOSTests.swift; sourceTree = "<group>"; };
+		D91D09A31D4FA03500608359 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D93D03D61D4A8E2300CED281 /* Cordux.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Cordux.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D93D03D91D4A8E2300CED281 /* Cordux.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cordux.h; sourceTree = "<group>"; };
 		D93D03DB1D4A8E2300CED281 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D93D03E01D4A8E2300CED281 /* CorduxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CorduxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D93D03E01D4A8E2300CED281 /* Cordux-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Cordux-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D93D03E51D4A8E2300CED281 /* CorduxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorduxTests.swift; sourceTree = "<group>"; };
 		D93D03E71D4A8E2300CED281 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D93D03F21D4A8E5500CED281 /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
@@ -52,6 +78,21 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D91D09901D4FA03500608359 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D91D09991D4FA03500608359 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D91D099D1D4FA03500608359 /* Cordux.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D93D03D21D4A8E2300CED281 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -70,11 +111,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D91D09951D4FA03500608359 /* Cordux-tvOS */ = {
+			isa = PBXGroup;
+			children = (
+				D91D09961D4FA03500608359 /* Cordux-tvOS.h */,
+				D91D09971D4FA03500608359 /* Info.plist */,
+			);
+			path = "Cordux-tvOS";
+			sourceTree = "<group>";
+		};
+		D91D09A01D4FA03500608359 /* Cordux-tvOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				D91D09A11D4FA03500608359 /* Cordux_tvOSTests.swift */,
+				D91D09A31D4FA03500608359 /* Info.plist */,
+			);
+			path = "Cordux-tvOSTests";
+			sourceTree = "<group>";
+		};
 		D93D03CC1D4A8E2300CED281 = {
 			isa = PBXGroup;
 			children = (
 				D93D03D81D4A8E2300CED281 /* Cordux */,
 				D93D03E41D4A8E2300CED281 /* CorduxTests */,
+				D91D09951D4FA03500608359 /* Cordux-tvOS */,
+				D91D09A01D4FA03500608359 /* Cordux-tvOSTests */,
 				D93D03D71D4A8E2300CED281 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -83,7 +144,9 @@
 			isa = PBXGroup;
 			children = (
 				D93D03D61D4A8E2300CED281 /* Cordux.framework */,
-				D93D03E01D4A8E2300CED281 /* CorduxTests.xctest */,
+				D93D03E01D4A8E2300CED281 /* Cordux-iOSTests.xctest */,
+				D91D09941D4FA03500608359 /* Cordux.framework */,
+				D91D099C1D4FA03500608359 /* Cordux-tvOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -135,6 +198,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		D91D09911D4FA03500608359 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D91D09A41D4FA03500608359 /* Cordux-tvOS.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D93D03D31D4A8E2300CED281 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -146,9 +217,45 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		D93D03D51D4A8E2300CED281 /* Cordux */ = {
+		D91D09931D4FA03500608359 /* Cordux-tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D93D03EA1D4A8E2300CED281 /* Build configuration list for PBXNativeTarget "Cordux" */;
+			buildConfigurationList = D91D09A91D4FA03500608359 /* Build configuration list for PBXNativeTarget "Cordux-tvOS" */;
+			buildPhases = (
+				D91D098F1D4FA03500608359 /* Sources */,
+				D91D09901D4FA03500608359 /* Frameworks */,
+				D91D09911D4FA03500608359 /* Headers */,
+				D91D09921D4FA03500608359 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Cordux-tvOS";
+			productName = "Cordux-tvOS";
+			productReference = D91D09941D4FA03500608359 /* Cordux.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		D91D099B1D4FA03500608359 /* Cordux-tvOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D91D09AA1D4FA03500608359 /* Build configuration list for PBXNativeTarget "Cordux-tvOSTests" */;
+			buildPhases = (
+				D91D09981D4FA03500608359 /* Sources */,
+				D91D09991D4FA03500608359 /* Frameworks */,
+				D91D099A1D4FA03500608359 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D91D099F1D4FA03500608359 /* PBXTargetDependency */,
+			);
+			name = "Cordux-tvOSTests";
+			productName = "Cordux-tvOSTests";
+			productReference = D91D099C1D4FA03500608359 /* Cordux-tvOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D93D03D51D4A8E2300CED281 /* Cordux-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D93D03EA1D4A8E2300CED281 /* Build configuration list for PBXNativeTarget "Cordux-iOS" */;
 			buildPhases = (
 				D93D03D11D4A8E2300CED281 /* Sources */,
 				D93D03D21D4A8E2300CED281 /* Frameworks */,
@@ -159,14 +266,14 @@
 			);
 			dependencies = (
 			);
-			name = Cordux;
+			name = "Cordux-iOS";
 			productName = Cordux;
 			productReference = D93D03D61D4A8E2300CED281 /* Cordux.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		D93D03DF1D4A8E2300CED281 /* CorduxTests */ = {
+		D93D03DF1D4A8E2300CED281 /* Cordux-iOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D93D03ED1D4A8E2300CED281 /* Build configuration list for PBXNativeTarget "CorduxTests" */;
+			buildConfigurationList = D93D03ED1D4A8E2300CED281 /* Build configuration list for PBXNativeTarget "Cordux-iOSTests" */;
 			buildPhases = (
 				D93D03DC1D4A8E2300CED281 /* Sources */,
 				D93D03DD1D4A8E2300CED281 /* Frameworks */,
@@ -177,9 +284,9 @@
 			dependencies = (
 				D93D03E31D4A8E2300CED281 /* PBXTargetDependency */,
 			);
-			name = CorduxTests;
+			name = "Cordux-iOSTests";
 			productName = CorduxTests;
-			productReference = D93D03E01D4A8E2300CED281 /* CorduxTests.xctest */;
+			productReference = D93D03E01D4A8E2300CED281 /* Cordux-iOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -188,10 +295,22 @@
 		D93D03CD1D4A8E2300CED281 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0730;
+				LastSwiftUpdateCheck = 0800;
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = WillowTree;
 				TargetAttributes = {
+					D91D09931D4FA03500608359 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 7UMFPW78PV;
+						DevelopmentTeamName = "WillowTree Apps, Inc.";
+						ProvisioningStyle = Automatic;
+					};
+					D91D099B1D4FA03500608359 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 7UMFPW78PV;
+						DevelopmentTeamName = "WillowTree Apps, Inc.";
+						ProvisioningStyle = Automatic;
+					};
 					D93D03D51D4A8E2300CED281 = {
 						CreatedOnToolsVersion = 7.3.1;
 						LastSwiftMigration = 0800;
@@ -214,13 +333,29 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D93D03D51D4A8E2300CED281 /* Cordux */,
-				D93D03DF1D4A8E2300CED281 /* CorduxTests */,
+				D93D03D51D4A8E2300CED281 /* Cordux-iOS */,
+				D93D03DF1D4A8E2300CED281 /* Cordux-iOSTests */,
+				D91D09931D4FA03500608359 /* Cordux-tvOS */,
+				D91D099B1D4FA03500608359 /* Cordux-tvOSTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D91D09921D4FA03500608359 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D91D099A1D4FA03500608359 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D93D03D41D4A8E2300CED281 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -238,6 +373,31 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D91D098F1D4FA03500608359 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D91D09B21D4FA04D00608359 /* Routing.swift in Sources */,
+				D91D09AE1D4FA04D00608359 /* Coordinator.swift in Sources */,
+				D91D09AF1D4FA04D00608359 /* SceneCoordinator.swift in Sources */,
+				D91D09B01D4FA04D00608359 /* TabBarControllerCoordinator.swift in Sources */,
+				D91D09B11D4FA04D00608359 /* NavigationControllerCoordinator.swift in Sources */,
+				D91D09AD1D4FA04D00608359 /* Subscriptions.swift in Sources */,
+				D91D09B31D4FA04D00608359 /* Context.swift in Sources */,
+				D91D09AC1D4FA04D00608359 /* Reducer.swift in Sources */,
+				D91D09AB1D4FA04D00608359 /* Store.swift in Sources */,
+				D91D09B41D4FA04D00608359 /* ViewControllerLifecycle.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D91D09981D4FA03500608359 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D91D09A21D4FA03500608359 /* Cordux_tvOSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D93D03D11D4A8E2300CED281 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -266,14 +426,95 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		D91D099F1D4FA03500608359 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D91D09931D4FA03500608359 /* Cordux-tvOS */;
+			targetProxy = D91D099E1D4FA03500608359 /* PBXContainerItemProxy */;
+		};
 		D93D03E31D4A8E2300CED281 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D93D03D51D4A8E2300CED281 /* Cordux */;
+			target = D93D03D51D4A8E2300CED281 /* Cordux-iOS */;
 			targetProxy = D93D03E21D4A8E2300CED281 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		D91D09A51D4FA03500608359 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Cordux-tvOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hbonordic.Cordux-tvOS";
+				PRODUCT_NAME = Cordux;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		D91D09A61D4FA03500608359 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Cordux-tvOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hbonordic.Cordux-tvOS";
+				PRODUCT_NAME = Cordux;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
+		D91D09A71D4FA03500608359 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				INFOPLIST_FILE = "Cordux-tvOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hbonordic.Cordux-tvOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		D91D09A81D4FA03500608359 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				INFOPLIST_FILE = "Cordux-tvOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hbonordic.Cordux-tvOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
 		D93D03E81D4A8E2300CED281 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -376,7 +617,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.willowtreeapps.Cordux;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Cordux;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 			};
@@ -393,7 +634,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.willowtreeapps.Cordux;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Cordux;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
@@ -426,6 +667,22 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D91D09A91D4FA03500608359 /* Build configuration list for PBXNativeTarget "Cordux-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D91D09A51D4FA03500608359 /* Debug */,
+				D91D09A61D4FA03500608359 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D91D09AA1D4FA03500608359 /* Build configuration list for PBXNativeTarget "Cordux-tvOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D91D09A71D4FA03500608359 /* Debug */,
+				D91D09A81D4FA03500608359 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		D93D03D01D4A8E2300CED281 /* Build configuration list for PBXProject "Cordux" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -435,7 +692,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D93D03EA1D4A8E2300CED281 /* Build configuration list for PBXNativeTarget "Cordux" */ = {
+		D93D03EA1D4A8E2300CED281 /* Build configuration list for PBXNativeTarget "Cordux-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D93D03EB1D4A8E2300CED281 /* Debug */,
@@ -444,7 +701,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D93D03ED1D4A8E2300CED281 /* Build configuration list for PBXNativeTarget "CorduxTests" */ = {
+		D93D03ED1D4A8E2300CED281 /* Build configuration list for PBXNativeTarget "Cordux-iOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D93D03EE1D4A8E2300CED281 /* Debug */,
