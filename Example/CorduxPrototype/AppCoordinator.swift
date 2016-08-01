@@ -35,11 +35,11 @@ final class AppCoordinator: SceneCoordinator, SubscriberType {
         changeScene(RouteSegment.auth.route())
     }
 
-    func newState(state: RouteSubscription) {
+    func newState(_ state: RouteSubscription) {
         self.route = state.route
     }
 
-    func changeScene(route: Route) {
+    func changeScene(_ route: Route) {
         guard let segment = RouteSegment(rawValue: route.first ?? "") else {
             return
         }
@@ -60,25 +60,25 @@ final class AppCoordinator: SceneCoordinator, SubscriberType {
         let container = self.container
         let new = coordinator.rootViewController
 
-        old?.willMoveToParentViewController(nil)
+        old?.willMove(toParentViewController: nil)
         container.addChildViewController(new)
         container.view.addSubview(new.view)
 
         var constraints: [NSLayoutConstraint] = []
-        constraints.append(new.view.leftAnchor.constraintEqualToAnchor(container.view.leftAnchor))
-        constraints.append(new.view.rightAnchor.constraintEqualToAnchor(container.view.rightAnchor))
-        constraints.append(new.view.topAnchor.constraintEqualToAnchor(container.view.topAnchor))
-        constraints.append(new.view.bottomAnchor.constraintEqualToAnchor(container.view.bottomAnchor))
-        NSLayoutConstraint.activateConstraints(constraints)
+        constraints.append(new.view.leftAnchor.constraint(equalTo: container.view.leftAnchor))
+        constraints.append(new.view.rightAnchor.constraint(equalTo: container.view.rightAnchor))
+        constraints.append(new.view.topAnchor.constraint(equalTo: container.view.topAnchor))
+        constraints.append(new.view.bottomAnchor.constraint(equalTo: container.view.bottomAnchor))
+        NSLayoutConstraint.activate(constraints)
 
         new.view.alpha = 0
-        UIView.animateWithDuration(0.3, animations: { 
+        UIView.animate(withDuration: 0.3, animations: { 
             old?.view.alpha = 0
             new.view.alpha = 1
         }, completion: { _ in
             old?.view.removeFromSuperview()
             old?.removeFromParentViewController()
-            new.didMoveToParentViewController(container)
+            new.didMove(toParentViewController: container)
         })
     }
 }

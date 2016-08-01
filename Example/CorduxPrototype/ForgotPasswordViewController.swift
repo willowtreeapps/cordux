@@ -16,11 +16,11 @@ class ForgotPasswordViewController: UIViewController {
 
     var handler: ForgotPasswordHandler!
 
-    func inject(handler: ForgotPasswordHandler) {
+    func inject(_ handler: ForgotPasswordHandler) {
         self.handler = handler
     }
 
-    @IBAction func emailPassword(sender: AnyObject) {
+    @IBAction func emailPassword(_ sender: AnyObject) {
         handler.emailPassword()
     }
 }

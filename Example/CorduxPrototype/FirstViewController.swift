@@ -15,11 +15,11 @@ protocol FirstHandler {
 class FirstViewController: UIViewController {
     var handler: FirstHandler!
 
-    func inject(handler handler: FirstHandler) {
+    func inject(handler: FirstHandler) {
         self.handler = handler
     }
 
-    @IBAction func performAction(sender: AnyObject) {
+    @IBAction func performAction(_ sender: AnyObject) {
         handler.performAction()
     }
 }

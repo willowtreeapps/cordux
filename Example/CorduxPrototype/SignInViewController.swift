@@ -23,19 +23,19 @@ final class SignInViewController: UIViewController {
 
     var handler: SignInHandler!
 
-    func inject(handler handler: SignInHandler) {
+    func inject(handler: SignInHandler) {
         self.handler = handler
     }
 
-    func render(viewModel: SignInViewModel) {
+    func render(_ viewModel: SignInViewModel) {
         nameLabel?.text = viewModel.name
     }
 
-    @IBAction func signIn(sender: AnyObject) {
+    @IBAction func signIn(_ sender: AnyObject) {
         handler.signIn()
     }
     
-    @IBAction func forgotPassword(sender: AnyObject) {
+    @IBAction func forgotPassword(_ sender: AnyObject) {
         handler.forgotPassword()
     }
 }

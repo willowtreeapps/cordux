@@ -36,7 +36,7 @@ final class CatalogCoordinator: NSObject, TabBarControllerCoordinator {
 }
 
 extension CatalogCoordinator: UITabBarControllerDelegate {
-    func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         return setRouteForViewController(viewController)
     }
 }
@@ -52,7 +52,7 @@ final class FirstCoordinator: NavigationControllerCoordinator {
     init(store: Store) {
         self.store = store
 
-        first = storyboard.instantiateViewControllerWithIdentifier("First") as! FirstViewController
+        first = storyboard.instantiateViewController(withIdentifier: "First") as! FirstViewController
         navigationController = UINavigationController(rootViewController: first)
     }
 
@@ -60,7 +60,7 @@ final class FirstCoordinator: NavigationControllerCoordinator {
         first.inject(handler: self)
     }
 
-    func updateRoute(route: Route) {
+    func updateRoute(_ route: Route) {
 
     }
 }
@@ -82,7 +82,7 @@ final class SecondCoordinator: NavigationControllerCoordinator {
     init(store: Store) {
         self.store = store
 
-        second = storyboard.instantiateViewControllerWithIdentifier("Second") as! SecondViewController
+        second = storyboard.instantiateViewController(withIdentifier: "Second") as! SecondViewController
         navigationController = UINavigationController(rootViewController: second)
     }
 
@@ -90,7 +90,7 @@ final class SecondCoordinator: NavigationControllerCoordinator {
         second.inject(handler: self)
     }
 
-    func updateRoute(route: Route) {
+    func updateRoute(_ route: Route) {
         
     }
 }

@@ -16,15 +16,15 @@ protocol SecondHandler {
 class SecondViewController: UIViewController {
     var handler: SecondHandler!
 
-    func inject(handler handler: SecondHandler) {
+    func inject(handler: SecondHandler) {
         self.handler = handler
     }
 
-    @IBAction func performAction(sender: AnyObject) {
+    @IBAction func performAction(_ sender: AnyObject) {
         handler.performAction()
     }
 
-    @IBAction func signOut(sender: AnyObject) {
+    @IBAction func signOut(_ sender: AnyObject) {
         handler.signOut()
     }
 }

@@ -38,13 +38,13 @@ enum AuthenticationAction: Action {
 struct Noop: Action {}
 
 final class AppReducer: Reducer {
-    func handleAction(action: Action, state: AppState) -> AppState {
+    func handleAction(_ action: Action, state: AppState) -> AppState {
         var state = state
         state = reduceAuthentication(action, state: state)
         return state
     }
 
-    func reduceAuthentication(action: Action, state: AppState) -> AppState {
+    func reduceAuthentication(_ action: Action, state: AppState) -> AppState {
         guard let action = action as? AuthenticationAction else {
             return state
         }
