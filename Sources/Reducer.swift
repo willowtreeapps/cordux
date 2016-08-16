@@ -29,12 +29,13 @@ extension Reducer {
 }
 
 #if swift(>=3)
-    func withSpecificTypes<SpecificStateType, Action>(_ action: Action, state genericStateType: StateType, function: @noescape (action: Action, state: SpecificStateType) -> SpecificStateType) -> StateType {
+    func withSpecificTypes<SpecificStateType, Action>(_ action: Action, state genericStateType: StateType,
+                           function: (_ action: Action, _ state: SpecificStateType) -> SpecificStateType) -> StateType {
         guard let specificStateType = genericStateType as? SpecificStateType else {
             return genericStateType
         }
 
-        return function(action: action, state: specificStateType) as! StateType
+        return function(action, specificStateType) as! StateType
     }
 #else
     func withSpecificTypes<SpecificStateType, Action>(_ action: Action, state genericStateType: StateType, @noescape function: (action: Action, state: SpecificStateType) -> SpecificStateType) -> StateType {

@@ -165,7 +165,7 @@ extension Route {
     }
 
     #if swift(>=3)
-        public mutating func replaceSubrange<C : Collection where C.Iterator.Element == Iterator.Element>(_ subRange: Range<Int>, with newElements: C) {
+        public mutating func replaceSubrange<C : Collection>(_ subRange: Range<Int>, with newElements: C) where C.Iterator.Element == Iterator.Element {
             components.replaceSubrange(subRange, with: newElements)
         }
     #else
