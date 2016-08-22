@@ -10,21 +10,6 @@ import Foundation
 
 public typealias RouteLogger = (RouteEvent)->()
 
-public func ConsoleRouteLogger(event: RouteEvent) {
-    switch event {
-    case .set(let route):
-        log(route: route, annotation: "(set)    ")
-    case .store(let route):
-        log(route: route, annotation: "(store)  ")
-    case .reducer(let route):
-        log(route: route, annotation: "(reducer)")
-    }
-}
-
-private func log(route: Route, annotation: String) {
-    print("ROUTE \(annotation): \(route.components.joined(separator: "/"))")
-}
-
 /// A routing event that can be logged
 public enum RouteEvent {
     /// Route was updated directly by app code
@@ -36,3 +21,24 @@ public enum RouteEvent {
     /// Route was updated by the app's reducer
     case reducer(Route)
 }
+
+public func ConsoleRouteLogger(event: RouteEvent) {
+    switch event {
+    case .set(let route):
+        log(route: route, annotation: "(set)    ")
+    case .store(let route):
+        log(route: route, annotation: "(store)  ")
+    case .reducer(let route):
+        log(route: route, annotation: "(reducer)")
+    }
+}
+
+#if swift(>=3)
+    private func log(route: Route, annotation: String) {
+        print("ROUTE \(annotation): \(route.components.joined(separator: "/"))")
+    }
+#else
+    private func log(route route: Route, annotation: String) {
+        print("ROUTE \(annotation): \(route.components.joinWithSeparator("/"))")
+    }
+#endif

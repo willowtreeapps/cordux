@@ -93,8 +93,13 @@ public final class Store<State : StateType> {
 
         middlewares.forEach { $0._before(action: action, state: state) }
         state = reducer._handleAction(action, state: state) as! State
-        middlewares.reversed().forEach { $0._after(action: action, state: state) }
 
+        #if swift(>=3)
+            middlewares.reversed().forEach { $0._after(action: action, state: state) }
+        #else
+            middlewares.reverse().forEach { $0._after(action: action, state: state) }
+        #endif
+        
         if originalRoute != state.route {
             routeLogger?(.reducer(state.route))
         }

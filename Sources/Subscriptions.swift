@@ -27,7 +27,11 @@ extension SubscriberType {
         if let typedState = state as? StoreSubscriberStateType {
             newState(typedState)
         } else {
-            preconditionFailure("Expected \(StoreSubscriberStateType.self) but received \(type(of:state))")
+            #if swift(>=3)
+                preconditionFailure("Expected \(StoreSubscriberStateType.self) but received \(type(of:state))")
+            #else
+                preconditionFailure("Expected \(StoreSubscriberStateType.self) but received \(state.dynamicType))")
+            #endif
         }
     }
 }
@@ -44,7 +48,11 @@ extension Renderer {
         if let viewModel = state as? ViewModel {
             render(viewModel)
         } else {
-            preconditionFailure("Expected \(ViewModel.self) but received \(type(of:state))")
+            #if swift(>=3)
+                preconditionFailure("Expected \(ViewModel.self) but received \(type(of:state))")
+            #else
+                preconditionFailure("Expected \(ViewModel.self) but received \(state.dynamicType))")
+            #endif
         }
     }
 }
