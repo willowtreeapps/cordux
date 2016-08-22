@@ -36,6 +36,8 @@
 		D9D7D60D1D6B81F100EAFEE7 /* SubscriptionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D7D60B1D6B81EE00EAFEE7 /* SubscriptionsTest.swift */; };
 		D9D7D60F1D6B82AA00EAFEE7 /* SimpleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D7D60E1D6B82AA00EAFEE7 /* SimpleState.swift */; };
 		D9D7D6101D6B82AA00EAFEE7 /* SimpleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D7D60E1D6B82AA00EAFEE7 /* SimpleState.swift */; };
+		D9D7D6141D6B977100EAFEE7 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D7D6111D6B976500EAFEE7 /* Logging.swift */; };
+		D9D7D6151D6B977100EAFEE7 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D7D6111D6B976500EAFEE7 /* Logging.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +81,7 @@
 		D93D04051D4A8FD900CED281 /* Reducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
 		D9D7D60B1D6B81EE00EAFEE7 /* SubscriptionsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionsTest.swift; sourceTree = "<group>"; };
 		D9D7D60E1D6B82AA00EAFEE7 /* SimpleState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleState.swift; sourceTree = "<group>"; };
+		D9D7D6111D6B976500EAFEE7 /* Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +188,7 @@
 				D93D03F41D4A8E5500CED281 /* Routing.swift */,
 				D93D03F51D4A8E5500CED281 /* Context.swift */,
 				D93D03F61D4A8E5500CED281 /* ViewControllerLifecycle.swift */,
+				D9D7D6111D6B976500EAFEE7 /* Logging.swift */,
 			);
 			path = Sources;
 			sourceTree = SOURCE_ROOT;
@@ -385,6 +389,7 @@
 				D91D09B21D4FA04D00608359 /* Routing.swift in Sources */,
 				D91D09AE1D4FA04D00608359 /* Coordinator.swift in Sources */,
 				D91D09AF1D4FA04D00608359 /* SceneCoordinator.swift in Sources */,
+				D9D7D6141D6B977100EAFEE7 /* Logging.swift in Sources */,
 				D91D09B01D4FA04D00608359 /* TabBarControllerCoordinator.swift in Sources */,
 				D91D09B11D4FA04D00608359 /* NavigationControllerCoordinator.swift in Sources */,
 				D91D09AD1D4FA04D00608359 /* Subscriptions.swift in Sources */,
@@ -412,6 +417,7 @@
 				D93D04021D4A8F0200CED281 /* NavigationControllerCoordinator.swift in Sources */,
 				D93D03F81D4A8E5500CED281 /* Subscriptions.swift in Sources */,
 				D93D03F71D4A8E5500CED281 /* Coordinator.swift in Sources */,
+				D9D7D6151D6B977100EAFEE7 /* Logging.swift in Sources */,
 				D93D04041D4A8F4400CED281 /* Store.swift in Sources */,
 				D93D04001D4A8EE900CED281 /* TabBarControllerCoordinator.swift in Sources */,
 				D93D03FA1D4A8E5500CED281 /* Context.swift in Sources */,

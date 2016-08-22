@@ -23,6 +23,8 @@ public protocol StateType {
 public final class Store<State : StateType> {
     public private(set) var state: State
     public private(set) var reducer: AnyReducer
+    var routeLogger: RouteLogger?
+
     public weak var rootCoordinator: AnyCoordinator? {
         didSet {
             rootCoordinator?.route = state.route
@@ -32,9 +34,10 @@ public final class Store<State : StateType> {
     typealias SubscriptionType = Subscription<State>
     var subscriptions: [SubscriptionType] = []
 
-    public init(initialState: State, reducer: AnyReducer) {
+    public init(initialState: State, reducer: AnyReducer, routeLogger: RouteLogger? = ConsoleRouteLogger) {
         self.state = initialState
         self.reducer = reducer
+        self.routeLogger = routeLogger
     }
 
     #if swift(>=3)
@@ -73,15 +76,21 @@ public final class Store<State : StateType> {
 
     public func route<T>(_ action: RouteAction<T>) {
         state.route = reduce(action, route: state.route)
+        routeLogger?(.store(state.route))
         dispatch(action)
     }
 
     public func setRoute<T>(_ action: RouteAction<T>) {
         state.route = reduce(action, route: state.route)
+        routeLogger?(.set(state.route))
     }
 
     public func dispatch(_ action: Action) {
+        let route = state.route
         state = reducer._handleAction(action, state: state) as! State
+        if route != state.route {
+            routeLogger?(.reducer(state.route))
+        }
         subscriptions.forEach { $0.subscriber?._newState($0.transform?(state) ?? state) }
         rootCoordinator?.route = state.route
     }

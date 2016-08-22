@@ -1,5 +1,5 @@
 PODS:
-  - Cordux (0.1.0)
+  - Cordux (0.1.5)
 
 DEPENDENCIES:
   - Cordux (from `..`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: ".."
 
 SPEC CHECKSUMS:
-  Cordux: 8f91fcd6eed5ec14524f4fb72ee44f82a9401e88
+  Cordux: 54a5a7f9d0431c4b1b3860109f2f91dc8899afe2
 
 PODFILE CHECKSUM: 284a10d3aecab71ef0d599dc2c45c053852d04a7
 
