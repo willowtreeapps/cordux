@@ -23,6 +23,11 @@ public protocol StateType {
 public final class Store<State : StateType> {
     public private(set) var state: State
     public private(set) var reducer: AnyReducer
+    public weak var rootCoordinator: AnyCoordinator? {
+        didSet {
+            rootCoordinator?.route = state.route
+        }
+    }
 
     typealias SubscriptionType = Subscription<State>
     var subscriptions: [SubscriptionType] = []
@@ -78,6 +83,7 @@ public final class Store<State : StateType> {
     public func dispatch(_ action: Action) {
         state = reducer._handleAction(action, state: state) as! State
         subscriptions.forEach { $0.subscriber?._newState($0.transform?(state) ?? state) }
+        rootCoordinator?.route = state.route
     }
 
     func isNewSubscriber(_ subscriber: AnyStoreSubscriber) -> Bool {

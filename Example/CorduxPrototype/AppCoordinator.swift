@@ -9,12 +9,12 @@
 import UIKit
 import Cordux
 
-final class AppCoordinator: SceneCoordinator, SubscriberType {
+final class AppCoordinator: SceneCoordinator {
     enum RouteSegment: String, RouteConvertible {
         case auth
         case catalog
     }
-    var scenePrefix: String = RouteSegment.auth.rawValue
+    var scenePrefix: String?
 
     let store: Store
     let container: UIViewController
@@ -31,12 +31,7 @@ final class AppCoordinator: SceneCoordinator, SubscriberType {
     }
 
     func start(route: Route) {
-        store.subscribe(self, RouteSubscription.init)
-        changeScene(route)
-    }
-
-    func newState(_ state: RouteSubscription) {
-        self.route = state.route
+        store.rootCoordinator = self
     }
 
     func changeScene(_ route: Route) {

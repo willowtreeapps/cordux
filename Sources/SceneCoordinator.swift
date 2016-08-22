@@ -9,7 +9,7 @@
 import UIKit
 
 public protocol SceneCoordinator: Coordinator {
-    var scenePrefix: String { get }
+    var scenePrefix: String? { get }
     var currentScene: AnyCoordinator? { get }
     func changeScene(_ route: Route)
     func sceneRoute(_ route: Route) -> Route
@@ -18,7 +18,7 @@ public protocol SceneCoordinator: Coordinator {
 public extension SceneCoordinator {
     public var route: Route {
         get {
-            let route: Route = scenePrefix.route()
+            let route: Route = scenePrefix?.route() ?? []
             return route + (currentScene?.route ?? [])
         }
         set {

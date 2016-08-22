@@ -37,7 +37,7 @@ public struct Scene: TabScene {
 
 public extension TabBarControllerCoordinator {
     public var rootViewController: UIViewController { return tabBarController }
-    public var scenePrefix: String { return scenes[tabBarController.selectedIndex].prefix }
+    public var scenePrefix: String? { return scenes[tabBarController.selectedIndex].prefix }
     public var currentScene: AnyCoordinator? { return scenes[tabBarController.selectedIndex].coordinator }
 
     public func changeScene(_ route: Route) {
