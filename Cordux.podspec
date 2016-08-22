@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "Cordux"
-  s.version      = "0.1.5"
+  s.version      = "0.1.7"
   s.summary      = "App Coordinators & Redux. A framework for UIKit development."
   s.description  = <<-DESC
                    Cordux combines app coordiantors with a redux-like architecture.
@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
 
   s.source       = {
                       :git => "https://github.com/willowtreeapps/cordux.git",
-                      :tag => "v0.1.5"
+                      :tag => "v0.1.7"
                    }
 
   s.platform = :ios, :tvos
