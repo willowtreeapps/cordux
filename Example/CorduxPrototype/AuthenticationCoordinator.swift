@@ -91,8 +91,9 @@ extension AuthenticationCoordinator: SignInHandler {
 extension SignInViewController: Renderer {}
 
 extension SignInViewModel {
-    init(_ state: AppState) {
-        name = state.name
+    init?(_ state: AppState) {
+        return nil
+        //name = state.name
     }
 }
 

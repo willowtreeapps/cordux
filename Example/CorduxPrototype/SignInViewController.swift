@@ -27,8 +27,8 @@ final class SignInViewController: UIViewController {
         self.handler = handler
     }
 
-    func render(_ viewModel: SignInViewModel) {
-        nameLabel?.text = viewModel.name
+    func render(_ viewModel: SignInViewModel?) {
+        nameLabel?.text = viewModel?.name
     }
 
     @IBAction func signIn(_ sender: AnyObject) {

@@ -40,7 +40,9 @@ class SimpleAppReducer: Reducer {
 
 struct SimpleAuthViewModel {
     let name: String
+}
 
+extension SimpleAuthViewModel {
     init?(state: SimpleAppState) {
         guard case let .signedIn(name) = state.auth else {
             return nil
