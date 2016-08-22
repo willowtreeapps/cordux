@@ -55,3 +55,12 @@ final class AppReducer: Reducer {
         return state
     }
 }
+
+final class ActionLogger: Middleware {
+    func before(action: Action, state: AppState) {
+        print("Before: \(action): \(state)")
+    }
+    func after(action: Action, state: AppState) {
+        print("After: \(action): \(state)")
+    }
+}

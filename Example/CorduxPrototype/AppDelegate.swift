@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         var state = AppState()
         state.route = AppCoordinator.RouteSegment.auth.route()
-        let store = Store(initialState: state, reducer: AppReducer())
+        let store = Store(initialState: state, reducer: AppReducer(), middlewares: [ActionLogger()])
 
         coordinator = AppCoordinator(store: store, container: mainController)
         coordinator.start(route: state.route)

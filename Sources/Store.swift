@@ -22,8 +22,9 @@ public protocol StateType {
 
 public final class Store<State : StateType> {
     public private(set) var state: State
-    public private(set) var reducer: AnyReducer
-    var routeLogger: RouteLogger?
+    public let reducer: AnyReducer
+    public let middlewares: [AnyMiddleware]
+    let routeLogger: RouteLogger?
 
     public weak var rootCoordinator: AnyCoordinator? {
         didSet {
@@ -34,9 +35,11 @@ public final class Store<State : StateType> {
     typealias SubscriptionType = Subscription<State>
     var subscriptions: [SubscriptionType] = []
 
-    public init(initialState: State, reducer: AnyReducer, routeLogger: RouteLogger? = ConsoleRouteLogger) {
+    public init(initialState: State, reducer: AnyReducer, middlewares: [AnyMiddleware] = [],
+                routeLogger: RouteLogger? = ConsoleRouteLogger) {
         self.state = initialState
         self.reducer = reducer
+        self.middlewares = middlewares
         self.routeLogger = routeLogger
     }
 
@@ -86,11 +89,16 @@ public final class Store<State : StateType> {
     }
 
     public func dispatch(_ action: Action) {
-        let route = state.route
+        let originalRoute = state.route
+
+        middlewares.forEach { $0._before(action: action, state: state) }
         state = reducer._handleAction(action, state: state) as! State
-        if route != state.route {
+        middlewares.reversed().forEach { $0._after(action: action, state: state) }
+
+        if originalRoute != state.route {
             routeLogger?(.reducer(state.route))
         }
+
         subscriptions.forEach { $0.subscriber?._newState($0.transform?(state) ?? state) }
         rootCoordinator?.route = state.route
     }
