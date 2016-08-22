@@ -20,7 +20,8 @@ public protocol AnyCoordinator: class {
     /// by the route.
     var route: Route { get set }
 
-    /// Start the coordinator at the current route.
+    /// Start the coordinator at the current route. Pass nil to start a coordiantor which is not
+    /// currently shown in the view hierarchy.
     ///
     /// If the coordinator needs to adjust the route from what's given, it should call setRoute
     /// during this method. This may occur when the route is empty, and the coordinator wishes
@@ -31,7 +32,7 @@ public protocol AnyCoordinator: class {
     ///
     /// In all cases, the rootViewController should be ready to be displayed after this method
     /// is called.
-    func start(route: Route)
+    func start(route: Route?)
 
     /// The root view controller of the hierarchy managed by this coordinator.
     var rootViewController: UIViewController { get }

@@ -29,7 +29,7 @@ final class AuthenticationCoordinator: NavigationControllerCoordinator {
         navigationController = UINavigationController(rootViewController: signInViewController)
     }
 
-    func start(route: Route) {
+    func start(route: Route?) {
         signInViewController.inject(handler: self)
         signInViewController.corduxContext = Context(RouteSegment.signIn, lifecycleDelegate: self)
 
@@ -50,8 +50,8 @@ final class AuthenticationCoordinator: NavigationControllerCoordinator {
         }
     }
 
-    func parse(route: Route) -> [RouteSegment] {
-        return route.flatMap { RouteSegment.init(rawValue: $0) }
+    func parse(route: Route?) -> [RouteSegment] {
+        return route?.flatMap({ RouteSegment.init(rawValue: $0) }) ?? []
     }
 
     func createForgotPasswordViewController() -> ForgotPasswordViewController {

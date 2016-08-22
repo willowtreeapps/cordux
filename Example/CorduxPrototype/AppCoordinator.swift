@@ -30,7 +30,7 @@ final class AppCoordinator: SceneCoordinator {
         self.container = container
     }
 
-    func start(route: Route) {
+    func start(route: Route?) {
         store.rootCoordinator = self
     }
 
