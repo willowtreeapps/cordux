@@ -21,8 +21,8 @@ public protocol StateType {
 }
 
 public final class Store<State : StateType> {
-    var state: State
-    var reducer: AnyReducer
+    public private(set) var state: State
+    public private(set) var reducer: AnyReducer
 
     typealias SubscriptionType = Subscription<State>
     var subscriptions: [SubscriptionType] = []
