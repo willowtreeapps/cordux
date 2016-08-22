@@ -33,6 +33,7 @@
 		D93D04021D4A8F0200CED281 /* NavigationControllerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D04011D4A8F0200CED281 /* NavigationControllerCoordinator.swift */; };
 		D93D04041D4A8F4400CED281 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D04031D4A8F4400CED281 /* Store.swift */; };
 		D93D04061D4A8FD900CED281 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D04051D4A8FD900CED281 /* Reducer.swift */; };
+		D9478EE31D64DA5E00E1B801 /* CorduxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D03E51D4A8E2300CED281 /* CorduxTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -394,6 +395,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9478EE31D64DA5E00E1B801 /* CorduxTests.swift in Sources */,
 				D91D09A21D4FA03500608359 /* Cordux_tvOSTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -674,6 +676,7 @@
 				D91D09A61D4FA03500608359 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D91D09AA1D4FA03500608359 /* Build configuration list for PBXNativeTarget "Cordux-tvOSTests" */ = {
 			isa = XCConfigurationList;
@@ -682,6 +685,7 @@
 				D91D09A81D4FA03500608359 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D93D03D01D4A8E2300CED281 /* Build configuration list for PBXProject "Cordux" */ = {
 			isa = XCConfigurationList;

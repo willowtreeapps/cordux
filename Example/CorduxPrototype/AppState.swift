@@ -17,14 +17,6 @@ struct AppState: StateType {
     var authenticationState: AuthenticationState = .unauthenticated
 }
 
-struct RouteSubscription {
-    let route: Route
-
-    init(_ state: AppState) {
-        route = state.route
-    }
-}
-
 enum AuthenticationState {
     case unauthenticated
     case authenticated

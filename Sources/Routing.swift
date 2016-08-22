@@ -23,7 +23,13 @@ public enum RouteAction<T: RouteConvertible>: Action {
     case replace(T, T)
 }
 
+public struct RouteSubscription {
+    public let route: Route
 
+    public init<AppState: StateType>(_ state: AppState) {
+        route = state.route
+    }
+}
 
 #if swift(>=3)
     extension Route:
