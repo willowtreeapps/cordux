@@ -22,7 +22,6 @@
 		D91D09B41D4FA04D00608359 /* ViewControllerLifecycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D03F61D4A8E5500CED281 /* ViewControllerLifecycle.swift */; };
 		D93D03DA1D4A8E2300CED281 /* Cordux.h in Headers */ = {isa = PBXBuildFile; fileRef = D93D03D91D4A8E2300CED281 /* Cordux.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D93D03E11D4A8E2300CED281 /* Cordux.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D93D03D61D4A8E2300CED281 /* Cordux.framework */; };
-		D93D03E61D4A8E2300CED281 /* CorduxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D03E51D4A8E2300CED281 /* CorduxTests.swift */; };
 		D93D03F71D4A8E5500CED281 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D03F21D4A8E5500CED281 /* Coordinator.swift */; };
 		D93D03F81D4A8E5500CED281 /* Subscriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D03F31D4A8E5500CED281 /* Subscriptions.swift */; };
 		D93D03F91D4A8E5500CED281 /* Routing.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D03F41D4A8E5500CED281 /* Routing.swift */; };
@@ -33,7 +32,10 @@
 		D93D04021D4A8F0200CED281 /* NavigationControllerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D04011D4A8F0200CED281 /* NavigationControllerCoordinator.swift */; };
 		D93D04041D4A8F4400CED281 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D04031D4A8F4400CED281 /* Store.swift */; };
 		D93D04061D4A8FD900CED281 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D04051D4A8FD900CED281 /* Reducer.swift */; };
-		D9478EE31D64DA5E00E1B801 /* CorduxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D03E51D4A8E2300CED281 /* CorduxTests.swift */; };
+		D9D7D60C1D6B81EE00EAFEE7 /* SubscriptionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D7D60B1D6B81EE00EAFEE7 /* SubscriptionsTest.swift */; };
+		D9D7D60D1D6B81F100EAFEE7 /* SubscriptionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D7D60B1D6B81EE00EAFEE7 /* SubscriptionsTest.swift */; };
+		D9D7D60F1D6B82AA00EAFEE7 /* SimpleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D7D60E1D6B82AA00EAFEE7 /* SimpleState.swift */; };
+		D9D7D6101D6B82AA00EAFEE7 /* SimpleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D7D60E1D6B82AA00EAFEE7 /* SimpleState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,7 +66,6 @@
 		D93D03D91D4A8E2300CED281 /* Cordux.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cordux.h; sourceTree = "<group>"; };
 		D93D03DB1D4A8E2300CED281 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D93D03E01D4A8E2300CED281 /* Cordux-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Cordux-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D93D03E51D4A8E2300CED281 /* CorduxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorduxTests.swift; sourceTree = "<group>"; };
 		D93D03E71D4A8E2300CED281 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D93D03F21D4A8E5500CED281 /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		D93D03F31D4A8E5500CED281 /* Subscriptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subscriptions.swift; sourceTree = "<group>"; };
@@ -76,6 +77,8 @@
 		D93D04011D4A8F0200CED281 /* NavigationControllerCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationControllerCoordinator.swift; sourceTree = "<group>"; };
 		D93D04031D4A8F4400CED281 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		D93D04051D4A8FD900CED281 /* Reducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
+		D9D7D60B1D6B81EE00EAFEE7 /* SubscriptionsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionsTest.swift; sourceTree = "<group>"; };
+		D9D7D60E1D6B82AA00EAFEE7 /* SimpleState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,7 +168,8 @@
 		D93D03E41D4A8E2300CED281 /* CorduxTests */ = {
 			isa = PBXGroup;
 			children = (
-				D93D03E51D4A8E2300CED281 /* CorduxTests.swift */,
+				D9D7D60E1D6B82AA00EAFEE7 /* SimpleState.swift */,
+				D9D7D60B1D6B81EE00EAFEE7 /* SubscriptionsTest.swift */,
 				D93D03E71D4A8E2300CED281 /* Info.plist */,
 			);
 			path = CorduxTests;
@@ -395,8 +399,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D9478EE31D64DA5E00E1B801 /* CorduxTests.swift in Sources */,
+				D9D7D60D1D6B81F100EAFEE7 /* SubscriptionsTest.swift in Sources */,
 				D91D09A21D4FA03500608359 /* Cordux_tvOSTests.swift in Sources */,
+				D9D7D6101D6B82AA00EAFEE7 /* SimpleState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,7 +426,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D93D03E61D4A8E2300CED281 /* CorduxTests.swift in Sources */,
+				D9D7D60F1D6B82AA00EAFEE7 /* SimpleState.swift in Sources */,
+				D9D7D60C1D6B81EE00EAFEE7 /* SubscriptionsTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
