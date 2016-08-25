@@ -44,7 +44,7 @@ open class Store<State : StateType> {
     }
 
     #if swift(>=3)
-        public func subscribe<Subscriber : SubscriberType, SelectedState>(_ subscriber: Subscriber, _ transform: ((State) -> SelectedState)? = nil) where Subscriber.StoreSubscriberStateType == SelectedState {
+        open func subscribe<Subscriber : SubscriberType, SelectedState>(_ subscriber: Subscriber, _ transform: ((State) -> SelectedState)? = nil) where Subscriber.StoreSubscriberStateType == SelectedState {
             guard isNewSubscriber(subscriber) else {
                 return
             }
@@ -65,7 +65,7 @@ open class Store<State : StateType> {
         }
     #endif
 
-    public func unsubscribe<Subscriber : AnyStoreSubscriber>(_ subscriber: Subscriber) {
+    open func unsubscribe<Subscriber : AnyStoreSubscriber>(_ subscriber: Subscriber) {
         #if swift(>=3)
             if let index = subscriptions.index(where: { return $0.subscriber === subscriber }) {
             subscriptions.remove(at: index)
@@ -77,18 +77,18 @@ open class Store<State : StateType> {
         #endif
     }
 
-    public func route<T>(_ action: RouteAction<T>) {
+    open func route<T>(_ action: RouteAction<T>) {
         state.route = reduce(action, route: state.route)
         routeLogger?(.store(state.route))
         dispatch(action)
     }
 
-    public func setRoute<T>(_ action: RouteAction<T>) {
+    open func setRoute<T>(_ action: RouteAction<T>) {
         state.route = reduce(action, route: state.route)
         routeLogger?(.set(state.route))
     }
 
-    public func dispatch(_ action: Action) {
+    open func dispatch(_ action: Action) {
         let originalRoute = state.route
 
         middlewares.forEach { $0._before(action: action, state: state) }
