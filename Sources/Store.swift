@@ -20,7 +20,7 @@ public protocol StateType {
     var route: Route { get set }
 }
 
-public final class Store<State : StateType> {
+public class Store<State : StateType> {
     public private(set) var state: State
     public let reducer: AnyReducer
     public let middlewares: [AnyMiddleware]
