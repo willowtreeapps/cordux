@@ -20,7 +20,7 @@ public protocol StateType {
     var route: Route { get set }
 }
 
-open class Store<State : StateType> {
+public final class Store<State : StateType> {
     public private(set) var state: State
     public let reducer: AnyReducer
     public let middlewares: [AnyMiddleware]
@@ -44,7 +44,7 @@ open class Store<State : StateType> {
     }
 
     #if swift(>=3)
-        open func subscribe<Subscriber : SubscriberType, SelectedState>(_ subscriber: Subscriber, _ transform: ((State) -> SelectedState)? = nil) where Subscriber.StoreSubscriberStateType == SelectedState {
+        public func subscribe<Subscriber : SubscriberType, SelectedState>(_ subscriber: Subscriber, _ transform: ((State) -> SelectedState)? = nil) where Subscriber.StoreSubscriberStateType == SelectedState {
             guard isNewSubscriber(subscriber) else {
                 return
             }
@@ -65,7 +65,7 @@ open class Store<State : StateType> {
         }
     #endif
 
-    open func unsubscribe<Subscriber : AnyStoreSubscriber>(_ subscriber: Subscriber) {
+    public func unsubscribe<Subscriber : AnyStoreSubscriber>(_ subscriber: Subscriber) {
         #if swift(>=3)
             if let index = subscriptions.index(where: { return $0.subscriber === subscriber }) {
             subscriptions.remove(at: index)
@@ -77,18 +77,18 @@ open class Store<State : StateType> {
         #endif
     }
 
-    open func route<T>(_ action: RouteAction<T>) {
+    public func route<T>(_ action: RouteAction<T>) {
         state.route = reduce(action, route: state.route)
         routeLogger?(.store(state.route))
         dispatch(action)
     }
 
-    open func setRoute<T>(_ action: RouteAction<T>) {
+    public func setRoute<T>(_ action: RouteAction<T>) {
         state.route = reduce(action, route: state.route)
         routeLogger?(.set(state.route))
     }
 
-    open func dispatch(_ action: Action) {
+    public func dispatch(_ action: Action) {
         let originalRoute = state.route
 
         middlewares.forEach { $0._before(action: action, state: state) }
