@@ -10,6 +10,30 @@ import Foundation
 
 public struct Route  {
     var components: [String]
+
+    public func reduce<T>(_ action: RouteAction<T>) -> Route {
+        switch action {
+        case .goto(let route):
+            return route.route()
+        case .push(let segment):
+            return route() + segment.route()
+        case .pop(let segment):
+            let segmentRoute = segment.route()
+            let n = route().count
+            let m = segmentRoute.count
+            guard n >= m else {
+                return self
+            }
+            let tail = Route(Array(route()[n-m..<n]))
+            guard tail == segmentRoute else {
+                return self
+            }
+            return Route(route().dropLast(m))
+        case .replace(let old, let new):
+            let head = self.reduce(.pop(old))
+            return head.reduce(.push(new))
+        }
+    }
 }
 
 public protocol RouteConvertible {
@@ -38,32 +62,6 @@ public enum RouteAction<T: RouteConvertible>: Action {
         ArrayLiteralConvertible
     {}
 #endif
-
-extension Store {
-    func reduce<T>(_ action: RouteAction<T>, route: Route) -> Route {
-        switch action {
-        case .goto(let route):
-            return route.route()
-        case .push(let segment):
-            return route + segment.route()
-        case .pop(let segment):
-            let segmentRoute = segment.route()
-            let n = route.count
-            let m = segmentRoute.count
-            guard n >= m else {
-                return route
-            }
-            let tail = Route(Array(route[n-m..<n]))
-            guard tail == segmentRoute else {
-                return route
-            }
-            return Route(route.dropLast(m))
-        case .replace(let old, let new):
-            let head = reduce(.pop(old), route: route)
-            return reduce(.push(new), route: head)
-        }
-    }
-}
 
 extension Route {
     public init() {

@@ -78,13 +78,13 @@ public final class Store<State : StateType> {
     }
 
     public func route<T>(_ action: RouteAction<T>) {
-        state.route = reduce(action, route: state.route)
+        state.route = state.route.reduce(action)
         routeLogger?(.store(state.route))
         dispatch(action)
     }
 
     public func setRoute<T>(_ action: RouteAction<T>) {
-        state.route = reduce(action, route: state.route)
+        state.route = state.route.reduce(action)
         routeLogger?(.set(state.route))
     }
 
