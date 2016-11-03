@@ -27,12 +27,18 @@ enum AuthenticationAction: Action {
     case signOut
 }
 
+enum ModalAction: Action {
+    case present
+    case dismiss
+}
+
 struct Noop: Action {}
 
 final class AppReducer: Reducer {
     func handleAction(_ action: Action, state: AppState) -> AppState {
         var state = state
         state = reduceAuthentication(action, state: state)
+        state = reduceModal(action, state: state)
         return state
     }
 
@@ -50,6 +56,23 @@ final class AppReducer: Reducer {
         case .signOut:
             state.route = ["auth"]
             state.authenticationState = .unauthenticated
+        }
+
+        return state
+    }
+
+    func reduceModal(_ action: Action, state: AppState) -> AppState {
+        guard let action = action as? ModalAction else {
+            return state
+        }
+
+        var state = state
+
+        switch action {
+        case .present:
+            state.route = state.route.reduce(.push("modal"))
+        case .dismiss:
+            state.route = state.route.reduce(.pop("modal"))
         }
 
         return state

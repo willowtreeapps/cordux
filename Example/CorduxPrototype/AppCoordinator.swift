@@ -45,7 +45,7 @@ final class AppCoordinator: SceneCoordinator {
         case .auth:
             coordinator = AuthenticationCoordinator(store: store)
         case .catalog:
-            coordinator = CatalogCoordinator(store: store)
+            coordinator = CatalogContainerCoordinator(store: store, rootCoordinator: CatalogCoordinator(store: store))
         }
 
         coordinator.start(route: sceneRoute(route))

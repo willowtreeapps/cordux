@@ -9,6 +9,22 @@
 import UIKit
 import Cordux
 
+final class CatalogContainerCoordinator: PresentingCoordinator {
+    var presented: PrefixSelectable?
+    
+    lazy var presentables: [PrefixSelectable] = {
+        return [LazyScene(prefix: "modal") { return ModalCoordinator(store: self.store) }]
+    }()
+
+    var store: Store
+    var rootCoordinator: AnyCoordinator
+
+    init(store: Store, rootCoordinator: AnyCoordinator) {
+        self.store = store
+        self.rootCoordinator = rootCoordinator
+    }
+}
+
 final class CatalogCoordinator: NSObject, TabBarControllerCoordinator {
     var store: Store
 
@@ -44,7 +60,6 @@ extension CatalogCoordinator: UITabBarControllerDelegate {
 final class FirstCoordinator: NavigationControllerCoordinator {
     var store: Store
 
-    let storyboard = UIStoryboard(name: "Catalog", bundle: nil)
     let navigationController: UINavigationController
     var rootViewController: UIViewController { return navigationController }
     let first: FirstViewController
@@ -52,7 +67,7 @@ final class FirstCoordinator: NavigationControllerCoordinator {
     init(store: Store) {
         self.store = store
 
-        first = storyboard.instantiateViewController(withIdentifier: "First") as! FirstViewController
+        first = FirstViewController.make()
         navigationController = UINavigationController(rootViewController: first)
     }
 
@@ -67,14 +82,13 @@ final class FirstCoordinator: NavigationControllerCoordinator {
 
 extension FirstCoordinator: FirstHandler {
     func performAction() {
-        store.dispatch(Noop())
+        store.dispatch(ModalAction.present)
     }
 }
 
 final class SecondCoordinator: NavigationControllerCoordinator {
     var store: Store
 
-    let storyboard = UIStoryboard(name: "Catalog", bundle: nil)
     let navigationController: UINavigationController
     var rootViewController: UIViewController { return navigationController }
     let second: SecondViewController
@@ -82,7 +96,7 @@ final class SecondCoordinator: NavigationControllerCoordinator {
     init(store: Store) {
         self.store = store
 
-        second = storyboard.instantiateViewController(withIdentifier: "Second") as! SecondViewController
+        second = SecondViewController.make()
         navigationController = UINavigationController(rootViewController: second)
     }
 
@@ -105,3 +119,27 @@ extension SecondCoordinator: SecondHandler {
     }
 }
 
+final class ModalCoordinator: Coordinator {
+    var store: Store
+
+    var route: Route = []
+
+    var first: FirstViewController
+    var rootViewController: UIViewController { return first }
+
+    init(store: Store) {
+        self.store = store
+
+        first = FirstViewController.make()
+    }
+
+    func start(route: Route?) {
+        first.inject(handler: self)
+    }
+}
+
+extension ModalCoordinator: FirstHandler {
+    func performAction() {
+        store.dispatch(ModalAction.dismiss)
+    }
+}

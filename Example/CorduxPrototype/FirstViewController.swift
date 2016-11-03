@@ -8,19 +8,24 @@
 
 import UIKit
 
-protocol FirstHandler {
+protocol FirstHandler: class {
     func performAction()
 }
 
 class FirstViewController: UIViewController {
-    var handler: FirstHandler!
+    weak var handler: FirstHandler?
+
+    static func make() -> FirstViewController {
+        let storyboard = UIStoryboard(name: "Catalog", bundle: nil)
+        return storyboard.instantiateViewController(withIdentifier: "First") as! FirstViewController
+    }
 
     func inject(handler: FirstHandler) {
         self.handler = handler
     }
 
     @IBAction func performAction(_ sender: AnyObject) {
-        handler.performAction()
+        handler?.performAction()
     }
 }
 

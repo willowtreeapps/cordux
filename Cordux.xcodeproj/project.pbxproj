@@ -32,6 +32,10 @@
 		D93D04021D4A8F0200CED281 /* NavigationControllerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D04011D4A8F0200CED281 /* NavigationControllerCoordinator.swift */; };
 		D93D04041D4A8F4400CED281 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D04031D4A8F4400CED281 /* Store.swift */; };
 		D93D04061D4A8FD900CED281 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D04051D4A8FD900CED281 /* Reducer.swift */; };
+		D9B557841DCA7DF8006224A7 /* PresentingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B557831DCA7DF8006224A7 /* PresentingCoordinator.swift */; };
+		D9B557851DCA7DF8006224A7 /* PresentingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B557831DCA7DF8006224A7 /* PresentingCoordinator.swift */; };
+		D9B557871DCA8020006224A7 /* PrefixSelectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B557861DCA8020006224A7 /* PrefixSelectable.swift */; };
+		D9B557881DCA8020006224A7 /* PrefixSelectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B557861DCA8020006224A7 /* PrefixSelectable.swift */; };
 		D9D7D60C1D6B81EE00EAFEE7 /* SubscriptionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D7D60B1D6B81EE00EAFEE7 /* SubscriptionsTest.swift */; };
 		D9D7D60D1D6B81F100EAFEE7 /* SubscriptionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D7D60B1D6B81EE00EAFEE7 /* SubscriptionsTest.swift */; };
 		D9D7D60F1D6B82AA00EAFEE7 /* SimpleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D7D60E1D6B82AA00EAFEE7 /* SimpleState.swift */; };
@@ -83,6 +87,8 @@
 		D93D04011D4A8F0200CED281 /* NavigationControllerCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationControllerCoordinator.swift; sourceTree = "<group>"; };
 		D93D04031D4A8F4400CED281 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		D93D04051D4A8FD900CED281 /* Reducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
+		D9B557831DCA7DF8006224A7 /* PresentingCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentingCoordinator.swift; sourceTree = "<group>"; };
+		D9B557861DCA8020006224A7 /* PrefixSelectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrefixSelectable.swift; sourceTree = "<group>"; };
 		D9D7D60B1D6B81EE00EAFEE7 /* SubscriptionsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionsTest.swift; sourceTree = "<group>"; };
 		D9D7D60E1D6B82AA00EAFEE7 /* SimpleState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleState.swift; sourceTree = "<group>"; };
 		D9D7D6111D6B976500EAFEE7 /* Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
@@ -208,6 +214,8 @@
 				D93D03FD1D4A8EBE00CED281 /* SceneCoordinator.swift */,
 				D93D03FF1D4A8EE900CED281 /* TabBarControllerCoordinator.swift */,
 				D93D04011D4A8F0200CED281 /* NavigationControllerCoordinator.swift */,
+				D9B557831DCA7DF8006224A7 /* PresentingCoordinator.swift */,
+				D9B557861DCA8020006224A7 /* PrefixSelectable.swift */,
 			);
 			name = Coordinators;
 			sourceTree = "<group>";
@@ -394,9 +402,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9B557881DCA8020006224A7 /* PrefixSelectable.swift in Sources */,
 				D91D09B21D4FA04D00608359 /* Routing.swift in Sources */,
 				D91D09AE1D4FA04D00608359 /* Coordinator.swift in Sources */,
 				D91D09AF1D4FA04D00608359 /* SceneCoordinator.swift in Sources */,
+				D9B557851DCA7DF8006224A7 /* PresentingCoordinator.swift in Sources */,
 				D9D7D6141D6B977100EAFEE7 /* Logging.swift in Sources */,
 				D91D09B01D4FA04D00608359 /* TabBarControllerCoordinator.swift in Sources */,
 				D91D09B11D4FA04D00608359 /* NavigationControllerCoordinator.swift in Sources */,
@@ -424,9 +434,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9B557871DCA8020006224A7 /* PrefixSelectable.swift in Sources */,
 				D93D04021D4A8F0200CED281 /* NavigationControllerCoordinator.swift in Sources */,
 				D93D03F81D4A8E5500CED281 /* Subscriptions.swift in Sources */,
 				D93D03F71D4A8E5500CED281 /* Coordinator.swift in Sources */,
+				D9B557841DCA7DF8006224A7 /* PresentingCoordinator.swift in Sources */,
 				D9D7D6151D6B977100EAFEE7 /* Logging.swift in Sources */,
 				D93D04041D4A8F4400CED281 /* Store.swift in Sources */,
 				D93D04001D4A8EE900CED281 /* TabBarControllerCoordinator.swift in Sources */,
