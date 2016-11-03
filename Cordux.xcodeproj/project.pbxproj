@@ -34,8 +34,8 @@
 		D93D04061D4A8FD900CED281 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D04051D4A8FD900CED281 /* Reducer.swift */; };
 		D9B557841DCA7DF8006224A7 /* PresentingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B557831DCA7DF8006224A7 /* PresentingCoordinator.swift */; };
 		D9B557851DCA7DF8006224A7 /* PresentingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B557831DCA7DF8006224A7 /* PresentingCoordinator.swift */; };
-		D9B557871DCA8020006224A7 /* PrefixSelectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B557861DCA8020006224A7 /* PrefixSelectable.swift */; };
-		D9B557881DCA8020006224A7 /* PrefixSelectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B557861DCA8020006224A7 /* PrefixSelectable.swift */; };
+		D9B557871DCA8020006224A7 /* Scenes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B557861DCA8020006224A7 /* Scenes.swift */; };
+		D9B557881DCA8020006224A7 /* Scenes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B557861DCA8020006224A7 /* Scenes.swift */; };
 		D9D7D60C1D6B81EE00EAFEE7 /* SubscriptionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D7D60B1D6B81EE00EAFEE7 /* SubscriptionsTest.swift */; };
 		D9D7D60D1D6B81F100EAFEE7 /* SubscriptionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D7D60B1D6B81EE00EAFEE7 /* SubscriptionsTest.swift */; };
 		D9D7D60F1D6B82AA00EAFEE7 /* SimpleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D7D60E1D6B82AA00EAFEE7 /* SimpleState.swift */; };
@@ -88,7 +88,7 @@
 		D93D04031D4A8F4400CED281 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		D93D04051D4A8FD900CED281 /* Reducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
 		D9B557831DCA7DF8006224A7 /* PresentingCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentingCoordinator.swift; sourceTree = "<group>"; };
-		D9B557861DCA8020006224A7 /* PrefixSelectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrefixSelectable.swift; sourceTree = "<group>"; };
+		D9B557861DCA8020006224A7 /* Scenes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scenes.swift; sourceTree = "<group>"; };
 		D9D7D60B1D6B81EE00EAFEE7 /* SubscriptionsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionsTest.swift; sourceTree = "<group>"; };
 		D9D7D60E1D6B82AA00EAFEE7 /* SimpleState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleState.swift; sourceTree = "<group>"; };
 		D9D7D6111D6B976500EAFEE7 /* Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
@@ -215,7 +215,7 @@
 				D93D03FF1D4A8EE900CED281 /* TabBarControllerCoordinator.swift */,
 				D93D04011D4A8F0200CED281 /* NavigationControllerCoordinator.swift */,
 				D9B557831DCA7DF8006224A7 /* PresentingCoordinator.swift */,
-				D9B557861DCA8020006224A7 /* PrefixSelectable.swift */,
+				D9B557861DCA8020006224A7 /* Scenes.swift */,
 			);
 			name = Coordinators;
 			sourceTree = "<group>";
@@ -321,7 +321,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = WillowTree;
 				TargetAttributes = {
 					D91D09931D4FA03500608359 = {
@@ -402,7 +402,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D9B557881DCA8020006224A7 /* PrefixSelectable.swift in Sources */,
+				D9B557881DCA8020006224A7 /* Scenes.swift in Sources */,
 				D91D09B21D4FA04D00608359 /* Routing.swift in Sources */,
 				D91D09AE1D4FA04D00608359 /* Coordinator.swift in Sources */,
 				D91D09AF1D4FA04D00608359 /* SceneCoordinator.swift in Sources */,
@@ -434,7 +434,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D9B557871DCA8020006224A7 /* PrefixSelectable.swift in Sources */,
+				D9B557871DCA8020006224A7 /* Scenes.swift in Sources */,
 				D93D04021D4A8F0200CED281 /* NavigationControllerCoordinator.swift in Sources */,
 				D93D03F81D4A8E5500CED281 /* Subscriptions.swift in Sources */,
 				D93D03F71D4A8E5500CED281 /* Coordinator.swift in Sources */,
@@ -567,8 +567,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -616,8 +618,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -647,6 +651,7 @@
 		D93D03EB1D4A8E2300CED281 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -664,6 +669,7 @@
 		D93D03EC1D4A8E2300CED281 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;

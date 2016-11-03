@@ -15,15 +15,33 @@ public protocol AnyCoordinator: class {
     ///
     /// This property should return the current route for the current view controller hierarchy
     /// from the point of view of this coordinator.
-    ///
-    /// When set, the coordinator should adjust the view controller hierarchy to what is desired
-    /// by the route.
-    var route: Route { get set }
+    var route: Route { get }
 
-    /// Start the coordinator at the current route. Pass nil to start a coordiantor which is not
-    /// currently shown in the view hierarchy.
+    /// This method is called before `setRoute(_:completionHandler:)` and with the same values. A `route` of `nil` is 
+    /// used to indicate that the coordinator's root view controller will be removed from the hierarchy. If the 
+    /// coordinator is managing a view controller that could interfere with routing, such as a popover or a modal, then
+    /// it should reset the view controller state to one that can be properly routed.
     ///
-    /// If the coordinator needs to adjust the route from what's given, it should call setRoute
+    /// When the view controller state has been made ready for routing, `completionHandler` must be called.
+    ///
+    /// - Parameters:
+    ///   - _: the `Route` that will be routed to in `setRoute(_:completionHandler:)` following this call
+    ///   - completionHandler: this closure must be called when the view controller hierarchy has been prepared for 
+    ///     routing
+    func prepareForRoute(_: Route?, completionHandler: @escaping () -> Void)
+
+    /// When called, the coordinator should adjust the view controller hierarchy to what is
+    /// desired by the `Route`. When the navigation has been completed, `completionHandler` must be called.
+    ///
+    /// - Parameters:
+    ///   - _: the `Route` that should be navigated to
+    ///   - completionHandler: this closure must be called when the routing is completed
+    func setRoute(_: Route?, completionHandler: @escaping () -> Void)
+
+    /// Start the coordinator at the current route. A route of nil is used to indicate a coordinator for which
+    /// its view controller is not intended to be part of the current view hierarchy.
+    ///
+    /// If the coordinator needs to adjust the route from what's given, it should call store.setRoute(_:)
     /// during this method. This may occur when the route is empty, and the coordinator wishes
     /// to set up initial state according to its own internal logic.
     ///

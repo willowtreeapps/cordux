@@ -14,12 +14,11 @@ final class AppCoordinator: SceneCoordinator {
         case auth
         case catalog
     }
-    var scenePrefix: String?
 
     let store: Store
     let container: UIViewController
 
-    var currentScene: AnyCoordinator?
+    var currentScene: Scene?
 
     var rootViewController: UIViewController {
         return container
@@ -34,26 +33,25 @@ final class AppCoordinator: SceneCoordinator {
         store.rootCoordinator = self
     }
 
-    func changeScene(_ route: Route) {
-        guard let segment = RouteSegment(rawValue: route.first ?? "") else {
-            return
+    public func coordinatorForTag(_ tag: String) -> AnyCoordinator? {
+        guard let segment = RouteSegment(rawValue: tag) else {
+            return nil
         }
 
-        let old = currentScene?.rootViewController
-        let coordinator: AnyCoordinator
         switch segment {
         case .auth:
-            coordinator = AuthenticationCoordinator(store: store)
+            return AuthenticationCoordinator(store: store)
         case .catalog:
-            coordinator = CatalogContainerCoordinator(store: store, rootCoordinator: CatalogCoordinator(store: store))
+            return CatalogContainerCoordinator(store: store, rootCoordinator: CatalogCoordinator(store: store))
         }
+    }
 
-        coordinator.start(route: sceneRoute(route))
-        currentScene = coordinator
-        scenePrefix = segment.rawValue
-
-        let container = self.container
-        let new = coordinator.rootViewController
+    public func presentCoordinator(_ coordinator: AnyCoordinator?, completionHandler: @escaping () -> Void) {
+        let old = container.childViewControllers.first
+        guard let new = coordinator?.rootViewController else {
+            completionHandler()
+            return
+        }
 
         old?.willMove(toParentViewController: nil)
         container.addChildViewController(new)
@@ -73,7 +71,8 @@ final class AppCoordinator: SceneCoordinator {
         }, completion: { _ in
             old?.view.removeFromSuperview()
             old?.removeFromParentViewController()
-            new.didMove(toParentViewController: container)
+            new.didMove(toParentViewController: self.container)
+            completionHandler()
         })
     }
 }

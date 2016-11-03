@@ -10,10 +10,10 @@ import UIKit
 import Cordux
 
 final class CatalogContainerCoordinator: PresentingCoordinator {
-    var presented: PrefixSelectable?
+    var presented: Scene?
     
-    lazy var presentables: [PrefixSelectable] = {
-        return [LazyScene(prefix: "modal") { return ModalCoordinator(store: self.store) }]
+    lazy var presentables: [GeneratingScene] = {
+        return [GeneratingScene(tag: "modal") { return ModalCoordinator(store: self.store) }]
     }()
 
     var store: Store
@@ -34,8 +34,8 @@ final class CatalogCoordinator: NSObject, TabBarControllerCoordinator {
     init(store: Store) {
         self.store = store
         scenes = [
-            Scene(prefix: "first", coordinator: FirstCoordinator(store: store)),
-            Scene(prefix: "second", coordinator: SecondCoordinator(store: store)),
+            Scene(tag: "first", coordinator: FirstCoordinator(store: store)),
+            Scene(tag: "second", coordinator: SecondCoordinator(store: store)),
         ]
 
         tabBarController = UIStoryboard(name: "Catalog", bundle: nil)
@@ -75,8 +75,8 @@ final class FirstCoordinator: NavigationControllerCoordinator {
         first.inject(handler: self)
     }
 
-    func updateRoute(_ route: Route) {
-
+    func updateRoute(_ route: Route, completionHandler: @escaping () -> Void) {
+        completionHandler()
     }
 }
 
@@ -104,8 +104,8 @@ final class SecondCoordinator: NavigationControllerCoordinator {
         second.inject(handler: self)
     }
 
-    func updateRoute(_ route: Route) {
-        
+    func updateRoute(_ route: Route, completionHandler: @escaping () -> Void) {
+        completionHandler()
     }
 }
 
@@ -135,6 +135,14 @@ final class ModalCoordinator: Coordinator {
 
     func start(route: Route?) {
         first.inject(handler: self)
+    }
+
+    func prepareForRoute(_: Route?, completionHandler: @escaping () -> Void) {
+        completionHandler()
+    }
+
+    func setRoute(_: Route?, completionHandler: @escaping () -> Void) {
+        completionHandler()
     }
 }
 

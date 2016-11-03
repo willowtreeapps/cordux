@@ -16,39 +16,52 @@ import UIKit
 /// To do this, it wants a route prefix to indicate which scene should be shown, and
 /// a currentScene property to know which scene to route to.
 public protocol SceneCoordinator: Coordinator {
-    /// The route prefix that indicates the current scene.
-    var scenePrefix: String? { get }
-
     /// The current scene being shown by the coordinator.
-    var currentScene: AnyCoordinator? { get }
+    var currentScene: Scene? { get set }
 
-    /// Conforming types must implement this method in order to perform the view level
-    /// work to transition from one scene to another. It is expected that the new scene
-    /// will be initialized to show the current route passed.
-    func changeScene(_ route: Route)
+    func coordinatorForTag(_ tag: String) -> AnyCoordinator?
+    func presentCoordinator(_ coordinator: AnyCoordinator?, completionHandler: @escaping () -> Void)
 }
 
 public extension SceneCoordinator {
     public var route: Route {
-        get {
-            let route: Route = scenePrefix?.route() ?? []
-            return route + (currentScene?.route ?? [])
+        return currentScene?.route() ?? []
+    }
+
+    public func prepareForRoute(_ route: Route?, completionHandler: @escaping () -> Void) {
+        guard let currentScene = currentScene else {
+            completionHandler()
+            return
         }
-        set {
-            let r = route
-            if r.first != newValue.first {
-                changeScene(newValue)
+
+        guard let route = route else {
+            currentScene.coordinator.prepareForRoute(nil, completionHandler: completionHandler)
+            return
+        }
+
+        currentScene.coordinator.prepareForRoute(sceneRoute(route), completionHandler: completionHandler)
+    }
+
+    public func setRoute(_ route: Route?, completionHandler: @escaping () -> Void) {
+        guard let route = route, let tag = route.first else {
+            completionHandler()
+            return
+        }
+        
+        if tag != currentScene?.tag {
+            if let coordinator = coordinatorForTag(tag) {
+                currentScene = Scene(tag: tag, coordinator: coordinator)
+                coordinator.start(route: sceneRoute(route))
+                presentCoordinator(coordinator, completionHandler: completionHandler)
             } else {
-                routeScene(newValue)
+                presentCoordinator(nil, completionHandler: completionHandler)
             }
+        } else {
+            currentScene?.coordinator.setRoute(sceneRoute(route), completionHandler: completionHandler)
         }
     }
 
-    public func routeScene(_ route: Route) {
-        currentScene?.route = sceneRoute(route)
-    }
-
-    public func sceneRoute(_ route: Route) -> Route {
+    func sceneRoute(_ route: Route) -> Route {
         return Route(route.dropFirst())
     }
 }

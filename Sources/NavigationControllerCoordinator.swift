@@ -10,29 +10,35 @@ import UIKit
 
 public protocol NavigationControllerCoordinator: Coordinator {
     var navigationController: UINavigationController { get }
-    func updateRoute(_ route: Route)
+    func updateRoute(_ route: Route, completionHandler: @escaping () -> Void)
 }
 
 public extension NavigationControllerCoordinator  {
     public var rootViewController: UIViewController { return navigationController }
 
     public var route: Route {
-        get {
-            var route: Route = []
-            navigationController.viewControllers.forEach { vc in
-                #if swift(>=3)
-                    route.append(contentsOf: vc.corduxContext?.routeSegment.route() ?? [])
-                #else
-                    route.appendContentsOf(vc.corduxContext?.routeSegment.route() ?? [])
-                #endif
-            }
-            return route
+        var route: Route = []
+        navigationController.viewControllers.forEach { vc in
+            #if swift(>=3)
+                route.append(contentsOf: vc.corduxContext?.routeSegment.route() ?? [])
+            #else
+                route.appendContentsOf(vc.corduxContext?.routeSegment.route() ?? [])
+            #endif
         }
-        set {
-            if newValue != route {
-                updateRoute(newValue)
-            }
+        return route
+    }
+
+    public func prepareForRoute(_ route: Route?, completionHandler: @escaping () -> Void) {
+        completionHandler()
+    }
+
+    public func setRoute(_ newRoute: Route?, completionHandler: @escaping () -> Void) {
+        guard let newRoute = newRoute, newRoute != route else {
+            completionHandler()
+            return
         }
+
+        updateRoute(newRoute, completionHandler: completionHandler)
     }
 
     public func popRoute(_ viewController: UIViewController) {
@@ -41,5 +47,31 @@ public extension NavigationControllerCoordinator  {
         }
 
         store.setRoute(.pop(context.routeSegment.route()))
+    }
+}
+
+extension UINavigationController {
+    public func pushViewController(_ viewController: UIViewController, animated: Bool, completion: @escaping () -> Void) {
+        pushViewController(viewController, animated: animated)
+        animateWithCompletion(animated: animated, completion: completion)
+    }
+
+    public func popViewController(animated: Bool, completion: @escaping () -> Void) {
+        popViewController(animated: animated)
+        animateWithCompletion(animated: animated, completion: completion)
+    }
+
+    public func popToViewController(_ viewController: UIViewController, animated: Bool, completion: @escaping () -> Void) {
+        popToViewController(viewController, animated: animated)
+        animateWithCompletion(animated: animated, completion: completion)
+    }
+
+    func animateWithCompletion(animated: Bool, completion: @escaping () -> Void) {
+        guard animated, let coordinator = transitionCoordinator else {
+            completion()
+            return
+        }
+
+        coordinator.animate(alongsideTransition: nil) { _ in completion() }
     }
 }

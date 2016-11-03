@@ -9,38 +9,44 @@
 import UIKit
 
 public protocol TabBarControllerCoordinator: SceneCoordinator {
-    associatedtype Scene: PrefixSelectable
     var tabBarController: UITabBarController { get }
     var scenes: [Scene] { get }
 }
 
 public extension TabBarControllerCoordinator {
     public var rootViewController: UIViewController { return tabBarController }
-    public var scenePrefix: String? { return scenes[tabBarController.selectedIndex].prefix }
-    public var currentScene: AnyCoordinator? { return scenes[tabBarController.selectedIndex].coordinator }
+    public var currentScene: Scene? {
+        get {
+            return scenes[tabBarController.selectedIndex]
+        }
+        set {
+            // noop
+            // The coordinator is retained by scenes array and identified by tabBarController.selectedIndex.
+        }
+    }
 
-    public func changeScene(_ route: Route) {
-        #if swift(>=3)
-            for (index, scene) in scenes.enumerated() {
-                if route.first == scene.prefix {
-                    tabBarController.selectedIndex = index
-                    break
-                }
-            }
-        #else
-            for (index, scene) in scenes.enumerate() {
-                if route.first == scene.prefix {
-                    tabBarController.selectedIndex = index
-                    break
-                }
-            }
-        #endif
+    func coordinatorForTag(_ tag: String) -> AnyCoordinator? {
+        let index = tabBarController.selectedIndex
+        guard index < scenes.count else {
+            return nil
+        }
+
+        return scenes[index].coordinator
+    }
+
+    func presentCoordinator(_ coordinator: AnyCoordinator?, completionHandler: @escaping () -> Void) {
+        guard let coordinator = coordinator else {
+            completionHandler()
+            return
+        }
+
+        tabBarController.selectedIndex = scenes.index(where: { $0.coordinator === coordinator }) ?? 0
     }
 
     public func setRouteForViewController(_ viewController: UIViewController) -> Bool {
         for scene in scenes {
-            if scene.coordinator.rootViewController == viewController {
-                store.setRoute(.replace(route, scene + scene.coordinator.route))
+            if scene.coordinator.rootViewController === viewController {
+                store.setRoute(.replace(route, scene.route()))
                 return true
             }
         }

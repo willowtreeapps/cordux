@@ -24,11 +24,15 @@ public final class Store<State : StateType> {
     public private(set) var state: State
     public let reducer: AnyReducer
     public let middlewares: [AnyMiddleware]
+
+    let routeQueue = DispatchQueue(label: "CorduxRouting", qos: .userInitiated)
+    var routeAction: DispatchWorkItem?
     let routeLogger: RouteLogger?
+    var lastRoute: Route?
 
     public weak var rootCoordinator: AnyCoordinator? {
         didSet {
-            rootCoordinator?.route = state.route
+            propagateRoute(state.route)
         }
     }
 
@@ -85,6 +89,7 @@ public final class Store<State : StateType> {
 
     public func setRoute<T>(_ action: RouteAction<T>) {
         state.route = state.route.reduce(action)
+        lastRoute = state.route
         routeLogger?(.set(state.route))
     }
 
@@ -105,7 +110,31 @@ public final class Store<State : StateType> {
         }
 
         subscriptions.forEach { $0.subscriber?._newState($0.transform?(state) ?? state) }
-        rootCoordinator?.route = state.route
+        propagateRoute(state.route)
+    }
+
+    func propagateRoute(_ route: Route) {
+        guard route != lastRoute else {
+            return
+        }
+        let item = DispatchWorkItem {
+            let group = DispatchGroup()
+            group.enter()
+            DispatchQueue.main.async {
+                self.rootCoordinator?.prepareForRoute(route) {
+                    DispatchQueue.main.async {
+                        self.rootCoordinator?.setRoute(route) {
+                            group.leave()
+                        }
+                    }
+                }
+            }
+            group.wait()
+        }
+        routeQueue.async(execute: item)
+        routeAction?.cancel()
+        lastRoute = route
+        routeAction = item
     }
 
     func isNewSubscriber(_ subscriber: AnyStoreSubscriber) -> Bool {

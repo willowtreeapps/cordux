@@ -44,6 +44,14 @@ final class AuthenticationCoordinator: NavigationControllerCoordinator {
         }
     }
 
+    public func updateRoute(_ route: Route, completionHandler: @escaping () -> Void) {
+        guard parse(route: route).last == .fp else {
+            completionHandler()
+            return
+        }
+
+        navigationController.pushViewController(createForgotPasswordViewController(), animated: true, completion: completionHandler)
+    }
     func updateRoute(_ route: Route) {
         if parse(route: route).last == .fp {
             navigationController.pushViewController(createForgotPasswordViewController(), animated: true)
