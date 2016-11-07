@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D91C93591DD1249700DC29EB /* SimpleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91C93581DD1249700DC29EB /* SimpleCoordinator.swift */; };
 		D91D099D1D4FA03500608359 /* Cordux.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D91D09941D4FA03500608359 /* Cordux.framework */; };
 		D91D09A21D4FA03500608359 /* Cordux_tvOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91D09A11D4FA03500608359 /* Cordux_tvOSTests.swift */; };
 		D91D09A41D4FA03500608359 /* Cordux-tvOS.h in Headers */ = {isa = PBXBuildFile; fileRef = D91D09961D4FA03500608359 /* Cordux-tvOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -66,6 +67,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D91C93581DD1249700DC29EB /* SimpleCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleCoordinator.swift; sourceTree = "<group>"; };
 		D91D09941D4FA03500608359 /* Cordux.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Cordux.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D91D09961D4FA03500608359 /* Cordux-tvOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cordux-tvOS.h"; sourceTree = "<group>"; };
 		D91D09971D4FA03500608359 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				D93D03F21D4A8E5500CED281 /* Coordinator.swift */,
+				D91C93581DD1249700DC29EB /* SimpleCoordinator.swift */,
 				D93D03FD1D4A8EBE00CED281 /* SceneCoordinator.swift */,
 				D93D03FF1D4A8EE900CED281 /* TabBarControllerCoordinator.swift */,
 				D93D04011D4A8F0200CED281 /* NavigationControllerCoordinator.swift */,
@@ -434,6 +437,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D91C93591DD1249700DC29EB /* SimpleCoordinator.swift in Sources */,
 				D9B557871DCA8020006224A7 /* Scenes.swift in Sources */,
 				D93D04021D4A8F0200CED281 /* NavigationControllerCoordinator.swift in Sources */,
 				D93D03F81D4A8E5500CED281 /* Subscriptions.swift in Sources */,
