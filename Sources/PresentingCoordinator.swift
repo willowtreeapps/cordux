@@ -41,13 +41,34 @@ public extension PresentingCoordinator  {
         return route
     }
 
-    public func prepareForRoute(_ route: Route?, completionHandler: @escaping () -> Void) {
-        guard route != nil else {
+    public func prepareForRoute(_ newValue: Route?, completionHandler: @escaping () -> Void) {
+        guard let route = newValue else {
             dismiss(completionHandler: completionHandler)
             return
         }
 
-        completionHandler()
+        withGroup(completionHandler) { group in
+            let (rootRoute, presentedRoute, _) = parsePresentableRoute(route)
+
+            group.enter()
+            rootCoordinator.prepareForRoute(rootRoute) {
+                group.leave()
+            }
+
+            if let presented = self.presented {
+                group.enter()
+                if let presentedRoute = presentedRoute {
+                    presented.coordinator.prepareForRoute(presentedRoute) {
+                        group.leave()
+                    }
+                } else {
+                    dismiss() {
+                        group.leave()
+                    }
+                }
+
+            }
+        }
     }
 
     public func setRoute(_ newValue: Route?, completionHandler: @escaping () -> Void) {
@@ -55,15 +76,21 @@ public extension PresentingCoordinator  {
             dismiss(completionHandler: completionHandler)
             return
         }
-        if newValue != route {
-            let group = DispatchGroup()
-            group.enter()
-            group.enter()
+
+        guard newValue != route else {
+            completionHandler()
+            return
+        }
+
+        withGroup(completionHandler) { group in
             let (rootRoute, presentedRoute, presentable) = parsePresentableRoute(newValue)
+
+            group.enter()
             rootCoordinator.setRoute(rootRoute) {
                 group.leave()
             }
 
+            group.enter()
             if let presentable = presentable, let presentedRoute = presentedRoute {
                 present(presentable: presentable, route: presentedRoute) {
                     group.leave()
@@ -72,11 +99,6 @@ public extension PresentingCoordinator  {
                 dismiss() {
                     group.leave()
                 }
-            }
-            let queue = DispatchQueue(label: "PresentingCoordinatorSync")
-            queue.async {
-                group.wait()
-                DispatchQueue.main.async(execute: completionHandler)
             }
         }
     }
@@ -134,6 +156,19 @@ public extension PresentingCoordinator  {
                 self.presented = nil
                 completionHandler()
             }
+        }
+    }
+
+    /// Helper method for synchronizing activities with a DispatchGroup
+    ///
+    /// - Parameter perform: Callback to do work with the group
+    func withGroup(_ completionHandler: @escaping () -> Void, perform: (DispatchGroup) -> Void) {
+        let group = DispatchGroup()
+        perform(group)
+        let queue = DispatchQueue(label: "PresentingCoordinatorSync")
+        queue.async {
+            group.wait()
+            DispatchQueue.main.async(execute: completionHandler)
         }
     }
 }
