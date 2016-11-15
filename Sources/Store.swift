@@ -8,6 +8,8 @@
 
 import Foundation
 
+private let kRouteTimeoutDuration: TimeInterval = 3
+
 /// Action is a marker type that describes types that can modify state.
 public protocol Action {}
 
@@ -129,7 +131,10 @@ public final class Store<State : StateType> {
                     }
                 }
             }
-            group.wait()
+            let result = group.wait(timeout: .now() + kRouteTimeoutDuration)
+            if case .timedOut = result {
+                alertStuckRouter()
+            }
         }
         routeQueue.async(execute: item)
         routeAction?.cancel()
@@ -150,3 +155,12 @@ public final class Store<State : StateType> {
         return true
     }
 }
+
+func alertStuckRouter() {
+    print("[Cordux]: Router is stuck waiting for a completion handler to be called.")
+    print("[Cordux]: Please make sure that you have called the completion handler in all routing methods (prepareForRoute, setRoute, updateRoute).")
+    print("[Cordux]: Set a symbolic breakpoint for the `CorduxRouterStuck` symbol in order to halt the program when this happens.")
+    CorduxRouterStuck()
+}
+
+func CorduxRouterStuck() {}
