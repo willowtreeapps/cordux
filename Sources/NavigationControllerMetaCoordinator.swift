@@ -15,7 +15,7 @@ import Foundation
 ///   - Routes for each child coordinator are fixed
 ///   - This coordinator does not rearrange children; only pushes and pops
 ///   - All child coordinators that are disappearing have `prepareForRoute(nil)` called simultaneously.
-public protocol NavigationControllerMetaCoordinator: Coordinator {
+public protocol NavigationControllerMetaCoordinator: Coordinator, ViewControllerLifecycleDelegate {
     var navigationController: UINavigationController { get }
 
     var coordinators: [AnyCoordinator] { get set }
@@ -62,12 +62,15 @@ public extension NavigationControllerMetaCoordinator  {
         let newCoordinators = coordinators(for: newRouteTail)
         newCoordinators.forEach { $0.start(route: []) }
 
+        let newViewControllers = newCoordinators.map { $0.rootViewController }
+        newViewControllers.forEach { $0.addLifecycleDelegate(self) }
+
         coordinators.removeLast(coordinators.count - number)
         coordinators.append(contentsOf: newCoordinators)
 
         var viewControllers = navigationController.viewControllers
         viewControllers.removeLast(coordinators.count - number)
-        viewControllers.append(contentsOf: newCoordinators.map({ $0.rootViewController }))
+        viewControllers.append(contentsOf: newViewControllers)
         navigationController.setViewControllers(viewControllers, animated: true, completion: completionHandler)
     }
 
@@ -85,11 +88,18 @@ public extension NavigationControllerMetaCoordinator  {
         return index + 1
     }
 
+    public func didMove(toParentViewController parent: UIViewController?, viewController: UIViewController) {
+        if parent == nil {
+            coordinators.removeLast()
+        }
+    }
+
     public func popRoute(_ viewController: UIViewController) {
-        guard let context = viewController.corduxContext else {
+        guard let routeSegment = viewController.corduxContext?.routeSegment else {
             return
         }
 
-        store.setRoute(.pop(context.routeSegment.route()))
+        store.setRoute(.pop(routeSegment.route()))
     }
 }
+

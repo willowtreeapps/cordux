@@ -20,9 +20,9 @@ public extension NavigationControllerCoordinator  {
         var route: Route = []
         navigationController.viewControllers.forEach { vc in
             #if swift(>=3)
-                route.append(contentsOf: vc.corduxContext?.routeSegment.route() ?? [])
+                route.append(contentsOf: vc.corduxContext?.routeSegment?.route() ?? [])
             #else
-                route.appendContentsOf(vc.corduxContext?.routeSegment.route() ?? [])
+                route.appendContentsOf(vc.corduxContext?.routeSegment?.route() ?? [])
             #endif
         }
         return route
@@ -42,11 +42,11 @@ public extension NavigationControllerCoordinator  {
     }
 
     public func popRoute(_ viewController: UIViewController) {
-        guard let context = viewController.corduxContext else {
+        guard let routeSegment = viewController.corduxContext?.routeSegment else {
             return
         }
 
-        store.setRoute(.pop(context.routeSegment.route()))
+        store.setRoute(.pop(routeSegment.route()))
     }
 }
 

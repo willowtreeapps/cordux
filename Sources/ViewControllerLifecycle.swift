@@ -17,6 +17,54 @@ import UIKit
     @objc optional func didMove(toParentViewController: UIViewController?, viewController: UIViewController)
 }
 
+final class LifecycleDelegateCollection {
+    var delegates: [_wrapper] = []
+
+    func append(_ delegate: ViewControllerLifecycleDelegate?) {
+        guard let delegate = delegate else {
+            return
+        }
+        delegates.append(_wrapper(delegate))
+    }
+
+    struct _wrapper {
+        weak var delegate: ViewControllerLifecycleDelegate?
+        init(_ delegate: ViewControllerLifecycleDelegate) {
+            self.delegate = delegate
+        }
+    }
+}
+
+extension LifecycleDelegateCollection {
+    func forEach(_ body: (ViewControllerLifecycleDelegate?) -> Void) {
+        delegates.forEach { body($0.delegate) }
+    }
+
+    func viewDidLoad(viewController: UIViewController) {
+        forEach { $0?.viewDidLoad?(viewController: viewController) }
+    }
+
+    func viewWillAppear(_ animated: Bool, viewController: UIViewController) {
+        forEach { $0?.viewWillAppear?(animated, viewController: viewController) }
+    }
+
+    func viewDidAppear(_ animated: Bool, viewController: UIViewController) {
+        forEach { $0?.viewDidAppear?(animated, viewController: viewController) }
+    }
+
+    func viewWillDisappear(_ animated: Bool, viewController: UIViewController) {
+        forEach { $0?.viewWillDisappear?(animated, viewController: viewController) }
+    }
+
+    func viewDidDisappear(_ animated: Bool, viewController: UIViewController) {
+        forEach { $0?.viewDidDisappear?(animated, viewController: viewController) }
+    }
+
+    func didMove(toParentViewController parent: UIViewController?, viewController: UIViewController) {
+        forEach { $0?.didMove?(toParentViewController: parent, viewController: viewController) }
+    }
+}
+
 extension UIViewController {
     static let swizzle: Void = {
         UIViewController.cordux_swizzleMethod(#selector(UIViewController.viewDidLoad),
@@ -47,39 +95,39 @@ extension UIViewController {
     func cordux_viewDidLoad() {
         self.cordux_viewDidLoad()
         #if swift(>=3)
-            self.corduxContext?.lifecycleDelegate?.viewDidLoad?(viewController: self)
+            self.corduxContext?.lifecycleDelegate.viewDidLoad(viewController: self)
         #else
-            self.corduxContext?.lifecycleDelegate?.viewDidLoad?(self)
+            self.corduxContext?.lifecycleDelegate.viewDidLoad(self)
         #endif
     }
 
     func cordux_viewWillAppear(_ animated: Bool) {
         self.cordux_viewWillAppear(animated)
-        self.corduxContext?.lifecycleDelegate?.viewWillAppear?(animated, viewController: self)
+        self.corduxContext?.lifecycleDelegate.viewWillAppear(animated, viewController: self)
     }
 
     func cordux_viewDidAppear(_ animated: Bool) {
         self.cordux_viewDidAppear(animated)
-        self.corduxContext?.lifecycleDelegate?.viewDidAppear?(animated, viewController: self)
+        self.corduxContext?.lifecycleDelegate.viewDidAppear(animated, viewController: self)
     }
 
     func cordux_viewWillDisappear(_ animated: Bool) {
         self.cordux_viewWillDisappear(animated)
-        self.corduxContext?.lifecycleDelegate?.viewWillDisappear?(animated, viewController: self)
+        self.corduxContext?.lifecycleDelegate.viewWillDisappear(animated, viewController: self)
     }
 
     func cordux_viewDidDisappear(_ animated: Bool) {
         self.cordux_viewDidDisappear(animated)
-        self.corduxContext?.lifecycleDelegate?.viewDidDisappear?(animated, viewController: self)
+        self.corduxContext?.lifecycleDelegate.viewDidDisappear(animated, viewController: self)
     }
 
     func cordux_didMoveToParentViewController(_ parentViewController: UIViewController?) {
         self.cordux_didMoveToParentViewController(parentViewController)
 
         #if swift(>=3)
-            self.corduxContext?.lifecycleDelegate?.didMove?(toParentViewController: parentViewController, viewController: self)
+            self.corduxContext?.lifecycleDelegate.didMove(toParentViewController: parentViewController, viewController: self)
         #else
-            self.corduxContext?.lifecycleDelegate?.didMove?(parentViewController, viewController: self)
+            self.corduxContext?.lifecycleDelegate.didMove(parentViewController, viewController: self)
         #endif
     }
 

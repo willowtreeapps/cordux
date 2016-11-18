@@ -13,12 +13,16 @@ public protocol Contextual: class {
 }
 
 public final class Context: NSObject {
-    public let routeSegment: RouteConvertible
-    public weak var lifecycleDelegate: ViewControllerLifecycleDelegate?
+    public let routeSegment: RouteConvertible?
+    var lifecycleDelegate: LifecycleDelegateCollection
 
-    public init(_ routeSegment: RouteConvertible, lifecycleDelegate: ViewControllerLifecycleDelegate?) {
+    public init(routeSegment: RouteConvertible? = nil, lifecycleDelegate: ViewControllerLifecycleDelegate? = nil) {
         self.routeSegment = routeSegment
-        self.lifecycleDelegate = lifecycleDelegate
+        self.lifecycleDelegate = LifecycleDelegateCollection()
+
+        if let delegate = lifecycleDelegate {
+            self.lifecycleDelegate.append(delegate)
+        }
     }
 }
 
@@ -42,5 +46,14 @@ extension UIViewController: Contextual {
                 )
             }
         }
+    }
+
+    func addLifecycleDelegate(_ delegate: ViewControllerLifecycleDelegate) {
+        guard let context = corduxContext else {
+            corduxContext = Context(lifecycleDelegate: delegate)
+            return
+        }
+
+        context.lifecycleDelegate.append(delegate)
     }
 }
