@@ -115,6 +115,14 @@ public final class Store<State : StateType> {
         propagateRoute(state.route)
     }
 
+    /// Propagates the route through the app via the `rootCoordinator`.
+    ///
+    /// - Note: Does not re-propagate identical routes
+    /// - Note: If a route is attempted to be propagated while another route is working, it is executed after the
+    ///         original propagation completes. If multiple attempts occur, only the last one is queued and executed.
+    /// - Note: All routing methods must call their completion handlers. This method times out after 3 seconds.
+    ///
+    /// - Parameter route: The route to propagate
     func propagateRoute(_ route: Route) {
         guard route != lastRoute else {
             return

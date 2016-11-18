@@ -99,6 +99,12 @@ extension Route {
     }
 }
 
+extension Route {
+    func isPrefixed(with route: Route) -> Bool {
+        return Array(components.prefix(route.components.count)) == route.components
+    }
+}
+
 
 extension Route {
     #if swift(>=3)

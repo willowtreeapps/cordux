@@ -161,7 +161,7 @@ public extension PresentingCoordinator  {
 
     /// Helper method for synchronizing activities with a DispatchGroup
     ///
-    /// - Parameter perform: Callback to do work with the group
+    /// - Parameter perform: Callback to do work with the group, executed on the main queue
     func withGroup(_ completionHandler: @escaping () -> Void, perform: (DispatchGroup) -> Void) {
         let group = DispatchGroup()
         perform(group)

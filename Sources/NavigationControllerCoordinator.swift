@@ -66,6 +66,11 @@ extension UINavigationController {
         animateWithCompletion(animated: animated, completion: completion)
     }
 
+    public func setViewControllers(_ viewControllers: [UIViewController], animated: Bool, completion: @escaping () -> Void) {
+        setViewControllers(viewControllers, animated: animated)
+        animateWithCompletion(animated: animated, completion: completion)
+    }
+
     func animateWithCompletion(animated: Bool, completion: @escaping () -> Void) {
         guard animated, let coordinator = transitionCoordinator else {
             completion()
