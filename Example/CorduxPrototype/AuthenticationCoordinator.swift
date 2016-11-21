@@ -31,7 +31,7 @@ final class AuthenticationCoordinator: NavigationControllerCoordinator {
 
     func start(route: Route?) {
         signInViewController.inject(handler: self)
-        signInViewController.corduxContext = Context(RouteSegment.signIn, lifecycleDelegate: self)
+        signInViewController.corduxContext = Context(routeSegment: RouteSegment.signIn, lifecycleDelegate: self)
 
         let segments = parse(route: route)
         guard !segments.isEmpty else {
@@ -65,7 +65,7 @@ final class AuthenticationCoordinator: NavigationControllerCoordinator {
     func createForgotPasswordViewController() -> ForgotPasswordViewController {
         let forgotPasswordViewController = storyboard.instantiateViewController(withIdentifier: "ForgotPassword") as! ForgotPasswordViewController
         forgotPasswordViewController.inject(self)
-        forgotPasswordViewController.corduxContext = Context(RouteSegment.fp, lifecycleDelegate: self)
+        forgotPasswordViewController.corduxContext = Context(routeSegment: RouteSegment.fp, lifecycleDelegate: self)
         return forgotPasswordViewController
     }
 }

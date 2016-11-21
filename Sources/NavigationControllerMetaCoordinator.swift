@@ -15,6 +15,19 @@ import Foundation
 ///   - Routes for each child coordinator are fixed
 ///   - This coordinator does not rearrange children; only pushes and pops
 ///   - All child coordinators that are disappearing have `prepareForRoute(nil)` called simultaneously.
+///
+/// Implementing classes should define the `ViewControllerLifecycleDelegate` method 
+/// `didMove(toParentViewController:viewController:` to pop off coordinators when necessary. This logic should suffice:
+/**
+```
+func didMove(toParentViewController parent: UIViewController?, viewController: UIViewController) {
+    if parent == nil {
+        coordinators.removeLast()
+    }
+}
+```
+*/
+///
 public protocol NavigationControllerMetaCoordinator: Coordinator, ViewControllerLifecycleDelegate {
     var navigationController: UINavigationController { get }
 
@@ -86,12 +99,6 @@ public extension NavigationControllerMetaCoordinator  {
             }
         }
         return index + 1
-    }
-
-    public func didMove(toParentViewController parent: UIViewController?, viewController: UIViewController) {
-        if parent == nil {
-            coordinators.removeLast()
-        }
     }
 
     public func popRoute(_ viewController: UIViewController) {
