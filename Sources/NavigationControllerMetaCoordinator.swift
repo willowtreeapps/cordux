@@ -66,6 +66,10 @@ public extension NavigationControllerMetaCoordinator  {
         }
 
         let number = numberOfLastExistingCoordinator(for: route)
+        let numberToRemove = coordinators.count - number
+        coordinators.removeLast(numberToRemove)
+        var viewControllers = navigationController.viewControllers
+        viewControllers.removeLast(numberToRemove)
 
         var newRouteTail = newRoute
         for i in 0..<number {
@@ -74,15 +78,10 @@ public extension NavigationControllerMetaCoordinator  {
 
         let newCoordinators = coordinators(for: newRouteTail)
         newCoordinators.forEach { $0.start(route: []) }
+        coordinators.append(contentsOf: newCoordinators)
 
         let newViewControllers = newCoordinators.map { $0.rootViewController }
         newViewControllers.forEach { $0.addLifecycleDelegate(self) }
-
-        coordinators.removeLast(coordinators.count - number)
-        coordinators.append(contentsOf: newCoordinators)
-
-        var viewControllers = navigationController.viewControllers
-        viewControllers.removeLast(coordinators.count - number)
         viewControllers.append(contentsOf: newViewControllers)
         navigationController.setViewControllers(viewControllers, animated: true, completion: completionHandler)
     }
