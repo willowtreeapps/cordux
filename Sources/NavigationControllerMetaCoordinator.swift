@@ -6,7 +6,7 @@
 //  Copyright © 2016 WillowTree. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 /// A coordinator to manage a navigation controller where each child view controller is managed by a single coordinator.
 ///
