@@ -59,8 +59,8 @@ public extension NavigationControllerMetaCoordinator  {
         completionHandler()
     }
 
-    public func setRoute(_ newRoute: Route?, completionHandler: @escaping () -> Void) {
-        guard let newRoute = newRoute, newRoute != route else {
+    public func setRoute(_ route: Route?, completionHandler: @escaping () -> Void) {
+        guard let route = route, route != self.route else {
             completionHandler()
             return
         }
@@ -71,7 +71,7 @@ public extension NavigationControllerMetaCoordinator  {
         var viewControllers = navigationController.viewControllers
         viewControllers.removeLast(numberToRemove)
 
-        var newRouteTail = newRoute
+        var newRouteTail = route
         for i in 0..<number {
             newRouteTail = Route(newRouteTail.suffix(from: coordinators[i].route.components.count))
         }
@@ -86,8 +86,9 @@ public extension NavigationControllerMetaCoordinator  {
         navigationController.setViewControllers(viewControllers, animated: true, completion: completionHandler)
     }
 
+    // 1-based index of last coordinator that shares in the route; 0 for none
     func numberOfLastExistingCoordinator(for route: Route?) -> Int {
-        guard let route = route else {
+        guard var route = route else {
             return 0
         }
 
@@ -95,6 +96,9 @@ public extension NavigationControllerMetaCoordinator  {
         for (i, coordinator) in coordinators.enumerated() {
             if route.isPrefixed(with: coordinator.route) {
                 index = i
+                route = Route(route.suffix(from: coordinator.route.components.count))
+            } else {
+                return index + 1
             }
         }
         return index + 1
