@@ -52,7 +52,7 @@ public extension SceneCoordinator {
             if let coordinator = coordinatorForTag(tag) {
                 currentScene = Scene(tag: tag, coordinator: coordinator)
                 coordinator.start(route: sceneRoute(route))
-                presentCoordinator(coordinator, completionHandler: completionHandler)
+                presentCoordinator(coordinator, completionHandler: wrapPresentingCompletionHandler(coordinator: coordinator, completionHandler: completionHandler))
             } else {
                 presentCoordinator(nil, completionHandler: completionHandler)
             }

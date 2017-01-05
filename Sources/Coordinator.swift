@@ -60,3 +60,13 @@ public protocol Coordinator: AnyCoordinator {
     associatedtype State: StateType
     var store: Store<State> { get }
 }
+
+public func wrapPresentingCompletionHandler(coordinator: AnyCoordinator, completionHandler: @escaping () -> Void) -> () -> Void {
+    guard let coordinator = coordinator as? AnyPresentingCoordinator, coordinator.hasStoredPresentable else {
+        return completionHandler
+    }
+
+    return {
+        coordinator.presentStoredPresentable(completionHandler: completionHandler)
+    }
+}

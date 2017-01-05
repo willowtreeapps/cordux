@@ -8,14 +8,19 @@
 
 import UIKit
 
-public protocol PresentingCoordinator: Coordinator {
+public protocol AnyPresentingCoordinator {
+    var hasStoredPresentable: Bool { get }
+    func presentStoredPresentable(completionHandler: @escaping () -> Void)
+}
+
+public protocol PresentingCoordinator: Coordinator, AnyPresentingCoordinator {
     var rootCoordinator: AnyCoordinator { get }
     var presented: Scene? { get set }
 
     var presentables: [GeneratingScene] { get }
-    func parsePresentableRoute(_ route: Route) -> (rootRoute: Route, presentedRoute: Route?, presentable: GeneratingScene?)
+    func parsePresentableRoute(_ route: Route) -> (rootRoute: Route, presentable: (route: Route, scene: GeneratingScene)?)
 
-    func present(presentable: GeneratingScene, route: Route, completionHandler: @escaping () -> Void)
+    func present(scene: GeneratingScene, route: Route, completionHandler: @escaping () -> Void)
     func dismiss(completionHandler: @escaping () -> Void)
 }
 
@@ -48,7 +53,7 @@ public extension PresentingCoordinator  {
         }
 
         withGroup(completionHandler) { group in
-            let (rootRoute, presentedRoute, _) = parsePresentableRoute(route)
+            let (rootRoute, presentable) = parsePresentableRoute(route)
 
             group.enter()
             rootCoordinator.prepareForRoute(rootRoute) {
@@ -57,7 +62,7 @@ public extension PresentingCoordinator  {
 
             if let presented = self.presented {
                 group.enter()
-                if let presentedRoute = presentedRoute {
+                if let presentedRoute = presentable?.route {
                     presented.coordinator.prepareForRoute(presentedRoute) {
                         group.leave()
                     }
@@ -83,7 +88,7 @@ public extension PresentingCoordinator  {
         }
 
         withGroup(completionHandler) { group in
-            let (rootRoute, presentedRoute, presentable) = parsePresentableRoute(newValue)
+            let (rootRoute, presentable) = parsePresentableRoute(newValue)
 
             group.enter()
             rootCoordinator.setRoute(rootRoute) {
@@ -91,8 +96,8 @@ public extension PresentingCoordinator  {
             }
 
             group.enter()
-            if let presentable = presentable, let presentedRoute = presentedRoute {
-                present(presentable: presentable, route: presentedRoute) {
+            if let presentable = presentable {
+                present(scene: presentable.scene, route: presentable.route) {
                     group.leave()
                 }
             } else {
@@ -104,30 +109,54 @@ public extension PresentingCoordinator  {
     }
 
     func start(route: Route?) {
-        rootCoordinator.start(route: route)
+        guard let route = route else {
+            rootCoordinator.start(route: nil)
+            return
+        }
+
+        let (rootRoute, presentable) = parsePresentableRoute(route)
+        rootCoordinator.start(route: rootRoute)
+
+        if let presentable = presentable {
+            rootCoordinator.rootViewController.corduxToPresent = ToPresentBox(route: presentable.route, scene: presentable.scene)
+        }
     }
 
-    func parsePresentableRoute(_ route: Route) -> (rootRoute: Route, presentedRoute: Route?, presentable: GeneratingScene?) {
+    public var hasStoredPresentable: Bool {
+        return rootCoordinator.rootViewController.corduxToPresent != nil
+    }
+
+    public func presentStoredPresentable(completionHandler: @escaping () -> Void) {
+        guard let toPresent = rootCoordinator.rootViewController.corduxToPresent else {
+            completionHandler()
+            return
+        }
+
+        rootCoordinator.rootViewController.corduxToPresent = nil
+        present(scene: toPresent.scene, route: toPresent.route, completionHandler: completionHandler)
+    }
+
+    func parsePresentableRoute(_ route: Route) -> (rootRoute: Route, presentable: (route: Route, scene: GeneratingScene)?) {
         for presentable in presentables {
             let parts = route.components.split(separator: presentable.tag,
                                                maxSplits: 2,
                                                omittingEmptySubsequences: false)
             if parts.count == 2 {
-                return (Route(parts[0]), Route(parts[1]), presentable)
+                return (Route(parts[0]), (Route(parts[1]), presentable))
             }
         }
-        return (route, nil, nil)
+        return (route, nil)
     }
 
     /// Presents the presentable coordinator.
     /// If it is already presented, this method merely adjusts the route.
     /// If a different presentable is currently presented, this method dismisses it first.
-    func present(presentable: GeneratingScene, route: Route, completionHandler: @escaping () -> Void) {
+    func present(scene: GeneratingScene, route: Route, completionHandler: @escaping () -> Void) {
         if let presented = presented {
-            if presentable.tag != presented.tag {
+            if scene.tag != presented.tag {
                 dismiss() {
                     DispatchQueue.main.async {
-                        self.present(presentable: presentable, route: route, completionHandler: completionHandler)
+                        self.present(scene: scene, route: route, completionHandler: completionHandler)
                     }
                 }
             } else {
@@ -136,10 +165,10 @@ public extension PresentingCoordinator  {
             return
         }
 
-        let coordinator = presentable.buildCoordinator()
+        let coordinator = scene.buildCoordinator()
         coordinator.start(route: route)
         rootViewController.present(coordinator.rootViewController, animated: true) {
-            self.presented = Scene(tag: presentable.tag, coordinator: coordinator)
+            self.presented = Scene(tag: scene.tag, coordinator: coordinator)
             completionHandler()
         }
     }
@@ -169,6 +198,41 @@ public extension PresentingCoordinator  {
         queue.async {
             group.wait()
             DispatchQueue.main.async(execute: completionHandler)
+        }
+    }
+}
+
+// MARK: - Storage Helpers
+
+fileprivate final class ToPresentBox: NSObject {
+    let route: Route
+    let scene: GeneratingScene
+
+    init(route: Route, scene: GeneratingScene) {
+        self.route = route
+        self.scene = scene
+    }
+}
+
+extension UIViewController {
+    private struct CorduxPresentingCoordinatorKeys {
+        static var ToPresent = "cordux_to_present"
+    }
+
+    fileprivate var corduxToPresent: ToPresentBox? {
+        get {
+            return objc_getAssociatedObject(self, &CorduxPresentingCoordinatorKeys.ToPresent) as? ToPresentBox
+        }
+
+        set {
+            if let newValue = newValue {
+                objc_setAssociatedObject(
+                    self,
+                    &CorduxPresentingCoordinatorKeys.ToPresent,
+                    newValue as ToPresentBox?,
+                    .OBJC_ASSOCIATION_RETAIN_NONATOMIC
+                )
+            }
         }
     }
 }

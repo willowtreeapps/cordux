@@ -41,6 +41,7 @@ public extension TabBarControllerCoordinator {
         }
 
         tabBarController.selectedIndex = scenes.index(where: { $0.coordinator === coordinator }) ?? 0
+        completionHandler()
     }
 
     public func setRouteForViewController(_ viewController: UIViewController) -> Bool {
