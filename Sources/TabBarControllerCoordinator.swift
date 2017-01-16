@@ -26,7 +26,8 @@ public extension TabBarControllerCoordinator {
     }
 
     func coordinatorForTag(_ tag: String) -> AnyCoordinator? {
-        let index = tabBarController.selectedIndex
+        let index = scenes.index { $0.tag == tag } ?? scenes.count
+
         guard index < scenes.count else {
             return nil
         }
