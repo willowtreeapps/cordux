@@ -26,12 +26,7 @@ public extension TabBarControllerCoordinator {
     }
 
     func coordinatorForTag(_ tag: String) -> AnyCoordinator? {
-        let index = tabBarController.selectedIndex
-        guard index < scenes.count else {
-            return nil
-        }
-
-        return scenes[index].coordinator
+        return scenes.first(where: { $0.tag == tag })?.coordinator
     }
 
     func presentCoordinator(_ coordinator: AnyCoordinator?, completionHandler: @escaping () -> Void) {
