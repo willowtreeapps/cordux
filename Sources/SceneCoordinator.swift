@@ -19,7 +19,7 @@ public protocol SceneCoordinator: Coordinator {
     /// The current scene being shown by the coordinator.
     var currentScene: Scene? { get set }
 
-    func coordinatorForTag(_ tag: String) -> AnyCoordinator?
+    func coordinatorForTag(_ tag: String) -> (coordinator: AnyCoordinator, started: Bool)?
     func presentCoordinator(_ coordinator: AnyCoordinator?, completionHandler: @escaping () -> Void)
 }
 
@@ -49,9 +49,11 @@ public extension SceneCoordinator {
         }
         
         if tag != currentScene?.tag {
-            if let coordinator = coordinatorForTag(tag) {
+            if let (coordinator, started) = coordinatorForTag(tag) {
                 currentScene = Scene(tag: tag, coordinator: coordinator)
-                coordinator.start(route: sceneRoute(route))
+                if !started {
+                    coordinator.start(route: sceneRoute(route))
+                }
                 presentCoordinator(coordinator, completionHandler: wrapPresentingCompletionHandler(coordinator: coordinator, completionHandler: completionHandler))
             } else {
                 presentCoordinator(nil, completionHandler: completionHandler)

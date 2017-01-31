@@ -8,6 +8,8 @@
 
 import UIKit
 
+/// A scene coordinator that keeps its scenes in an array (always in memory), and is rendered by a UITabBarController.
+/// Conforming types' start method should invoke the start method for each scene. 
 public protocol TabBarControllerCoordinator: SceneCoordinator {
     var tabBarController: UITabBarController { get }
     var scenes: [Scene] { get }
@@ -25,8 +27,8 @@ public extension TabBarControllerCoordinator {
         }
     }
 
-    func coordinatorForTag(_ tag: String) -> AnyCoordinator? {
-        return scenes.first(where: { $0.tag == tag })?.coordinator
+    func coordinatorForTag(_ tag: String) -> (coordinator: AnyCoordinator, started: Bool)? {
+        return scenes.first(where: { $0.tag == tag }).map { ($0.coordinator, true) }
     }
 
     func presentCoordinator(_ coordinator: AnyCoordinator?, completionHandler: @escaping () -> Void) {
