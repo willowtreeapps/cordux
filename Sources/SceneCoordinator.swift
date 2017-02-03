@@ -50,11 +50,19 @@ public extension SceneCoordinator {
         
         if tag != currentScene?.tag {
             if let (coordinator, started) = coordinatorForTag(tag) {
+                let wrappedCompletionHandler = wrapPresentingCompletionHandler(coordinator: coordinator,
+                                                                               completionHandler: completionHandler)
                 currentScene = Scene(tag: tag, coordinator: coordinator)
                 if !started {
                     coordinator.start(route: sceneRoute(route))
                 }
-                presentCoordinator(coordinator, completionHandler: wrapPresentingCompletionHandler(coordinator: coordinator, completionHandler: completionHandler))
+                presentCoordinator(coordinator, completionHandler: {
+                    if started {
+                        coordinator.setRoute(self.sceneRoute(route), completionHandler: wrappedCompletionHandler)
+                    } else {
+                        wrappedCompletionHandler()
+                    }
+                })
             } else {
                 presentCoordinator(nil, completionHandler: completionHandler)
             }
