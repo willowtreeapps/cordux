@@ -36,7 +36,7 @@ public extension PresentingCoordinator  {
         #else
             route.appendContentsOf(rootCoordinator.route)
         #endif
-        if let presented = getPresented() {
+        if let presented = presented, isPresentedViewControllerUpToDate {
             #if swift(>=3)
                 route.append(contentsOf: presented.route())
             #else
@@ -47,6 +47,8 @@ public extension PresentingCoordinator  {
     }
 
     public func prepareForRoute(_ newValue: Route?, completionHandler: @escaping () -> Void) {
+        pruneOutOfDatePresented()
+
         guard let route = newValue else {
             dismiss(completionHandler: completionHandler)
             return
@@ -60,7 +62,7 @@ public extension PresentingCoordinator  {
                 group.leave()
             }
 
-            if let presented = self.getPresented() {
+            if let presented = presented {
                 group.enter()
                 if let presentedRoute = presentable?.route {
                     presented.coordinator.prepareForRoute(presentedRoute) {
@@ -122,21 +124,19 @@ public extension PresentingCoordinator  {
         }
     }
 
-    /// Gets the currently presented scene, if any.
+    /// Checks whether the presented coordinator's view controller is still presented (or nil if none).
     ///
-    /// If the presented view controller has already been dismissed outside of normal routing, e.g. from a button
-    /// press on a UIAlertController, then we do our bookkeeping here.
-    func getPresented() -> Scene? {
-        guard let presented = presented else {
-            return nil
-        }
+    /// A dead presented coordinator can occur if the presented view controller has already been dismissed outside of
+    /// normal routing, e.g. from a button press on a UIAlertController.
+    var isPresentedViewControllerUpToDate: Bool {
+        return rootViewController.presentedViewController == presented?.coordinator.rootViewController
+    }
 
-        if rootViewController.presentedViewController == nil {
+    /// Prunes the current presented coordinator if not up to date
+    func pruneOutOfDatePresented() {
+        if !isPresentedViewControllerUpToDate {
             self.presented = nil
-            return nil
         }
-
-        return presented
     }
 
     public var hasStoredPresentable: Bool {
@@ -169,7 +169,7 @@ public extension PresentingCoordinator  {
     /// If it is already presented, this method merely adjusts the route.
     /// If a different presentable is currently presented, this method dismisses it first.
     func present(scene: GeneratingScene, route: Route, completionHandler: @escaping () -> Void) {
-        if let presented = getPresented() {
+        if let presented = presented {
             if scene.tag != presented.tag {
                 dismiss() {
                     DispatchQueue.main.async {
@@ -192,7 +192,7 @@ public extension PresentingCoordinator  {
 
     /// Dismisses the currently presented coordinator if present. Noop if there isn't one.
     func dismiss(completionHandler: @escaping () -> Void) {
-        guard let presented = getPresented() else {
+        guard let presented = presented else {
             completionHandler()
             return
         }
