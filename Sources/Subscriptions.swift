@@ -36,15 +36,15 @@ extension SubscriberType {
     }
 }
 
-/// Renderer is a special SubscriberType that has semantics that match what we expect
+/// Renderer is a special subscriber that has semantics that match what we expect
 /// in a view controller.
-public protocol Renderer: SubscriberType {
+public protocol Renderer: AnyStoreSubscriber {
     associatedtype ViewModel
     func render(_ viewModel: ViewModel)
 }
 
 extension Renderer {
-    public func newState(_ state: Any) {
+    public func _newState(_ state: Any) {
         if let viewModel = state as? ViewModel {
             render(viewModel)
         } else {
