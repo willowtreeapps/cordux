@@ -51,3 +51,37 @@ public extension TabBarControllerCoordinator {
         return false
     }
 }
+
+class CorduxTabBarController: UITabBarController {
+    init(setRoute: @escaping (UIViewController) -> (Bool)) {
+        super.init(nibName: nil, bundle: nil)
+        self.delegate = SimpleCorduxTabControllerDelegate(setRoute: setRoute)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+class SimpleCorduxTabControllerDelegate: NSObject, UITabBarControllerDelegate {
+    var setRoute: (UIViewController) -> (Bool)
+
+    init(setRoute: @escaping (UIViewController) -> (Bool)) {
+        self.setRoute = setRoute
+    }
+    public func tabBarController(_ tabBarController: UITabBarController,
+                                 shouldSelect viewController: UIViewController) -> Bool {
+        return setRoute(viewController)
+    }
+
+    public func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        guard let items = tabBarController.viewControllers else {
+            return
+        }
+        for (index, searchItem) in items.enumerated() {
+            if searchItem == viewController {
+                tabBarController.selectedIndex = index
+            }
+        }
+    }
+}
