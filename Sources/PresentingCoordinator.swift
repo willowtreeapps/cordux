@@ -50,7 +50,16 @@ public extension PresentingCoordinator  {
         pruneOutOfDatePresented()
 
         guard let route = newValue else {
-            dismiss(completionHandler: completionHandler)
+            withGroup(completionHandler) { group in
+                group.enter()
+                rootCoordinator.prepareForRoute(nil) {
+                    group.leave()
+                }
+                group.enter()
+                dismiss() {
+                    group.leave()
+                }
+            }
             return
         }
 
@@ -73,7 +82,6 @@ public extension PresentingCoordinator  {
                         group.leave()
                     }
                 }
-
             }
         }
     }
