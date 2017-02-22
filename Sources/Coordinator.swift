@@ -62,11 +62,12 @@ public protocol Coordinator: AnyCoordinator {
 }
 
 public func wrapPresentingCompletionHandler(coordinator: AnyCoordinator, completionHandler: @escaping () -> Void) -> () -> Void {
-    guard let coordinator = coordinator as? AnyPresentingCoordinator, coordinator.hasStoredPresentable else {
-        return completionHandler
-    }
-
     return {
+        guard let coordinator = coordinator as? AnyPresentingCoordinator, coordinator.hasStoredPresentable else {
+            completionHandler()
+            return
+        }
+
         coordinator.presentStoredPresentable(completionHandler: completionHandler)
     }
 }
