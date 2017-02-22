@@ -65,14 +65,14 @@ public final class Store<State : StateType> {
         }
     #endif
 
-    public func unsubscribe<Subscriber : AnyStoreSubscriber>(_ subscriber: Subscriber) {
+    public func unsubscribe(_ subscriber: AnyStoreSubscriber) {
         #if swift(>=3)
             if let index = subscriptions.index(where: { return $0.subscriber === subscriber }) {
-            subscriptions.remove(at: index)
+                subscriptions.remove(at: index)
             }
         #else
-            if let index = subscriptions.indexOf({ return $0.subscriber === subscriber }) {
-                subscriptions.removeAtIndex(index)
+            if let index = subscriptions.index(where: { return $0.subscriber === subscriber }) {
+            subscriptions.remove(at: index)
             }
         #endif
     }

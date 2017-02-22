@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import Cordux
+@testable import Cordux
 
 class SubscriptionTestsSubscriber: SubscriberType {
     var lastModel: SimpleAuthViewModel?
@@ -42,4 +42,14 @@ class SubscriptionsTest: XCTestCase {
     }
 
 
+    func testUnsubscription() {
+        let sub = SubscriptionTestsSubscriber()
+        XCTAssert(store.isNewSubscriber(sub))
+
+        store.subscribe(sub, SimpleAuthViewModel.init)
+        XCTAssert(!store.isNewSubscriber(sub))
+
+        store.unsubscribe(sub)
+        XCTAssert(store.isNewSubscriber(sub))
+    }
 }
