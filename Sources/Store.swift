@@ -56,23 +56,27 @@ public final class Store<State : StateType> {
         self.routeLogger = routeLogger
     }
 
-    public func subscribe<Subscriber: SubscriberType, SelectedState>(_ subscriber: Subscriber, _ transform: ((State) -> SelectedState)? = nil) where Subscriber.StoreSubscriberStateType == SelectedState {
-        addSubscriber(subscriber, transform)
-    }
+    #if swift(>=3)
+        public func subscribe<Subscriber : SubscriberType, SelectedState>(_ subscriber: Subscriber, _ transform: ((State) -> SelectedState)? = nil) where Subscriber.StoreSubscriberStateType == SelectedState {
+            guard isNewSubscriber(subscriber) else {
+                return
+            }
 
-    public func subscribe<Subscriber: Renderer, SelectedState>(_ subscriber: Subscriber, _ transform: ((State) -> SelectedState)? = nil) where Subscriber.ViewModel == SelectedState {
-        addSubscriber(subscriber, transform)
-    }
-
-    private func addSubscriber(_ subscriber: AnyStoreSubscriber, _ transform: ((State) -> Any)? = nil) {
-        guard isNewSubscriber(subscriber) else {
-            return
+            let sub = Subscription(subscriber: subscriber, transform: transform)
+            subscriptions.append(sub)
+            sub.subscriber?._newState(sub.transform?(state) ?? state)
         }
-
-        let sub = Subscription(subscriber: subscriber, transform: transform)
-        subscriptions.append(sub)
-        sub.subscriber?._newState(sub.transform?(state) ?? state)
-    }
+    #else
+        public func subscribe<Subscriber : SubscriberType, SelectedState where Subscriber.StoreSubscriberStateType == SelectedState>(_ subscriber: Subscriber, _ transform: ((State) -> SelectedState)? = nil) {
+            guard isNewSubscriber(subscriber) else {
+                return
+            }
+            
+            let sub = Subscription(subscriber: subscriber, transform: transform)
+            subscriptions.append(sub)
+            sub.subscriber?._newState(sub.transform?(state) ?? state)
+        }
+    #endif
 
     public func unsubscribe(_ subscriber: AnyStoreSubscriber) {
         #if swift(>=3)
@@ -80,8 +84,8 @@ public final class Store<State : StateType> {
                 subscriptions.remove(at: index)
             }
         #else
-            if let index = subscriptions.indexOf({ return $0.subscriber === subscriber }) {
-                subscriptions.removeAtIndex(index)
+            if let index = subscriptions.index(where: { return $0.subscriber === subscriber }) {
+            subscriptions.remove(at: index)
             }
         #endif
     }
