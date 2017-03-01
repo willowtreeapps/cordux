@@ -9,7 +9,7 @@
 import Foundation
 
 public struct Route  {
-    var components: [String]
+    public internal(set) var components: [String]
 
     public func reduce<T>(_ action: RouteAction<T>) -> Route {
         switch action {
