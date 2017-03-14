@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		81FC22E41E785B4E00DF9157 /* SimpleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91C93581DD1249700DC29EB /* SimpleCoordinator.swift */; };
 		C6ADC9041E76EA8600FD24FB /* Cordux.h in Headers */ = {isa = PBXBuildFile; fileRef = D93D03D91D4A8E2300CED281 /* Cordux.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D90D54DB1DDF8B5100056AEE /* NavigationControllerMetaCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90D54DA1DDF8B5100056AEE /* NavigationControllerMetaCoordinator.swift */; };
 		D90D54DC1DDF8B5100056AEE /* NavigationControllerMetaCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90D54DA1DDF8B5100056AEE /* NavigationControllerMetaCoordinator.swift */; };
@@ -395,6 +396,7 @@
 				D91D09B21D4FA04D00608359 /* Routing.swift in Sources */,
 				D91D09AE1D4FA04D00608359 /* Coordinator.swift in Sources */,
 				D90D54DC1DDF8B5100056AEE /* NavigationControllerMetaCoordinator.swift in Sources */,
+				81FC22E41E785B4E00DF9157 /* SimpleCoordinator.swift in Sources */,
 				D91D09AF1D4FA04D00608359 /* SceneCoordinator.swift in Sources */,
 				D9B557851DCA7DF8006224A7 /* PresentingCoordinator.swift in Sources */,
 				D9D7D6141D6B977100EAFEE7 /* Logging.swift in Sources */,
