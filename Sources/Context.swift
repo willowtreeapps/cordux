@@ -48,7 +48,7 @@ extension UIViewController: Contextual {
         }
     }
 
-    func addLifecycleDelegate(_ delegate: ViewControllerLifecycleDelegate) {
+    public func addLifecycleDelegate(_ delegate: ViewControllerLifecycleDelegate) {
         guard let context = corduxContext else {
             corduxContext = Context(lifecycleDelegate: delegate)
             return
