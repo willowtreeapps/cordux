@@ -658,6 +658,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.willowtreeapps.Cordux;
 				PRODUCT_NAME = Cordux;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
