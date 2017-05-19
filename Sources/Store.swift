@@ -92,23 +92,23 @@ public final class Store<State : StateType> {
     }
 
     public func dispatch(_ action: Action) {
-        let originalRoute = state.route
-
+        let state = self.state
         middlewares.forEach { $0._before(action: action, state: state) }
-        state = reducer._handleAction(action, state: state) as! State
+        let newState = reducer._handleAction(action, state: state) as! State
+        self.state = newState
 
         #if swift(>=3)
-            middlewares.reversed().forEach { $0._after(action: action, state: state) }
+            middlewares.reversed().forEach { $0._after(action: action, state: newState) }
         #else
-            middlewares.reverse().forEach { $0._after(action: action, state: state) }
+            middlewares.reverse().forEach { $0._after(action: action, state: newState) }
         #endif
-        
-        if originalRoute != state.route {
-            routeLogger?(.reducer(state.route))
+
+        if state.route != newState.route {
+            routeLogger?(.reducer(newState.route))
         }
 
-        subscriptions.forEach { $0.subscriber?._newState($0.transform?(state) ?? state) }
-        propagateRoute(state.route)
+        propagateRoute(newState.route)
+        subscriptions.forEach { $0.subscriber?._newState($0.transform?(newState) ?? newState) }
     }
 
     /// Propagates the route through the app via the `rootCoordinator`.
