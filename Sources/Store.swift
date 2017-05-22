@@ -108,6 +108,8 @@ public final class Store<State : StateType> {
         }
 
         propagateRoute(newState.route)
+
+        subscriptions = subscriptions.filter { $0.subscriber != nil }
         subscriptions.forEach { $0.subscriber?._newState($0.transform?(newState) ?? newState) }
     }
 
