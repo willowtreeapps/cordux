@@ -8,17 +8,20 @@
 
 import Foundation
 
+/// Action is a marker type that describes types that can modify state.
+public protocol Action {}
+
 public protocol AnyReducer {
-    func _handleAction(_ action: Action, state: StateType) -> (StateType, NavigationCommand?)
+    func _handleAction(_ action: Action, state: StateType) -> Command
 }
 
 public protocol Reducer: AnyReducer {
     associatedtype State
-    func handleAction(_ action: Action, state: State) -> (State, NavigationCommand?)
+    func handleAction(_ action: Action, state: State) -> Command
 }
 
 public extension Reducer {
-    func _handleAction(_ action: Action, state: StateType) -> (StateType, NavigationCommand?) {
+    func _handleAction(_ action: Action, state: StateType) -> Command {
         return withSpecificTypes(action, state: state, function: handleAction)
     }
 }

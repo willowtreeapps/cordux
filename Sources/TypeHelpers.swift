@@ -18,21 +18,10 @@ func withSpecificTypes<SpecificStateType, Action>(_ action: Action, state generi
 }
 
 func withSpecificTypes<SpecificStateType, Action>(_ action: Action, state genericStateType: StateType,
-                       function: (_ action: Action, _ state: SpecificStateType) -> (SpecificStateType, NavigationCommand?)) -> (StateType, NavigationCommand?) {
+                       function: (_ action: Action, _ state: SpecificStateType) -> Command) -> Command {
     guard let specificStateType = genericStateType as? SpecificStateType else {
-        return (genericStateType, nil)
+        return genericStateType
     }
 
-    let (state, navigationCommand) = function(action, specificStateType)
-    return (state as! StateType, navigationCommand)
-}
-
-func withSpecificTypes<SpecificStateType, Action>(_ action: Action, state genericStateType: StateType,
-                       navigationCommand: NavigationCommand?,
-                       function: (_ action: Action, _ state: SpecificStateType, _ navigationCommand: NavigationCommand?) -> ()) {
-    guard let specificStateType = genericStateType as? SpecificStateType else {
-        return
-    }
-
-    function(action, specificStateType, navigationCommand)
+    return function(action, specificStateType) as! StateType
 }

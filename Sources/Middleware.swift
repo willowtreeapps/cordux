@@ -10,13 +10,15 @@ import Foundation
 
 public protocol AnyMiddleware: class {
     func _before(action: Action, state: StateType)
-    func _after(action: Action, state: StateType, navigationCommand: NavigationCommand?)
+    func _after(action: Action, state: StateType)
+    func _after(action: Action, command: Command)
 }
 
 public protocol Middleware: AnyMiddleware {
     associatedtype State
     func before(action: Action, state: State)
-    func after(action: Action, state: State, navigationCommand: NavigationCommand?)
+    func after(action: Action, state: State)
+    func after(action: Action, command: Command)
 }
 
 public extension Middleware {
@@ -24,7 +26,11 @@ public extension Middleware {
         withSpecificTypes(action, state: state, function: before)
     }
 
-    func _after(action: Action, state: StateType, navigationCommand: NavigationCommand?) {
-        withSpecificTypes(action, state: state, navigationCommand: navigationCommand, function: after)
+    func _after(action: Action, state: StateType) {
+        withSpecificTypes(action, state: state, function: after)
+    }
+
+    func _after(action: Action, command: Command) {
+        after(action: action, command: command)
     }
 }

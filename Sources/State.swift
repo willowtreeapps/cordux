@@ -8,23 +8,26 @@
 
 import Foundation
 
-// MARK: Subscriber
+/// StateType is a marker type that defines the state.
+///
+/// As a convenience, it is also a command that means "Update the store's state to this value."
+public protocol StateType: Command {}
 
-struct Subscription<State: StateType> {
-    weak var subscriber: AnyStoreSubscriber?
+struct StateSubscription<State: StateType> {
+    weak var subscriber: AnyStateSubscriber?
     let transform: ((State) -> Any)?
 }
 
-public protocol AnyStoreSubscriber: class {
+public protocol AnyStateSubscriber: class {
     func _newState(_ state: Any)
 }
 
-public protocol SubscriberType: AnyStoreSubscriber {
+public protocol StateSubscriberType: AnyStateSubscriber {
     associatedtype SubscriberStateType
     func newState(_ subscription: SubscriberStateType)
 }
 
-extension SubscriberType {
+extension StateSubscriberType {
     public func _newState(_ state: Any) {
         if let typedState = state as? SubscriberStateType {
             newState(typedState)
@@ -34,11 +37,9 @@ extension SubscriberType {
     }
 }
 
-// MARK: Renderer
-
 /// Renderer is a special subscriber that has semantics that match what we expect
 /// in a view controller.
-public protocol Renderer: AnyStoreSubscriber {
+public protocol Renderer: AnyStateSubscriber {
     associatedtype ViewModel
     func render(_ viewModel: ViewModel)
 }
@@ -49,29 +50,6 @@ extension Renderer {
             render(viewModel)
         } else {
             preconditionFailure("Expected \(ViewModel.self) but received \(type(of:state))")
-        }
-    }
-}
-
-// MARK: Navigation Subscriber
-
-struct NavigationSubscription {
-    weak var subscriber: AnyNavigationSubscriber?
-}
-
-public protocol AnyNavigationSubscriber: class {
-    func _navigate(_ command: NavigationCommand)
-}
-
-public protocol NavigationSubscriberType: AnyNavigationSubscriber {
-    associatedtype SubscriberCommandType
-    func navigate(_ subscription: SubscriberCommandType)
-}
-
-extension NavigationSubscriberType {
-    public func _navigate(_ command: Any) {
-        if let typedCommand = command as? SubscriberCommandType {
-            navigate(typedCommand)
         }
     }
 }

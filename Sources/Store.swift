@@ -8,26 +8,13 @@
 
 import Foundation
 
-private let kRouteTimeoutDuration: TimeInterval = 3
-
-/// Action is a marker type that describes types that can modify state.
-public protocol Action {}
-
-/// NavigationCommand is a marker type that describes actions that should result in app navigation.
-public protocol NavigationCommand {}
-
-/// StateType is a marker type that defines the state.
-public protocol StateType {}
-
 public final class Store<State : StateType> {
     public private(set) var state: State
     public let reducer: AnyReducer
     public let middlewares: [AnyMiddleware]
 
-    typealias SubscriptionType = Subscription<State>
-    var subscriptions: [SubscriptionType] = []
-
-    var navigationSubscriptions: [NavigationSubscription] = []
+    var stateSubscriptions: [StateSubscription<State>] = []
+    var commandSubscriptions: [CommandSubscription] = []
 
     public init(initialState: State, reducer: AnyReducer, middlewares: [AnyMiddleware] = []) {
         self.state = initialState
@@ -37,7 +24,7 @@ public final class Store<State : StateType> {
 
     // MARK: State Subscriptions
 
-    public func subscribe<Subscriber: SubscriberType, SelectedState>(_ subscriber: Subscriber, _ transform: ((State) -> SelectedState)? = nil) where Subscriber.SubscriberStateType == SelectedState {
+    public func subscribe<Subscriber: StateSubscriberType, SelectedState>(_ subscriber: Subscriber, _ transform: ((State) -> SelectedState)? = nil) where Subscriber.SubscriberStateType == SelectedState {
         addSubscriber(subscriber, transform)
     }
 
@@ -45,31 +32,31 @@ public final class Store<State : StateType> {
         addSubscriber(subscriber, transform)
     }
 
-    private func addSubscriber(_ subscriber: AnyStoreSubscriber, _ transform: ((State) -> Any)? = nil) {
-        guard !subscriptions.contains(where: { $0.subscriber === subscriber }) else {
+    private func addSubscriber(_ subscriber: AnyStateSubscriber, _ transform: ((State) -> Any)? = nil) {
+        guard !stateSubscriptions.contains(where: { $0.subscriber === subscriber }) else {
             return
         }
 
-        let sub = Subscription(subscriber: subscriber, transform: transform)
-        subscriptions.append(sub)
+        let sub = StateSubscription(subscriber: subscriber, transform: transform)
+        stateSubscriptions.append(sub)
         sub.subscriber?._newState(sub.transform?(state) ?? state)
     }
 
-    public func unsubscribe(_ subscriber: AnyStoreSubscriber) {
-        if let index = subscriptions.index(where: { return $0.subscriber === subscriber }) {
-            subscriptions.remove(at: index)
+    public func unsubscribe(_ subscriber: AnyStateSubscriber) {
+        if let index = stateSubscriptions.index(where: { return $0.subscriber === subscriber }) {
+            stateSubscriptions.remove(at: index)
         }
     }
 
-    // MARK: Navigation Subscriptions
+    // MARK: Command Subscriptions
 
-    public func subscribe<Subscriber: NavigationSubscriberType>(_ subscriber: Subscriber) {
-        guard !navigationSubscriptions.contains(where: { $0.subscriber === subscriber }) else {
+    public func subscribe<Subscriber: CommandSubscriberType>(_ subscriber: Subscriber) {
+        guard !commandSubscriptions.contains(where: { $0.subscriber === subscriber }) else {
             return
         }
 
-        let sub = NavigationSubscription(subscriber: subscriber)
-        navigationSubscriptions.append(sub)
+        let sub = CommandSubscription(subscriber: subscriber)
+        commandSubscriptions.append(sub)
     }
 
     // MARK: Dispatch
@@ -77,14 +64,30 @@ public final class Store<State : StateType> {
     public func dispatch(_ action: Action) {
         let state = self.state
         middlewares.forEach { $0._before(action: action, state: state) }
-        let (newState, navigationCommand) = reducer._handleAction(action, state: state)
-        let newTypedState = newState as! State
-        self.state = newTypedState
-        middlewares.reversed().forEach { $0._after(action: action, state: newState, navigationCommand: navigationCommand) }
-        subscriptions = subscriptions.filter { $0.subscriber != nil }
-        subscriptions.forEach { $0.subscriber?._newState($0.transform?(newTypedState) ?? newTypedState) }
-        if let navigationCommand = navigationCommand {
-            navigationSubscriptions.forEach { $0.subscriber?._navigate(navigationCommand) }
+        let command = reducer._handleAction(action, state: state)
+        let commands = (command as? CompositeCommand)?.commands ?? [command]
+
+        // if a command updates state, find it
+        var newState: State?
+        commands.forEach { command in
+            if let state = command as? State {
+                newState = state
+            }
+        }
+
+        // if state is updating, notify middleware and state subscribers
+        if let newState = newState {
+            self.state = newState
+            middlewares.reversed().forEach { $0._after(action: action, state: newState) }
+            stateSubscriptions = stateSubscriptions.filter { $0.subscriber != nil }
+            stateSubscriptions.forEach { $0.subscriber?._newState($0.transform?(newState) ?? newState) }
+        }
+
+        // notify middleware and command subscribers
+        commandSubscriptions = commandSubscriptions.filter { $0.subscriber != nil }
+        commands.forEach { command in
+            middlewares.reversed().forEach { $0._after(action: action, command: command) }
+            commandSubscriptions.forEach { $0.subscriber?._execute(command) }
         }
     }
 }

@@ -11,10 +11,13 @@
 		D91D099D1D4FA03500608359 /* Cordux.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D91D09941D4FA03500608359 /* Cordux.framework */; };
 		D91D09AB1D4FA04D00608359 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D04031D4A8F4400CED281 /* Store.swift */; };
 		D91D09AC1D4FA04D00608359 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D04051D4A8FD900CED281 /* Reducer.swift */; };
-		D91D09AD1D4FA04D00608359 /* Subscriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D03F31D4A8E5500CED281 /* Subscriptions.swift */; };
+		D91D09AD1D4FA04D00608359 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D03F31D4A8E5500CED281 /* State.swift */; };
+		D93464551F06E1DE00C61175 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93464541F06E1DE00C61175 /* Command.swift */; };
+		D93464571F06E4E800C61175 /* Dispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93464561F06E4E800C61175 /* Dispatcher.swift */; };
+		D93464581F06E4E800C61175 /* Dispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93464561F06E4E800C61175 /* Dispatcher.swift */; };
 		D93D03DA1D4A8E2300CED281 /* Cordux.h in Headers */ = {isa = PBXBuildFile; fileRef = D93D03D91D4A8E2300CED281 /* Cordux.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D93D03E11D4A8E2300CED281 /* Cordux.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D93D03D61D4A8E2300CED281 /* Cordux.framework */; };
-		D93D03F81D4A8E5500CED281 /* Subscriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D03F31D4A8E5500CED281 /* Subscriptions.swift */; };
+		D93D03F81D4A8E5500CED281 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D03F31D4A8E5500CED281 /* State.swift */; };
 		D93D04041D4A8F4400CED281 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D04031D4A8F4400CED281 /* Store.swift */; };
 		D93D04061D4A8FD900CED281 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D04051D4A8FD900CED281 /* Reducer.swift */; };
 		D973EC821E0D7DE1009C204E /* NavigationControllerMetaCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D973EC811E0D7DE1009C204E /* NavigationControllerMetaCoordinatorTests.swift */; };
@@ -52,12 +55,14 @@
 /* Begin PBXFileReference section */
 		D91D09941D4FA03500608359 /* Cordux.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Cordux.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D91D099C1D4FA03500608359 /* Cordux-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Cordux-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D93464541F06E1DE00C61175 /* Command.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
+		D93464561F06E4E800C61175 /* Dispatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dispatcher.swift; sourceTree = "<group>"; };
 		D93D03D61D4A8E2300CED281 /* Cordux.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Cordux.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D93D03D91D4A8E2300CED281 /* Cordux.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cordux.h; sourceTree = "<group>"; };
 		D93D03DB1D4A8E2300CED281 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D93D03E01D4A8E2300CED281 /* Cordux-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Cordux-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D93D03E71D4A8E2300CED281 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D93D03F31D4A8E5500CED281 /* Subscriptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subscriptions.swift; sourceTree = "<group>"; };
+		D93D03F31D4A8E5500CED281 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		D93D04031D4A8F4400CED281 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		D93D04051D4A8FD900CED281 /* Reducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
 		D973EC811E0D7DE1009C204E /* NavigationControllerMetaCoordinatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationControllerMetaCoordinatorTests.swift; sourceTree = "<group>"; };
@@ -148,11 +153,13 @@
 		D93D03F11D4A8E5500CED281 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				D93D03F31D4A8E5500CED281 /* State.swift */,
+				D93464541F06E1DE00C61175 /* Command.swift */,
 				D93D04031D4A8F4400CED281 /* Store.swift */,
 				D93D04051D4A8FD900CED281 /* Reducer.swift */,
 				D9D7D6161D6B9A2100EAFEE7 /* Middleware.swift */,
-				D93D03F31D4A8E5500CED281 /* Subscriptions.swift */,
 				D9B43B0D1F06C9680084218D /* Coordinator.swift */,
+				D93464561F06E4E800C61175 /* Dispatcher.swift */,
 				D9D7D6191D6B9BDE00EAFEE7 /* TypeHelpers.swift */,
 			);
 			path = Sources;
@@ -341,11 +348,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9B43B0F1F06C9680084218D /* Coordinator.swift in Sources */,
-				D91D09AD1D4FA04D00608359 /* Subscriptions.swift in Sources */,
+				D91D09AD1D4FA04D00608359 /* State.swift in Sources */,
 				D91D09AC1D4FA04D00608359 /* Reducer.swift in Sources */,
 				D9D7D61B1D6B9BDE00EAFEE7 /* TypeHelpers.swift in Sources */,
 				D9D7D6181D6B9A2100EAFEE7 /* Middleware.swift in Sources */,
 				D91D09AB1D4FA04D00608359 /* Store.swift in Sources */,
+				D93464581F06E4E800C61175 /* Dispatcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,9 +372,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9B43B0E1F06C9680084218D /* Coordinator.swift in Sources */,
-				D93D03F81D4A8E5500CED281 /* Subscriptions.swift in Sources */,
+				D93D03F81D4A8E5500CED281 /* State.swift in Sources */,
 				D93D04041D4A8F4400CED281 /* Store.swift in Sources */,
+				D93464571F06E4E800C61175 /* Dispatcher.swift in Sources */,
 				D9D7D61A1D6B9BDE00EAFEE7 /* TypeHelpers.swift in Sources */,
+				D93464551F06E1DE00C61175 /* Command.swift in Sources */,
 				D9D7D6171D6B9A2100EAFEE7 /* Middleware.swift in Sources */,
 				D93D04061D4A8FD900CED281 /* Reducer.swift in Sources */,
 			);
