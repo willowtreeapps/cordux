@@ -8,44 +8,23 @@
 
 import Foundation
 
-#if swift(>=3)
-    public protocol AnyMiddleware {
-        func _before(action: Action, state: StateType)
-        func _after(action: Action, state: StateType)
+public protocol AnyMiddleware: class {
+    func _before(action: Action, state: StateType)
+    func _after(action: Action, state: StateType, navigationCommand: NavigationCommand?)
+}
+
+public protocol Middleware: AnyMiddleware {
+    associatedtype State
+    func before(action: Action, state: State)
+    func after(action: Action, state: State, navigationCommand: NavigationCommand?)
+}
+
+public extension Middleware {
+    func _before(action: Action, state: StateType) {
+        withSpecificTypes(action, state: state, function: before)
     }
 
-    public protocol Middleware: AnyMiddleware {
-        associatedtype State
-        func before(action: Action, state: State)
-        func after(action: Action, state: State)
+    func _after(action: Action, state: StateType, navigationCommand: NavigationCommand?) {
+        withSpecificTypes(action, state: state, navigationCommand: navigationCommand, function: after)
     }
-
-    public extension Middleware {
-        func _before(action: Action, state: StateType) {
-            withSpecificTypes(action, state: state, function: before)
-        }
-        func _after(action: Action, state: StateType) {
-            withSpecificTypes(action, state: state, function: after)
-        }
-    }
-#else
-    public protocol AnyMiddleware {
-        func _before(action action: Action, state: StateType)
-        func _after(action action: Action, state: StateType)
-    }
-
-    public protocol Middleware: AnyMiddleware {
-        associatedtype State
-        func before(action action: Action, state: State)
-        func after(action action: Action, state: State)
-    }
-
-    public extension Middleware {
-        func _before(action action: Action, state: StateType) {
-            withSpecificTypes(action, state: state, function: before)
-        }
-    func _after(action: Action, state: StateType) {
-        withSpecificTypes(action, state: state, function: after)
-        }
-    }
-#endif
+}

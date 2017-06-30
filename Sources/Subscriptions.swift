@@ -8,6 +8,8 @@
 
 import Foundation
 
+// MARK: Subscriber
+
 struct Subscription<State: StateType> {
     weak var subscriber: AnyStoreSubscriber?
     let transform: ((State) -> Any)?
@@ -18,23 +20,21 @@ public protocol AnyStoreSubscriber: class {
 }
 
 public protocol SubscriberType: AnyStoreSubscriber {
-    associatedtype StoreSubscriberStateType
-    func newState(_ subscription: StoreSubscriberStateType)
+    associatedtype SubscriberStateType
+    func newState(_ subscription: SubscriberStateType)
 }
 
 extension SubscriberType {
     public func _newState(_ state: Any) {
-        if let typedState = state as? StoreSubscriberStateType {
+        if let typedState = state as? SubscriberStateType {
             newState(typedState)
         } else {
-            #if swift(>=3)
-                preconditionFailure("Expected \(StoreSubscriberStateType.self) but received \(type(of:state))")
-            #else
-                preconditionFailure("Expected \(StoreSubscriberStateType.self) but received \(state.dynamicType))")
-            #endif
+            preconditionFailure("Expected \(SubscriberStateType.self) but received \(type(of:state))")
         }
     }
 }
+
+// MARK: Renderer
 
 /// Renderer is a special subscriber that has semantics that match what we expect
 /// in a view controller.
@@ -48,11 +48,30 @@ extension Renderer {
         if let viewModel = state as? ViewModel {
             render(viewModel)
         } else {
-            #if swift(>=3)
-                preconditionFailure("Expected \(ViewModel.self) but received \(type(of:state))")
-            #else
-                preconditionFailure("Expected \(ViewModel.self) but received \(state.dynamicType))")
-            #endif
+            preconditionFailure("Expected \(ViewModel.self) but received \(type(of:state))")
+        }
+    }
+}
+
+// MARK: Navigation Subscriber
+
+struct NavigationSubscription {
+    weak var subscriber: AnyNavigationSubscriber?
+}
+
+public protocol AnyNavigationSubscriber: class {
+    func _navigate(_ command: NavigationCommand)
+}
+
+public protocol NavigationSubscriberType: AnyNavigationSubscriber {
+    associatedtype SubscriberCommandType
+    func navigate(_ subscription: SubscriberCommandType)
+}
+
+extension NavigationSubscriberType {
+    public func _navigate(_ command: Any) {
+        if let typedCommand = command as? SubscriberCommandType {
+            navigate(typedCommand)
         }
     }
 }

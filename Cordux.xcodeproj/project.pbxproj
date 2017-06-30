@@ -7,47 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		81FC22E41E785B4E00DF9157 /* SimpleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91C93581DD1249700DC29EB /* SimpleCoordinator.swift */; };
 		C6ADC9041E76EA8600FD24FB /* Cordux.h in Headers */ = {isa = PBXBuildFile; fileRef = D93D03D91D4A8E2300CED281 /* Cordux.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D90D54DB1DDF8B5100056AEE /* NavigationControllerMetaCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90D54DA1DDF8B5100056AEE /* NavigationControllerMetaCoordinator.swift */; };
-		D90D54DC1DDF8B5100056AEE /* NavigationControllerMetaCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90D54DA1DDF8B5100056AEE /* NavigationControllerMetaCoordinator.swift */; };
-		D91C93591DD1249700DC29EB /* SimpleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91C93581DD1249700DC29EB /* SimpleCoordinator.swift */; };
 		D91D099D1D4FA03500608359 /* Cordux.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D91D09941D4FA03500608359 /* Cordux.framework */; };
 		D91D09AB1D4FA04D00608359 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D04031D4A8F4400CED281 /* Store.swift */; };
 		D91D09AC1D4FA04D00608359 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D04051D4A8FD900CED281 /* Reducer.swift */; };
 		D91D09AD1D4FA04D00608359 /* Subscriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D03F31D4A8E5500CED281 /* Subscriptions.swift */; };
-		D91D09AE1D4FA04D00608359 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D03F21D4A8E5500CED281 /* Coordinator.swift */; };
-		D91D09AF1D4FA04D00608359 /* SceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D03FD1D4A8EBE00CED281 /* SceneCoordinator.swift */; };
-		D91D09B01D4FA04D00608359 /* TabBarControllerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D03FF1D4A8EE900CED281 /* TabBarControllerCoordinator.swift */; };
-		D91D09B11D4FA04D00608359 /* NavigationControllerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D04011D4A8F0200CED281 /* NavigationControllerCoordinator.swift */; };
-		D91D09B21D4FA04D00608359 /* Routing.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D03F41D4A8E5500CED281 /* Routing.swift */; };
-		D91D09B31D4FA04D00608359 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D03F51D4A8E5500CED281 /* Context.swift */; };
-		D91D09B41D4FA04D00608359 /* ViewControllerLifecycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D03F61D4A8E5500CED281 /* ViewControllerLifecycle.swift */; };
 		D93D03DA1D4A8E2300CED281 /* Cordux.h in Headers */ = {isa = PBXBuildFile; fileRef = D93D03D91D4A8E2300CED281 /* Cordux.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D93D03E11D4A8E2300CED281 /* Cordux.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D93D03D61D4A8E2300CED281 /* Cordux.framework */; };
-		D93D03F71D4A8E5500CED281 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D03F21D4A8E5500CED281 /* Coordinator.swift */; };
 		D93D03F81D4A8E5500CED281 /* Subscriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D03F31D4A8E5500CED281 /* Subscriptions.swift */; };
-		D93D03F91D4A8E5500CED281 /* Routing.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D03F41D4A8E5500CED281 /* Routing.swift */; };
-		D93D03FA1D4A8E5500CED281 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D03F51D4A8E5500CED281 /* Context.swift */; };
-		D93D03FB1D4A8E5500CED281 /* ViewControllerLifecycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D03F61D4A8E5500CED281 /* ViewControllerLifecycle.swift */; };
-		D93D03FE1D4A8EBE00CED281 /* SceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D03FD1D4A8EBE00CED281 /* SceneCoordinator.swift */; };
-		D93D04001D4A8EE900CED281 /* TabBarControllerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D03FF1D4A8EE900CED281 /* TabBarControllerCoordinator.swift */; };
-		D93D04021D4A8F0200CED281 /* NavigationControllerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D04011D4A8F0200CED281 /* NavigationControllerCoordinator.swift */; };
 		D93D04041D4A8F4400CED281 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D04031D4A8F4400CED281 /* Store.swift */; };
 		D93D04061D4A8FD900CED281 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D04051D4A8FD900CED281 /* Reducer.swift */; };
 		D973EC821E0D7DE1009C204E /* NavigationControllerMetaCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D973EC811E0D7DE1009C204E /* NavigationControllerMetaCoordinatorTests.swift */; };
 		D973EC851E0D8045009C204E /* SimpleCoordinators.swift in Sources */ = {isa = PBXBuildFile; fileRef = D973EC831E0D8043009C204E /* SimpleCoordinators.swift */; };
 		D973EC861E0D8046009C204E /* SimpleCoordinators.swift in Sources */ = {isa = PBXBuildFile; fileRef = D973EC831E0D8043009C204E /* SimpleCoordinators.swift */; };
-		D9B557841DCA7DF8006224A7 /* PresentingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B557831DCA7DF8006224A7 /* PresentingCoordinator.swift */; };
-		D9B557851DCA7DF8006224A7 /* PresentingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B557831DCA7DF8006224A7 /* PresentingCoordinator.swift */; };
-		D9B557871DCA8020006224A7 /* Scenes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B557861DCA8020006224A7 /* Scenes.swift */; };
-		D9B557881DCA8020006224A7 /* Scenes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B557861DCA8020006224A7 /* Scenes.swift */; };
+		D9B43B0E1F06C9680084218D /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B43B0D1F06C9680084218D /* Coordinator.swift */; };
+		D9B43B0F1F06C9680084218D /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B43B0D1F06C9680084218D /* Coordinator.swift */; };
 		D9D7D60C1D6B81EE00EAFEE7 /* SubscriptionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D7D60B1D6B81EE00EAFEE7 /* SubscriptionsTest.swift */; };
 		D9D7D60D1D6B81F100EAFEE7 /* SubscriptionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D7D60B1D6B81EE00EAFEE7 /* SubscriptionsTest.swift */; };
 		D9D7D60F1D6B82AA00EAFEE7 /* SimpleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D7D60E1D6B82AA00EAFEE7 /* SimpleState.swift */; };
 		D9D7D6101D6B82AA00EAFEE7 /* SimpleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D7D60E1D6B82AA00EAFEE7 /* SimpleState.swift */; };
-		D9D7D6141D6B977100EAFEE7 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D7D6111D6B976500EAFEE7 /* Logging.swift */; };
-		D9D7D6151D6B977100EAFEE7 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D7D6111D6B976500EAFEE7 /* Logging.swift */; };
 		D9D7D6171D6B9A2100EAFEE7 /* Middleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D7D6161D6B9A2100EAFEE7 /* Middleware.swift */; };
 		D9D7D6181D6B9A2100EAFEE7 /* Middleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D7D6161D6B9A2100EAFEE7 /* Middleware.swift */; };
 		D9D7D61A1D6B9BDE00EAFEE7 /* TypeHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D7D6191D6B9BDE00EAFEE7 /* TypeHelpers.swift */; };
@@ -72,8 +50,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D90D54DA1DDF8B5100056AEE /* NavigationControllerMetaCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationControllerMetaCoordinator.swift; sourceTree = "<group>"; };
-		D91C93581DD1249700DC29EB /* SimpleCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleCoordinator.swift; sourceTree = "<group>"; };
 		D91D09941D4FA03500608359 /* Cordux.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Cordux.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D91D099C1D4FA03500608359 /* Cordux-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Cordux-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D93D03D61D4A8E2300CED281 /* Cordux.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Cordux.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,23 +57,14 @@
 		D93D03DB1D4A8E2300CED281 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D93D03E01D4A8E2300CED281 /* Cordux-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Cordux-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D93D03E71D4A8E2300CED281 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D93D03F21D4A8E5500CED281 /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		D93D03F31D4A8E5500CED281 /* Subscriptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subscriptions.swift; sourceTree = "<group>"; };
-		D93D03F41D4A8E5500CED281 /* Routing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routing.swift; sourceTree = "<group>"; };
-		D93D03F51D4A8E5500CED281 /* Context.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
-		D93D03F61D4A8E5500CED281 /* ViewControllerLifecycle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerLifecycle.swift; sourceTree = "<group>"; };
-		D93D03FD1D4A8EBE00CED281 /* SceneCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneCoordinator.swift; sourceTree = "<group>"; };
-		D93D03FF1D4A8EE900CED281 /* TabBarControllerCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarControllerCoordinator.swift; sourceTree = "<group>"; };
-		D93D04011D4A8F0200CED281 /* NavigationControllerCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationControllerCoordinator.swift; sourceTree = "<group>"; };
 		D93D04031D4A8F4400CED281 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		D93D04051D4A8FD900CED281 /* Reducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
 		D973EC811E0D7DE1009C204E /* NavigationControllerMetaCoordinatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationControllerMetaCoordinatorTests.swift; sourceTree = "<group>"; };
 		D973EC831E0D8043009C204E /* SimpleCoordinators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleCoordinators.swift; sourceTree = "<group>"; };
-		D9B557831DCA7DF8006224A7 /* PresentingCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentingCoordinator.swift; sourceTree = "<group>"; };
-		D9B557861DCA8020006224A7 /* Scenes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scenes.swift; sourceTree = "<group>"; };
+		D9B43B0D1F06C9680084218D /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		D9D7D60B1D6B81EE00EAFEE7 /* SubscriptionsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionsTest.swift; sourceTree = "<group>"; };
 		D9D7D60E1D6B82AA00EAFEE7 /* SimpleState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleState.swift; sourceTree = "<group>"; };
-		D9D7D6111D6B976500EAFEE7 /* Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
 		D9D7D6161D6B9A2100EAFEE7 /* Middleware.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Middleware.swift; sourceTree = "<group>"; };
 		D9D7D6191D6B9BDE00EAFEE7 /* TypeHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeHelpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -185,30 +152,11 @@
 				D93D04051D4A8FD900CED281 /* Reducer.swift */,
 				D9D7D6161D6B9A2100EAFEE7 /* Middleware.swift */,
 				D93D03F31D4A8E5500CED281 /* Subscriptions.swift */,
-				D93D03FC1D4A8E5D00CED281 /* Coordinators */,
-				D93D03F41D4A8E5500CED281 /* Routing.swift */,
-				D93D03F51D4A8E5500CED281 /* Context.swift */,
-				D93D03F61D4A8E5500CED281 /* ViewControllerLifecycle.swift */,
-				D9D7D6111D6B976500EAFEE7 /* Logging.swift */,
+				D9B43B0D1F06C9680084218D /* Coordinator.swift */,
 				D9D7D6191D6B9BDE00EAFEE7 /* TypeHelpers.swift */,
 			);
 			path = Sources;
 			sourceTree = SOURCE_ROOT;
-		};
-		D93D03FC1D4A8E5D00CED281 /* Coordinators */ = {
-			isa = PBXGroup;
-			children = (
-				D93D03F21D4A8E5500CED281 /* Coordinator.swift */,
-				D91C93581DD1249700DC29EB /* SimpleCoordinator.swift */,
-				D93D03FD1D4A8EBE00CED281 /* SceneCoordinator.swift */,
-				D93D03FF1D4A8EE900CED281 /* TabBarControllerCoordinator.swift */,
-				D93D04011D4A8F0200CED281 /* NavigationControllerCoordinator.swift */,
-				D90D54DA1DDF8B5100056AEE /* NavigationControllerMetaCoordinator.swift */,
-				D9B557831DCA7DF8006224A7 /* PresentingCoordinator.swift */,
-				D9B557861DCA8020006224A7 /* Scenes.swift */,
-			);
-			name = Coordinators;
-			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -392,23 +340,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D9B557881DCA8020006224A7 /* Scenes.swift in Sources */,
-				D91D09B21D4FA04D00608359 /* Routing.swift in Sources */,
-				D91D09AE1D4FA04D00608359 /* Coordinator.swift in Sources */,
-				D90D54DC1DDF8B5100056AEE /* NavigationControllerMetaCoordinator.swift in Sources */,
-				81FC22E41E785B4E00DF9157 /* SimpleCoordinator.swift in Sources */,
-				D91D09AF1D4FA04D00608359 /* SceneCoordinator.swift in Sources */,
-				D9B557851DCA7DF8006224A7 /* PresentingCoordinator.swift in Sources */,
-				D9D7D6141D6B977100EAFEE7 /* Logging.swift in Sources */,
-				D91D09B01D4FA04D00608359 /* TabBarControllerCoordinator.swift in Sources */,
-				D91D09B11D4FA04D00608359 /* NavigationControllerCoordinator.swift in Sources */,
+				D9B43B0F1F06C9680084218D /* Coordinator.swift in Sources */,
 				D91D09AD1D4FA04D00608359 /* Subscriptions.swift in Sources */,
-				D91D09B31D4FA04D00608359 /* Context.swift in Sources */,
 				D91D09AC1D4FA04D00608359 /* Reducer.swift in Sources */,
 				D9D7D61B1D6B9BDE00EAFEE7 /* TypeHelpers.swift in Sources */,
 				D9D7D6181D6B9A2100EAFEE7 /* Middleware.swift in Sources */,
 				D91D09AB1D4FA04D00608359 /* Store.swift in Sources */,
-				D91D09B41D4FA04D00608359 /* ViewControllerLifecycle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,23 +363,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D91C93591DD1249700DC29EB /* SimpleCoordinator.swift in Sources */,
-				D9B557871DCA8020006224A7 /* Scenes.swift in Sources */,
-				D93D04021D4A8F0200CED281 /* NavigationControllerCoordinator.swift in Sources */,
+				D9B43B0E1F06C9680084218D /* Coordinator.swift in Sources */,
 				D93D03F81D4A8E5500CED281 /* Subscriptions.swift in Sources */,
-				D93D03F71D4A8E5500CED281 /* Coordinator.swift in Sources */,
-				D90D54DB1DDF8B5100056AEE /* NavigationControllerMetaCoordinator.swift in Sources */,
-				D9B557841DCA7DF8006224A7 /* PresentingCoordinator.swift in Sources */,
-				D9D7D6151D6B977100EAFEE7 /* Logging.swift in Sources */,
 				D93D04041D4A8F4400CED281 /* Store.swift in Sources */,
-				D93D04001D4A8EE900CED281 /* TabBarControllerCoordinator.swift in Sources */,
-				D93D03FA1D4A8E5500CED281 /* Context.swift in Sources */,
-				D93D03FE1D4A8EBE00CED281 /* SceneCoordinator.swift in Sources */,
-				D93D03F91D4A8E5500CED281 /* Routing.swift in Sources */,
 				D9D7D61A1D6B9BDE00EAFEE7 /* TypeHelpers.swift in Sources */,
 				D9D7D6171D6B9A2100EAFEE7 /* Middleware.swift in Sources */,
 				D93D04061D4A8FD900CED281 /* Reducer.swift in Sources */,
-				D93D03FB1D4A8E5500CED281 /* ViewControllerLifecycle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

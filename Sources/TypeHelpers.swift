@@ -8,40 +8,31 @@
 
 import Foundation
 
-#if swift(>=3)
-    func withSpecificTypes<SpecificStateType, Action>(_ action: Action, state genericStateType: StateType,
-                           function: (_ action: Action, _ state: SpecificStateType) -> SpecificStateType) -> StateType {
-        guard let specificStateType = genericStateType as? SpecificStateType else {
-            return genericStateType
-        }
-
-        return function(action, specificStateType) as! StateType
+func withSpecificTypes<SpecificStateType, Action>(_ action: Action, state genericStateType: StateType,
+                       function: (_ action: Action, _ state: SpecificStateType) -> Void) {
+    guard let specificStateType = genericStateType as? SpecificStateType else {
+        return
     }
 
-    func withSpecificTypes<SpecificStateType, Action>(_ action: Action, state genericStateType: StateType,
-                           function: (_ action: Action, _ state: SpecificStateType) -> ()) {
-        guard let specificStateType = genericStateType as? SpecificStateType else {
-            return
-        }
+    function(action, specificStateType)
+}
 
-        function(action, specificStateType)
+func withSpecificTypes<SpecificStateType, Action>(_ action: Action, state genericStateType: StateType,
+                       function: (_ action: Action, _ state: SpecificStateType) -> (SpecificStateType, NavigationCommand?)) -> (StateType, NavigationCommand?) {
+    guard let specificStateType = genericStateType as? SpecificStateType else {
+        return (genericStateType, nil)
     }
 
-#else
+    let (state, navigationCommand) = function(action, specificStateType)
+    return (state as! StateType, navigationCommand)
+}
 
-    func withSpecificTypes<SpecificStateType, Action>(_ action: Action, state genericStateType: StateType, @noescape function: (action: Action, state: SpecificStateType) -> SpecificStateType) -> StateType {
-        guard let specificStateType = genericStateType as? SpecificStateType else {
-            return genericStateType
-        }
-
-        return function(action: action, state: specificStateType) as! StateType
+func withSpecificTypes<SpecificStateType, Action>(_ action: Action, state genericStateType: StateType,
+                       navigationCommand: NavigationCommand?,
+                       function: (_ action: Action, _ state: SpecificStateType, _ navigationCommand: NavigationCommand?) -> ()) {
+    guard let specificStateType = genericStateType as? SpecificStateType else {
+        return
     }
 
-    func withSpecificTypes<SpecificStateType, Action>(_ action: Action, state genericStateType: StateType, @noescape function: (action: Action, state: SpecificStateType) -> ()) {
-        guard let specificStateType = genericStateType as? SpecificStateType else {
-            return
-        }
-
-        function(action: action, state: specificStateType)
-    }
-#endif
+    function(action, specificStateType, navigationCommand)
+}
