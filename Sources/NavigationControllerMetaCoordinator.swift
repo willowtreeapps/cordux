@@ -51,6 +51,13 @@ public extension NavigationControllerMetaCoordinator  {
         return route
     }
 
+    /// - note: This method always returns false and child coordinators are not queried.
+    public func needsToPrepareForRoute(_ route: Route?) -> Bool {
+        return false
+    }
+
+    /// - note: The completion handler is called immediately, so all leaving coordinators can only reasonably
+    ///         prepare for nil routes synchronously.
     public func prepareForRoute(_ route: Route?, completionHandler: @escaping () -> Void) {
         let number = numberOfLastExistingCoordinator(for: route)
         for i in number..<coordinators.count {

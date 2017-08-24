@@ -28,6 +28,18 @@ public extension SceneCoordinator {
         return currentScene?.route() ?? []
     }
 
+    public func needsToPrepareForRoute(_ route: Route?) -> Bool {
+        guard let currentScene = currentScene else {
+            return false
+        }
+
+        guard let route = route else {
+            return currentScene.coordinator.needsToPrepareForRoute(nil)
+        }
+
+        return currentScene.coordinator.needsToPrepareForRoute(route)
+    }
+
     public func prepareForRoute(_ route: Route?, completionHandler: @escaping () -> Void) {
         guard let currentScene = currentScene else {
             completionHandler()

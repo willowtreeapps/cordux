@@ -46,9 +46,32 @@ public extension PresentingCoordinator  {
         return route
     }
 
-    public func prepareForRoute(_ newValue: Route?, completionHandler: @escaping () -> Void) {
+    public func needsToPrepareForRoute(_ newValue: Route?) -> Bool {
         pruneOutOfDatePresented()
 
+        guard let route = newValue else {
+            if presented != nil {
+                return true
+            }
+            return rootCoordinator.needsToPrepareForRoute(nil)
+        }
+
+        let (rootRoute, presentable) = parsePresentableRoute(route)
+        let rootNeedsToPrepare = rootCoordinator.needsToPrepareForRoute(rootRoute)
+
+        guard let presented = presented else {
+            return rootNeedsToPrepare
+        }
+
+        guard let presentableRoute = presentable?.route else {
+            return true
+        }
+
+        let presentedNeedsToPrepare = presented.coordinator.needsToPrepareForRoute(presentableRoute)
+        return rootNeedsToPrepare || presentedNeedsToPrepare
+    }
+
+    public func prepareForRoute(_ newValue: Route?, completionHandler: @escaping () -> Void) {
         guard let route = newValue else {
             withGroup(completionHandler) { group in
                 group.enter()

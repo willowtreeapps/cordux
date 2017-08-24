@@ -28,6 +28,10 @@ public extension NavigationControllerCoordinator  {
         return route
     }
 
+    public func needsToPrepareForRoute(_ route: Route?) -> Bool {
+        return false
+    }
+
     public func prepareForRoute(_ route: Route?, completionHandler: @escaping () -> Void) {
         completionHandler()
     }
@@ -64,6 +68,13 @@ extension UINavigationController {
     public func popToViewController(_ viewController: UIViewController, animated: Bool, completion: @escaping () -> Void) {
         popToViewController(viewController, animated: animated)
         animateWithCompletion(animated: animated, completion: completion)
+    }
+
+    @discardableResult
+    public func popToRootViewController(animated: Bool, completion: @escaping () -> Void) -> [UIViewController]? {
+        let controllers = popToRootViewController(animated: animated)
+        animateWithCompletion(animated: animated, completion: completion)
+        return controllers
     }
 
     public func setViewControllers(_ viewControllers: [UIViewController], animated: Bool, completion: @escaping () -> Void) {

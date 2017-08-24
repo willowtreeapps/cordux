@@ -17,10 +17,23 @@ public protocol AnyCoordinator: class {
     /// from the point of view of this coordinator.
     var route: Route { get }
 
-    /// This method is called before `setRoute(_:completionHandler:)` and with the same values. A `route` of `nil` is 
-    /// used to indicate that the coordinator's root view controller will be removed from the hierarchy. If the 
-    /// coordinator is managing a view controller that could interfere with routing, such as a popover or a modal, then
-    /// it should reset the view controller state to one that can be properly routed.
+    /// This method is called before `prepareForRoute(_:completionHandler:)` with the same route to determine if that
+    /// method needs called.
+    ///
+    /// A `route` of `nil` is used to indicate that the coordinator's root view controller will be removed from the 
+    /// hierarchy. If the coordinator is managing a view controller that could interfere with routing, such as a popover
+    /// or a modal, then it should return true to tell the system that it needs to do so.
+    ///
+    /// - Parameters:
+    ///   - _: the `Route` that will be prepared for in `prepareForRoute(_:completionHandler:)` following this call
+    func needsToPrepareForRoute(_: Route?) -> Bool
+
+    /// This method is called before `setRoute(_:completionHandler:)` and with the same values, but only when
+    /// `needsToPrepareForRoute(_:)` returns true.
+    ///
+    /// A `route` of `nil` is used to indicate that the coordinator's root view controller will be removed from the
+    /// hierarchy. If the coordinator is managing a view controller that could interfere with routing, such as a popover
+    /// or a modal, then it should reset the view controller state to one that can be properly routed.
     ///
     /// When the view controller state has been made ready for routing, `completionHandler` must be called.
     ///

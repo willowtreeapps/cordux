@@ -13,11 +13,15 @@ public protocol SimpleCoordinator: Coordinator {
 }
 
 public extension SimpleCoordinator {
-    public func prepareForRoute(_: Route?, completionHandler: @escaping () -> Void) {
+    public func needsToPrepareForRoute(_ route: Route?) -> Bool {
+        return false
+    }
+
+    public func prepareForRoute(_ route: Route?, completionHandler: @escaping () -> Void) {
         completionHandler()
     }
 
-    public func setRoute(_: Route?, completionHandler: @escaping () -> Void) {
+    public func setRoute(_ route: Route?, completionHandler: @escaping () -> Void) {
         completionHandler()
     }
 }
