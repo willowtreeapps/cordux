@@ -63,7 +63,7 @@ public extension PresentingCoordinator  {
             return rootNeedsToPrepare
         }
 
-        guard let presentableRoute = presentable?.route else {
+        guard let presentableRoute = presentable?.route, !presentableRoute.components.isEmpty else {
             return true
         }
 
