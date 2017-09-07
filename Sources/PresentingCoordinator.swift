@@ -63,11 +63,15 @@ public extension PresentingCoordinator  {
             return rootNeedsToPrepare
         }
 
-        guard let presentableRoute = presentable?.route, !presentableRoute.components.isEmpty else {
+        guard
+            let newPresentable = presentable,
+            presented.tag == newPresentable.scene.tag,
+            !newPresentable.route.components.isEmpty
+        else {
             return true
         }
 
-        let presentedNeedsToPrepare = presented.coordinator.needsToPrepareForRoute(presentableRoute)
+        let presentedNeedsToPrepare = presented.coordinator.needsToPrepareForRoute(newPresentable.route)
         return rootNeedsToPrepare || presentedNeedsToPrepare
     }
 
