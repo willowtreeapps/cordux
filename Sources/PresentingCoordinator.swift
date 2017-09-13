@@ -13,7 +13,7 @@ public protocol AnyPresentingCoordinator {
     func presentStoredPresentable(completionHandler: @escaping () -> Void)
 }
 
-public protocol PresentingCoordinator: Coordinator, AnyPresentingCoordinator {
+public protocol PresentingCoordinator: Coordinator, AnyPresentingCoordinator, ViewControllerLifecycleDelegate {
     var rootCoordinator: AnyCoordinator { get }
     var presented: Scene? { get set }
 
@@ -219,7 +219,9 @@ public extension PresentingCoordinator  {
 
         let coordinator = scene.buildCoordinator()
         coordinator.start(route: route)
-        rootViewController.present(coordinator.rootViewController, animated: true) {
+        let presentedController = coordinator.rootViewController
+        presentedController.addLifecycleDelegate(self)
+        rootViewController.present(presentedController, animated: true) {
             self.presented = Scene(tag: scene.tag, coordinator: coordinator)
             completionHandler()
         }
