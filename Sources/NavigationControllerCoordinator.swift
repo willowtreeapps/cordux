@@ -14,9 +14,9 @@ public protocol NavigationControllerCoordinator: Coordinator {
 }
 
 public extension NavigationControllerCoordinator  {
-    public var rootViewController: UIViewController { return navigationController }
+    var rootViewController: UIViewController { return navigationController }
 
-    public var route: Route {
+    var route: Route {
         get {
             var route: Route = []
             navigationController.viewControllers.forEach { vc in
@@ -35,7 +35,7 @@ public extension NavigationControllerCoordinator  {
         }
     }
 
-    public func popRoute(_ viewController: UIViewController) {
+    func popRoute(_ viewController: UIViewController) {
         guard let context = viewController.corduxContext else {
             return
         }

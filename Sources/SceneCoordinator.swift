@@ -29,7 +29,7 @@ public protocol SceneCoordinator: Coordinator {
 }
 
 public extension SceneCoordinator {
-    public var route: Route {
+    var route: Route {
         get {
             let route: Route = scenePrefix?.route() ?? []
             return route + (currentScene?.route ?? [])
@@ -44,11 +44,11 @@ public extension SceneCoordinator {
         }
     }
 
-    public func routeScene(_ route: Route) {
+    func routeScene(_ route: Route) {
         currentScene?.route = sceneRoute(route)
     }
 
-    public func sceneRoute(_ route: Route) -> Route {
+    func sceneRoute(_ route: Route) -> Route {
         return Route(route.dropFirst())
     }
 }

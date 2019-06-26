@@ -7,7 +7,6 @@
 //
 
 import XCTest
-@testable import Cordux_tvOS
 
 class Cordux_tvOSTests: XCTestCase {
     

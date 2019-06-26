@@ -14,7 +14,7 @@ WillowTree, Inc. has adopted a Code of Conduct that we expect project participan
 
 ### Test Suite
 
-We run the unit test target in the latest Xcode 8.
+We run the unit test target in the latest Xcode.
 
 ### Pull Requests
 

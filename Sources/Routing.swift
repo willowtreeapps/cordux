@@ -165,7 +165,7 @@ extension Route {
             components.replaceSubrange(subRange, with: newElements)
         }
     #else
-        public mutating func replaceRange<C : CollectionType where C.Generator.Element == Generator.Element>(_ subRange: Range<Int>, with newElements: C) {
+    public mutating func replaceRange<C : CollectionType>(_ subRange: Range<Int>, with newElements: C) where C.Generator.Element == Generator.Element {
             components.replaceRange(subRange, with: newElements)
         }
     #endif
@@ -190,7 +190,7 @@ extension String: RouteConvertible {
 }
 
 public extension RawRepresentable where RawValue == String {
-    public func route() -> Route {
+    func route() -> Route {
         return self.rawValue.route()
     }
 }

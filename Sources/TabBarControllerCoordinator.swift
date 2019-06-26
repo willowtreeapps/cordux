@@ -20,7 +20,7 @@ public protocol TabBarControllerCoordinator: SceneCoordinator {
 }
 
 public extension TabScene {
-    public func route() -> Route {
+    func route() -> Route {
         return Route(prefix)
     }
 }
@@ -36,11 +36,11 @@ public struct Scene: TabScene {
 }
 
 public extension TabBarControllerCoordinator {
-    public var rootViewController: UIViewController { return tabBarController }
-    public var scenePrefix: String? { return scenes[tabBarController.selectedIndex].prefix }
-    public var currentScene: AnyCoordinator? { return scenes[tabBarController.selectedIndex].coordinator }
+    var rootViewController: UIViewController { return tabBarController }
+    var scenePrefix: String? { return scenes[tabBarController.selectedIndex].prefix }
+    var currentScene: AnyCoordinator? { return scenes[tabBarController.selectedIndex].coordinator }
 
-    public func changeScene(_ route: Route) {
+    func changeScene(_ route: Route) {
         #if swift(>=3)
             for (index, scene) in scenes.enumerated() {
                 if route.first == scene.prefix {
@@ -58,7 +58,7 @@ public extension TabBarControllerCoordinator {
         #endif
     }
 
-    public func setRouteForViewController(_ viewController: UIViewController) -> Bool {
+    func setRouteForViewController(_ viewController: UIViewController) -> Bool {
         for scene in scenes {
             if scene.coordinator.rootViewController == viewController {
                 store.setRoute(.replace(route, scene + scene.coordinator.route))
