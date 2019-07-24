@@ -80,7 +80,7 @@ extension UIViewController {
                                               swizzled: #selector(UIViewController.cordux_viewDidDisappear))
 
         #if swift(>=3)
-            UIViewController.cordux_swizzleMethod(#selector(UIViewController.didMove(toParentViewController:)),
+            UIViewController.cordux_swizzleMethod(#selector(UIViewController.didMove),
                                                   swizzled: #selector(UIViewController.cordux_didMoveToParentViewController(_:)))
         #else
             UIViewController.cordux_swizzleMethod(#selector(UIViewController.didMoveToParentViewController(_:)),
@@ -92,7 +92,7 @@ extension UIViewController {
         _ = swizzle
     }
 
-    func cordux_viewDidLoad() {
+    @objc func cordux_viewDidLoad() {
         self.cordux_viewDidLoad()
         #if swift(>=3)
             self.corduxContext?.lifecycleDelegate.viewDidLoad(viewController: self)
@@ -101,27 +101,27 @@ extension UIViewController {
         #endif
     }
 
-    func cordux_viewWillAppear(_ animated: Bool) {
+    @objc func cordux_viewWillAppear(_ animated: Bool) {
         self.cordux_viewWillAppear(animated)
         self.corduxContext?.lifecycleDelegate.viewWillAppear(animated, viewController: self)
     }
 
-    func cordux_viewDidAppear(_ animated: Bool) {
+    @objc func cordux_viewDidAppear(_ animated: Bool) {
         self.cordux_viewDidAppear(animated)
         self.corduxContext?.lifecycleDelegate.viewDidAppear(animated, viewController: self)
     }
 
-    func cordux_viewWillDisappear(_ animated: Bool) {
+    @objc func cordux_viewWillDisappear(_ animated: Bool) {
         self.cordux_viewWillDisappear(animated)
         self.corduxContext?.lifecycleDelegate.viewWillDisappear(animated, viewController: self)
     }
 
-    func cordux_viewDidDisappear(_ animated: Bool) {
+    @objc func cordux_viewDidDisappear(_ animated: Bool) {
         self.cordux_viewDidDisappear(animated)
         self.corduxContext?.lifecycleDelegate.viewDidDisappear(animated, viewController: self)
     }
 
-    func cordux_didMoveToParentViewController(_ parentViewController: UIViewController?) {
+    @objc func cordux_didMoveToParentViewController(_ parentViewController: UIViewController?) {
         self.cordux_didMoveToParentViewController(parentViewController)
 
         #if swift(>=3)
@@ -132,11 +132,13 @@ extension UIViewController {
     }
 
     static func cordux_swizzleMethod(_ original: Selector, swizzled: Selector) {
-        let originalMethod = class_getInstanceMethod(self, original)
-        let swizzledMethod = class_getInstanceMethod(self, swizzled)
-
+        guard let originalMethod = class_getInstanceMethod(self, original),
+            let swizzledMethod = class_getInstanceMethod(self, swizzled) else {
+                return
+        }
+        
         let didAddMethod = class_addMethod(self, original, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod))
-
+        
         if didAddMethod {
             class_replaceMethod(self, swizzled, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod))
         } else {
