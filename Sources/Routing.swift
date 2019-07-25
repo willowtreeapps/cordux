@@ -9,7 +9,7 @@
 import Foundation
 
 public struct Route  {
-    public internal(set) var components: [String]
+    public var components: [String]
 
     public func reduce<T>(_ action: RouteAction<T>) -> Route {
         switch action {
@@ -171,7 +171,7 @@ extension Route {
             components.replaceSubrange(subRange, with: newElements)
         }
     #else
-        public mutating func replaceRange<C : CollectionType where C.Generator.Element == Generator.Element>(_ subRange: Range<Int>, with newElements: C) {
+    public mutating func replaceRange<C : CollectionType>(_ subRange: Range<Int>, with newElements: C) where C.Generator.Element == Generator.Element {
             components.replaceRange(subRange, with: newElements)
         }
     #endif
