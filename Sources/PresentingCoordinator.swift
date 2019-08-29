@@ -20,16 +20,16 @@ public protocol PresentingCoordinator: Coordinator, AnyPresentingCoordinator, Vi
     var presentables: [GeneratingScene] { get }
     func parsePresentableRoute(_ route: Route) -> (rootRoute: Route, presentable: (route: Route, scene: GeneratingScene)?)
 
-    func present(scene: GeneratingScene, route: Route, completionHandler: @escaping () -> Void)
+    func present(scene: GeneratingScene, route: Route, presentationStyle: UIModalPresentationStyle, completionHandler: @escaping () -> Void)
     func dismiss(completionHandler: @escaping () -> Void)
 }
 
 public extension PresentingCoordinator  {
-    public var rootViewController: UIViewController {
+    var rootViewController: UIViewController {
         return rootCoordinator.rootViewController
     }
 
-    public var route: Route {
+    var route: Route {
         var route: Route = []
         #if swift(>=3)
             route.append(contentsOf: rootCoordinator.route)
@@ -46,7 +46,7 @@ public extension PresentingCoordinator  {
         return route
     }
 
-    public func needsToPrepareForRoute(_ newValue: Route?) -> Bool {
+    func needsToPrepareForRoute(_ newValue: Route?) -> Bool {
         pruneOutOfDatePresented()
 
         guard let route = newValue else {
@@ -75,7 +75,7 @@ public extension PresentingCoordinator  {
         return rootNeedsToPrepare || presentedNeedsToPrepare
     }
 
-    public func prepareForRoute(_ newValue: Route?, completionHandler: @escaping () -> Void) {
+    func prepareForRoute(_ newValue: Route?, completionHandler: @escaping () -> Void) {
         guard let route = newValue else {
             withGroup(completionHandler) { group in
                 group.enter()
@@ -113,7 +113,7 @@ public extension PresentingCoordinator  {
         }
     }
 
-    public func setRoute(_ newValue: Route?, completionHandler: @escaping () -> Void) {
+    func setRoute(_ newValue: Route?, completionHandler: @escaping () -> Void) {
         guard let newValue = newValue else {
             dismiss(completionHandler: completionHandler)
             return
@@ -174,11 +174,11 @@ public extension PresentingCoordinator  {
         }
     }
 
-    public var hasStoredPresentable: Bool {
+    var hasStoredPresentable: Bool {
         return rootCoordinator.rootViewController.corduxToPresent != nil
     }
 
-    public func presentStoredPresentable(completionHandler: @escaping () -> Void) {
+    func presentStoredPresentable(completionHandler: @escaping () -> Void) {
         guard let toPresent = rootCoordinator.rootViewController.corduxToPresent else {
             completionHandler()
             return
@@ -203,7 +203,7 @@ public extension PresentingCoordinator  {
     /// Presents the presentable coordinator.
     /// If it is already presented, this method merely adjusts the route.
     /// If a different presentable is currently presented, this method dismisses it first.
-    func present(scene: GeneratingScene, route: Route, completionHandler: @escaping () -> Void) {
+    func present(scene: GeneratingScene, route: Route, presentationStyle: UIModalPresentationStyle = .fullScreen, completionHandler: @escaping () -> Void) {
         if let presented = presented {
             if scene.tag != presented.tag {
                 dismiss() {
@@ -221,6 +221,7 @@ public extension PresentingCoordinator  {
         coordinator.start(route: route)
         let presentedController = coordinator.rootViewController
         presentedController.addLifecycleDelegate(self)
+        presentedController.modalPresentationStyle = presentationStyle
         rootViewController.present(presentedController, animated: true) {
             self.presented = Scene(tag: scene.tag, coordinator: coordinator)
             completionHandler()
